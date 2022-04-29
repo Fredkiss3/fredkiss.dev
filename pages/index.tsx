@@ -1,7 +1,13 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import matter from "gray-matter";
 
-const Home: NextPage = () => {
+import { readdirSync, readFileSync } from "fs";
+import { join } from "path";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote";
+
+const Home: NextPage = (props) => {
   return (
     <div className={`container`}>
       <Head>
@@ -11,25 +17,44 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={``}>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        <pre className="text-2xl">{JSON.stringify(props, null, 2)}</pre>
 
-        <p>
-          L’assurance habitation regroupe toutes les formules d’assurance qu’il
-          est possible de choisir pour assurer le lieu dans lequel vous vivez,
-          que vous en soyez locataire, propriétaire occupant ou non.{" "}
-          <strong>
-            Pour faire face à la diversité des situations, s’adapter à la
-            superficie du logement, à sa localisation ou encore à sa valeur, les
-            options possibles via l’assurance habitation sont très nombreuses.
-          </strong>{" "}
-          Nous vous aidons à vous y repérer et à comprendre tant le mode de
-          calcul que la nature des options à votre disposition.
-        </p>
-
-        <span className="font-custom text-8xl">Adrien</span>
+        {/* @ts-ignore */}
+        {props.data.map((post) => (
+          <>
+            {/* @ts-ignore */}
+            <MDXRemote {...post.serialisedContent} />
+          </>
+        ))}
       </main>
     </div>
   );
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const EXPS_PATH = join(process.cwd(), "data", "experience");
+  const data = readdirSync(EXPS_PATH).map((file) => {
+    const markdown = readFileSync(join(EXPS_PATH, file), "utf8");
+
+    const { data, content } = matter(markdown);
+    return {
+      path: file,
+      data,
+      content,
+    };
+  });
+
+  for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+    // @ts-ignore
+    element.serialisedContent = await serialize(element.content);
+  }
+
+  return {
+    props: {
+      data,
+    },
+  };
+};
