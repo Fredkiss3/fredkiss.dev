@@ -1,13 +1,15 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import matter from "gray-matter";
 
-import { readdirSync, readFileSync } from "fs";
-import { join } from "path";
-import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
+import { getExperiences } from "../lib/functions";
+import { Experience, MarkdownData } from "../lib/types";
 
-const Home: NextPage = (props) => {
+type HomePageProps = {
+  experiences: MarkdownData<Experience>[];
+};
+
+const Home: NextPage<HomePageProps> = (props) => {
   return (
     <div className={`container`}>
       <Head>
@@ -17,13 +19,9 @@ const Home: NextPage = (props) => {
       </Head>
 
       <main className={``}>
-        <pre className="text-2xl">{JSON.stringify(props, null, 2)}</pre>
-
-        {/* @ts-ignore */}
-        {props.data.map((post) => (
+        {props.experiences.map((exp) => (
           <>
-            {/* @ts-ignore */}
-            <MDXRemote {...post.serialisedContent} />
+            <MDXRemote {...exp.serializedContent} />
           </>
         ))}
       </main>
@@ -34,27 +32,11 @@ const Home: NextPage = (props) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const EXPS_PATH = join(process.cwd(), "data", "experience");
-  const data = readdirSync(EXPS_PATH).map((file) => {
-    const markdown = readFileSync(join(EXPS_PATH, file), "utf8");
-
-    const { data, content } = matter(markdown);
-    return {
-      path: file,
-      data,
-      content,
-    };
-  });
-
-  for (let index = 0; index < data.length; index++) {
-    const element = data[index];
-    // @ts-ignore
-    element.serialisedContent = await serialize(element.content);
-  }
+  const data = await getExperiences();
 
   return {
     props: {
-      data,
+      experiences: data,
     },
   };
 };
