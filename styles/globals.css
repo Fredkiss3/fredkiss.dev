@@ -114,7 +114,7 @@
 
 :root {
   font-family: "Caros", sans-serif;
-  @apply font-medium;
   @apply text-dark;
+  font-weight: 400;
   font-size: 16px;
 }

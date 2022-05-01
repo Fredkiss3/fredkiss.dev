@@ -19,11 +19,11 @@ const Home: NextPage<HomePageProps> = (props) => {
       <Head>
         <title>Adrien KISSIE - Portfolio</title>
         <meta name="description" content="My portfolio" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <header className={`bg-light px-4 pt-4 fixed top-0 left-0 right-0`}>
-        <div className="flex  justify-between items-center">
+        <div className="flex justify-between items-center">
           <Link href={`/`}>
             <a className="font-custom text-4xl font-bold">Adrien</a>
           </Link>
