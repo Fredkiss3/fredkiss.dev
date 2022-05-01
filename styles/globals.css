@@ -6,98 +6,86 @@
 
 @font-face {
   font-family: "Caros";
-  src: url("/fonts/caros-bold-webfont.woff2") format("woff2"),
-    url("/fonts/caros-bold-webfont.woff") format("woff");
+  src: url("/fonts/Caros-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Caros";
-  src: url("/fonts/caros-boldit-webfont.woff2") format("woff2"),
-    url("/fonts/caros-boldit-webfont.woff") format("woff");
+  src: url("/fonts/Caros-Bold-Italic.woff") format("woff");
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Caros";
-  src: url("/fonts/caros-extralight-webfont.woff2") format("woff2"),
-    url("/fonts/caros-extralight-webfont.woff") format("woff");
+  src: url("/fonts/Caros-Extralight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Caros";
-  src: url("/fonts/caros-extralightit-webfont.woff2") format("woff2"),
-    url("/fonts/caros-extralightit-webfont.woff") format("woff");
+  src: url("/fonts/Caros-Extralight-Italic.woff") format("woff");
   font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Caros";
-  src: url("/fonts/caros-it-webfont.woff2") format("woff2"),
-    url("/fonts/caros-it-webfont.woff") format("woff");
+  src: url("/fonts/Caros-Regular-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Caros";
-  src: url("/fonts/caros-light-webfont.woff2") format("woff2"),
-    url("/fonts/caros-light-webfont.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Caros";
-  src: url("/fonts/caros-lightit-webfont.woff2") format("woff2"),
-    url("/fonts/caros-lightit-webfont.woff") format("woff");
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Caros";
-  src: url("/fonts/caros-medium-webfont.woff2") format("woff2"),
-    url("/fonts/caros-medium-webfont.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Caros";
-  src: url("/fonts/caros-mediumit-webfont.woff2") format("woff2"),
-    url("/fonts/caros-mediumit-webfont.woff") format("woff");
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Caros";
-  src: url("/fonts/caros-thin-webfont.woff2") format("woff2"),
-    url("/fonts/caros-thin-webfont.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Caros";
-  src: url("/fonts/caros-thinit-webfont.woff2") format("woff2"),
-    url("/fonts/caros-thinit-webfont.woff") format("woff");
-  font-weight: 100;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Caros";
-  src: url("/fonts/caros-webfont.woff2") format("woff2"),
-    url("/fonts/caros-webfont.woff") format("woff");
+  src: url("/fonts/Caros-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Caros";
+  src: url("/fonts/Caros-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Caros";
+  src: url("/fonts/Caros-Light-Italic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Caros";
+  src: url("/fonts/Caros-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Caros";
+  src: url("/fonts/Caros-Medium-Italic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Caros";
+  src: url("/fonts/Caros-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Caros";
+  src: url("/fonts/Caros-Thin-Italic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
 }
 
 /* latin-ext */
@@ -125,7 +113,7 @@
 }
 
 :root {
-  font-family: "Caros", serif;
+  font-family: "Caros", sans-serif;
   @apply font-medium;
   @apply text-dark;
   font-size: 16px;
