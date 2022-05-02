@@ -43,7 +43,7 @@ const Home: NextPage<HomePageProps> = (props) => {
           </h1>
 
           <p>
-            Développeur web et streamer sur{" "}
+            Développeur web et streamer sur&nbsp;
             <a
               href="https://twitch.tv/fredkisss"
               target={`_blank`}
