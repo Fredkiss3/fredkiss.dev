@@ -50,10 +50,15 @@ export function Footer() {
             <Link href="#projects">Projets</Link>
           </li>
           <li>
-            <Link href="#projects">Expérience</Link>
+            <Link href="#experience">Expérience</Link>
           </li>
           <li>
-            <Link href="#projects">A propos de moi</Link>
+            <Link href="#about">A propos de moi</Link>
+          </li>
+          <li>
+            <Link href="/resume.pdf" download>
+              Télécharger CV
+            </Link>
           </li>
         </ul>
       </div>

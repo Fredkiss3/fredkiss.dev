@@ -11,12 +11,34 @@ import Image from "next/image";
 
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
+import { ExperienceTimeline } from "../components/experience";
 
 type HomePageProps = {
   experiences: MarkdownData<Experience>[];
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
+  React.useEffect(() => {
+    document.querySelectorAll("a").forEach((anchor) => {
+      if (anchor.hash) {
+        const el = document.querySelector(anchor.hash) as HTMLElement;
+
+        if (el) {
+          anchor.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            scroll({
+              top: el.offsetTop - 50,
+              behavior: "smooth",
+            });
+
+            window.location.hash = anchor.hash;
+          });
+        }
+      }
+    });
+  }, []);
+
   return (
     <div className={`container`}>
       <Head>
@@ -30,7 +52,7 @@ const Home: NextPage<HomePageProps> = (props) => {
       <main className="bg-light px-4 mt-[4.2rem] pt-10">
         <StartingSection />
         <ProjectSection />
-        <ExperienceSection />
+        <ExperienceSection experiences={props.experiences} />
         <AboutSection />
       </main>
 
@@ -105,8 +127,22 @@ function ProjectSection() {
   return <section></section>;
 }
 
-function ExperienceSection() {
-  return <section></section>;
+function ExperienceSection({
+  experiences,
+}: {
+  experiences: MarkdownData<Experience>[];
+}) {
+  return (
+    <section className="bg-light py-4 px-4" id="experience">
+      <h2 className="text-center font-bold text-2xl mb-4">
+        Expériences Professionnelles
+      </h2>
+
+      {experiences.map((exp, i) => (
+        <ExperienceTimeline key={i} {...exp} />
+      ))}
+    </section>
+  );
 }
 
 function AboutSection() {
@@ -120,7 +156,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      experiences: data,
+      experiences: data.sort((a, b) => {
+        return (
+          new Date(b.data.startDate).getTime() -
+          new Date(a.data.startDate).getTime()
+        );
+      }),
     },
   };
 };

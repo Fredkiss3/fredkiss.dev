@@ -3,12 +3,14 @@ import NextLink, { LinkProps as NextLinkProps } from "next/link";
 
 export interface LinkProps extends NextLinkProps {
   children: React.ReactNode;
+  download?: boolean;
 }
 
 export function Link(props: LinkProps) {
   return (
     <NextLink {...props}>
       <a
+        download={props.download}
         className={`uppercase
         relative 
         group

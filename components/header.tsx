@@ -5,7 +5,7 @@ import { MenuIcon } from "@heroicons/react/solid";
 import { Link } from "./link";
 import { motion } from "framer-motion";
 
-export function Header({}) {
+export function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const containerAnimationOptions = {
     hide: { opacity: 1 },
@@ -87,6 +87,18 @@ export function Header({}) {
                 }}
               >
                 <Link href="#about">A propos de moi</Link>
+              </motion.li>
+
+              <motion.li
+                key={`about`}
+                variants={itemAnimationOptions}
+                transition={{
+                  duration: 0.1,
+                }}
+              >
+                <Link href="/resume.pdf" download>
+                  Télécharger CV
+                </Link>
               </motion.li>
             </motion.ul>
           </nav>

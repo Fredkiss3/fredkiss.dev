@@ -39,3 +39,11 @@ export function clsx(
   }
   return classes.join(" ");
 }
+
+export function formatDate(dateStr: string | Date): string {
+  return new Intl.DateTimeFormat("fr-FR", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  }).format(new Date(dateStr));
+}
