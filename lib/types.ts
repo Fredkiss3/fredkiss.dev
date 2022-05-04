@@ -4,11 +4,20 @@ export type Experience = {
   company: string;
   type: string;
   title: string;
-  description: string;
   startDate: string;
   endDate?: string;
   color: "primary" | "secondary" | "tertiary";
   technologies: string[];
+};
+
+export type Project = {
+  name: string;
+  image: string;
+  startDate: string;
+  color: "secondary" | "tertiary" | "dark";
+  technologies: string[];
+  url?: string;
+  github?: string;
 };
 
 export type MarkdownData<

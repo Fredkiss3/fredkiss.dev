@@ -1,4 +1,4 @@
-import type { Experience, MarkdownData } from "./types";
+import type { Experience, MarkdownData, Project } from "./types";
 import { readdirSync, readFileSync } from "fs";
 import { join } from "path";
 import { serialize } from "next-mdx-remote/serialize";
@@ -35,4 +35,6 @@ export async function getExperiences(): Promise<MarkdownData<Experience>[]> {
   return readMarkdownFiles<Experience>("data", "experience");
 }
 
-// export function getProjects(): Experience[] {}
+export function getProjects(): Promise<MarkdownData<Project>[]> {
+  return readMarkdownFiles<Project>("data", "projects");
+}

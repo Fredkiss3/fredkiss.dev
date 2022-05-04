@@ -5,20 +5,23 @@ import Head from "next/head";
 import * as React from "react";
 
 // import { MDXRemote } from "next-mdx-remote";
-import { getExperiences } from "../lib/functions";
-import { Experience, MarkdownData } from "../lib/types";
+import { getExperiences, getProjects } from "../lib/functions";
+import { Experience, MarkdownData, Project } from "../lib/types";
 import Image from "next/image";
 
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
 import { ExperienceTimeline } from "../components/experience";
+import { ProjectCard } from "../components/project-card";
 
 type HomePageProps = {
   experiences: MarkdownData<Experience>[];
+  projects: MarkdownData<Project>[];
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
   React.useEffect(() => {
+    // smooth scroll to element with id
     document.querySelectorAll("a").forEach((anchor) => {
       if (anchor.hash) {
         const el = document.querySelector(anchor.hash) as HTMLElement;
@@ -50,9 +53,9 @@ const Home: NextPage<HomePageProps> = (props) => {
 
       <Header />
 
-      <main className="bg-light px-4 mt-[4.2rem] pt-10">
+      <main className="mt-[4.2rem] pt-10">
         <StartingSection />
-        <ProjectSection />
+        <ProjectSection projects={props.projects} />
         <ExperienceSection experiences={props.experiences} />
         <AboutSection />
       </main>
@@ -64,7 +67,7 @@ const Home: NextPage<HomePageProps> = (props) => {
 
 function StartingSection() {
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4 px-4">
       <h1 className="text-4xl font-bold leading-relaxed">
         Hello world, je suis Adrien KISSIE
       </h1>
@@ -124,8 +127,23 @@ function StartingSection() {
   );
 }
 
-function ProjectSection() {
-  return <section></section>;
+function ProjectSection({ projects }: { projects: MarkdownData<Project>[] }) {
+  return (
+    <section className="bg-white py-8 px-8" id="projects">
+      <h2 className="text-center font-bold text-2xl mb-4">Mes projets</h2>
+      <p className="text-center mb-4">
+        Retrouvez ici les joujous qui font ma fierté.
+      </p>
+
+      <ul className="grid gap-10">
+        {projects.map((project, index) => (
+          <li key={index}>
+            <ProjectCard {...project} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 function ExperienceSection({
@@ -136,7 +154,7 @@ function ExperienceSection({
   return (
     <section className="bg-light py-4 px-4" id="experience">
       <h2 className="text-center font-bold text-2xl mb-4">
-        Expériences Professionnelles
+        Mon Expérience Professionnelle
       </h2>
 
       {experiences.map((exp, i) => (
@@ -154,10 +172,17 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await getExperiences();
+  const projects = await getProjects();
 
   return {
     props: {
       experiences: data.sort((a, b) => {
+        return (
+          new Date(b.data.startDate).getTime() -
+          new Date(a.data.startDate).getTime()
+        );
+      }),
+      projects: projects.sort((a, b) => {
         return (
           new Date(b.data.startDate).getTime() -
           new Date(a.data.startDate).getTime()

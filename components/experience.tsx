@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from "@heroicons/react/solid";
 import { MDXRemote } from "next-mdx-remote";
 import React from "react";
 import { Experience, MarkdownData } from "../lib/types";
@@ -8,7 +9,14 @@ export interface ExperienceProps extends MarkdownData<Experience> {}
 
 const components = {
   a: (props: any) => (
-    <a {...props} className={`underline font-bold`} target={`_blank`} />
+    <a
+      {...props}
+      className={`underline font-bold inline-flex items-center`}
+      target={`_blank`}
+    >
+      <span>{props.children}</span>
+      <ExternalLinkIcon className="h-4" />
+    </a>
   ),
 };
 

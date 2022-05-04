@@ -8,15 +8,22 @@ export interface LinkProps extends NextLinkProps {
   empty?: boolean;
 }
 
-export function Link(props: LinkProps) {
-  const Component = props.empty ? React.Fragment : NextLink;
+export function Link({
+  onClick,
+  children,
+  href,
+  download,
+  empty,
+  ...restProps
+}: LinkProps) {
+  const Component = empty ? React.Fragment : NextLink;
 
   return (
-    <Component {...props}>
+    <Component {...restProps} href={href}>
       <a
-        onClick={props.onClick}
-        href={props.href.toString()}
-        download={props.download}
+        onClick={onClick}
+        href={href.toString()}
+        download={download}
         className={`uppercase
         relative 
         group
@@ -47,7 +54,7 @@ export function Link(props: LinkProps) {
           rounded-bl-full
         "
         />
-        <span>{props.children}</span>
+        <span>{children}</span>
 
         <span
           className="
