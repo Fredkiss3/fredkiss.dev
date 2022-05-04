@@ -24,11 +24,12 @@ const Home: NextPage<HomePageProps> = (props) => {
         const el = document.querySelector(anchor.hash) as HTMLElement;
 
         if (el) {
+          const offset = el.offsetTop - 50;
           anchor.addEventListener("click", (e) => {
             e.preventDefault();
 
             scroll({
-              top: el.offsetTop - 50,
+              top: offset,
               behavior: "smooth",
             });
 

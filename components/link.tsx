@@ -4,12 +4,18 @@ import NextLink, { LinkProps as NextLinkProps } from "next/link";
 export interface LinkProps extends NextLinkProps {
   children: React.ReactNode;
   download?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
+  empty?: boolean;
 }
 
 export function Link(props: LinkProps) {
+  const Component = props.empty ? React.Fragment : NextLink;
+
   return (
-    <NextLink {...props}>
+    <Component {...props}>
       <a
+        onClick={props.onClick}
+        href={props.href.toString()}
         download={props.download}
         className={`uppercase
         relative 
@@ -62,6 +68,6 @@ export function Link(props: LinkProps) {
         "
         />
       </a>
-    </NextLink>
+    </Component>
   );
 }

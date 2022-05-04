@@ -22,6 +22,19 @@ export function Header() {
     show: { opacity: 1 },
   };
 
+  const scrollTo = (hash: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.querySelector(hash) as HTMLElement;
+    if (el) {
+      const offset = el.offsetTop - 50;
+      scroll({
+        top: offset,
+        behavior: "smooth",
+      });
+      window.location.hash = hash;
+    }
+  };
+
   return (
     <>
       <header className={`bg-light px-4 pt-4 fixed top-0 left-0 right-0 z-10`}>
@@ -66,7 +79,13 @@ export function Header() {
                   duration: 0.1,
                 }}
               >
-                <Link href="#projects">Projets</Link>
+                <Link
+                  empty
+                  onClick={(e) => scrollTo("#projects", e)}
+                  href="#projects"
+                >
+                  Projets
+                </Link>
               </motion.li>
 
               <motion.li
@@ -76,7 +95,13 @@ export function Header() {
                   duration: 0.1,
                 }}
               >
-                <Link href="#experience">Expérience</Link>
+                <Link
+                  empty
+                  onClick={(e) => scrollTo("#experience", e)}
+                  href="#experience"
+                >
+                  Expérience
+                </Link>
               </motion.li>
 
               <motion.li
@@ -86,17 +111,23 @@ export function Header() {
                   duration: 0.1,
                 }}
               >
-                <Link href="#about">A propos de moi</Link>
+                <Link
+                  empty
+                  onClick={(e) => scrollTo("#about", e)}
+                  href="#about"
+                >
+                  A propos de moi
+                </Link>
               </motion.li>
 
               <motion.li
-                key={`about`}
+                key={`resume`}
                 variants={itemAnimationOptions}
                 transition={{
                   duration: 0.1,
                 }}
               >
-                <Link href="/resume.pdf" download>
+                <Link empty href="/resume.pdf" download>
                   Télécharger CV
                 </Link>
               </motion.li>
