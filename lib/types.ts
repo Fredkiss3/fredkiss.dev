@@ -20,6 +20,12 @@ export type Project = {
   github?: string;
 };
 
+export type Skill = {
+  id: string;
+  name: string;
+  technologies: string[];
+};
+
 export type MarkdownData<
   T extends {
     [key: string]: any;

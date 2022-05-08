@@ -1,22 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
-import type { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
-
 import * as React from "react";
-
-// import { MDXRemote } from "next-mdx-remote";
-import { getExperiences, getProjects } from "../lib/functions";
-import { Experience, MarkdownData, Project } from "../lib/types";
+import Head from "next/head";
+import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
 
+// components
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
 import { ExperienceTimeline } from "../components/experience";
 import { ProjectCard } from "../components/project-card";
+import { CompetenceCard } from "../components/competence-card";
+import {
+  ChipIcon,
+  DesktopComputerIcon,
+  PhotographIcon,
+} from "@heroicons/react/outline";
+import { Tag } from "../components/tag";
+
+// lib and utils
+import type { Experience, MarkdownData, Project, Skill } from "../lib/types";
+import type { GetStaticProps, NextPage } from "next";
+import { clsx } from "../lib/webutils";
+import { getExperiences, getProjects, getSkills } from "../lib/functions";
 
 type HomePageProps = {
   experiences: MarkdownData<Experience>[];
   projects: MarkdownData<Project>[];
+  skills: MarkdownData<Skill>[];
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
@@ -55,9 +65,9 @@ const Home: NextPage<HomePageProps> = (props) => {
 
       <main className="mt-[4.2rem] pt-10">
         <StartingSection />
+        <SkillsSection skills={props.skills} />
         <ProjectSection projects={props.projects} />
         <ExperienceSection experiences={props.experiences} />
-        <AboutSection />
       </main>
 
       <Footer />
@@ -164,8 +174,72 @@ function ExperienceSection({
   );
 }
 
-function AboutSection() {
-  return <section></section>;
+type Skills = `frontend` | `backend` | `integration`;
+
+function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
+  const [currentSkill, setCurrentSkill] = React.useState<Skills>(`frontend`);
+
+  const components = {
+    h3: (props: any) => <h3 {...props} className={`text-xl font-bold`} />,
+  };
+
+  return (
+    <section className={`bg-light py-8 px-8`} id={`skills`}>
+      <h2 className="text-center font-bold text-2xl mb-4">
+        En quoi je peux vous aider ?
+      </h2>
+
+      <ul className={`flex flex-col gap-4`}>
+        <li>
+          <CompetenceCard
+            title={`Frontend`}
+            selected={currentSkill === `frontend`}
+            icon={DesktopComputerIcon}
+            onClick={() => setCurrentSkill(`frontend`)}
+          />
+        </li>
+        <li>
+          <CompetenceCard
+            title={`Backend`}
+            icon={ChipIcon}
+            selected={currentSkill === `backend`}
+            onClick={() => setCurrentSkill(`backend`)}
+            iconColor={`tertiary`}
+          />
+        </li>
+        <li>
+          <CompetenceCard
+            title={`Intégration HTML`}
+            icon={PhotographIcon}
+            selected={currentSkill === `integration`}
+            onClick={() => setCurrentSkill(`integration`)}
+            iconColor={`secondary`}
+          />
+        </li>
+      </ul>
+
+      <div className={`my-4`}>
+        {skills.map(({ serializedContent, data }) => (
+          <div
+            className={clsx(`transition duration-200 flex flex-col gap-4`, {
+              hidden: currentSkill !== data.id,
+            })}
+            key={data.name}
+          >
+            <MDXRemote {...serializedContent} components={components} />
+
+            <ul className="flex gap-2 flex-wrap">
+              {data.technologies.map((tech) => (
+                <li key={tech}>
+                  <Tag color="secondary">{tech}</Tag>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default Home;
@@ -173,6 +247,7 @@ export default Home;
 export const getStaticProps: GetStaticProps = async () => {
   const data = await getExperiences();
   const projects = await getProjects();
+  const skills = await getSkills();
 
   return {
     props: {
@@ -184,10 +259,11 @@ export const getStaticProps: GetStaticProps = async () => {
       }),
       projects: projects.sort((a, b) => {
         return (
-          new Date(b.data.startDate).getTime() -
-          new Date(a.data.startDate).getTime()
+          new Date(a.data.startDate).getTime() -
+          new Date(b.data.startDate).getTime()
         );
       }),
+      skills,
     },
   };
 };

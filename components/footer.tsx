@@ -3,7 +3,7 @@ import { Link } from "./link";
 
 export function Footer() {
   return (
-    <footer className="grid pt-5 px-5 grid-cols-1 gap-8">
+    <footer className="grid pt-5 px-5 grid-cols-1 gap-8 bg-white">
       <div className="flex flex-col gap-4 text-2xl font-bold">
         <h2>
           Contactez-moi pour construire quelque chose d&rsquo;incroyable
@@ -31,14 +31,14 @@ export function Footer() {
         </ul>
 
         <p>
-          Commencez par dire{" "}
+          Commencez par dire bonjour à l&rsquo;adresse{" "}
           <a
             rel="noreferrer"
             href="mailto:fredkiss3@gmail.com"
             target="_blank"
             className="text-primary underline"
           >
-            bonjour <span role="img">👋</span>
+            fredkiss3@gmail.com <span role="img">👋</span>
           </a>
         </p>
       </div>
@@ -47,16 +47,17 @@ export function Footer() {
         <h2 className="text-2xl font-bold">Information</h2>
         <ul className="flex flex-col gap-4">
           <li>
+            <Link href="#skills">EXPERTISE</Link>
+          </li>
+          <li>
             <Link href="#projects">Projets</Link>
           </li>
           <li>
             <Link href="#experience">Expérience</Link>
           </li>
+
           <li>
-            <Link href="#about">A propos de moi</Link>
-          </li>
-          <li>
-            <Link href="/resume.pdf" download>
+            <Link empty href="/resume.pdf" download>
               Télécharger CV
             </Link>
           </li>

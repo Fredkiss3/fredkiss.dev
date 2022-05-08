@@ -37,7 +37,7 @@ export function Header() {
 
   return (
     <>
-      <header className={`bg-light px-4 pt-4 fixed top-0 left-0 right-0 z-10`}>
+      <header className={`bg-light px-4 pt-4 fixed top-0 left-0 right-0 z-30`}>
         <div className="flex justify-between items-center">
           <NextLink href={`/`}>
             <a className="font-custom text-4xl font-bold">Adrien</a>
@@ -73,6 +73,22 @@ export function Header() {
               animate="show"
             >
               <motion.li
+                key={`about`}
+                variants={itemAnimationOptions}
+                transition={{
+                  duration: 0.1,
+                }}
+              >
+                <Link
+                  empty
+                  onClick={(e) => scrollTo("#skills", e)}
+                  href="#skills"
+                >
+                  EXPERTISE
+                </Link>
+              </motion.li>
+
+              <motion.li
                 key={`projects`}
                 variants={itemAnimationOptions}
                 transition={{
@@ -101,22 +117,6 @@ export function Header() {
                   href="#experience"
                 >
                   Expérience
-                </Link>
-              </motion.li>
-
-              <motion.li
-                key={`about`}
-                variants={itemAnimationOptions}
-                transition={{
-                  duration: 0.1,
-                }}
-              >
-                <Link
-                  empty
-                  onClick={(e) => scrollTo("#about", e)}
-                  href="#about"
-                >
-                  A propos de moi
                 </Link>
               </motion.li>
 
