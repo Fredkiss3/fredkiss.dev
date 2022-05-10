@@ -26,10 +26,19 @@ export function ExperienceTimeline({
 }: ExperienceProps) {
   return (
     <>
-      <div className="relative grid gap-8 pb-8 pl-10">
+      <div
+        className={clsx(
+          "relative grid gap-8 pb-8 pl-10",
+          "lg:grid-cols-2 lg:gap-10 lg:pl-0"
+        )}
+      >
+        {/* Timeline  */}
         <div
-          className="top-0 left-0 absolute flex items-center justify-center
-      border-dashed rounded-full border-2 p-2 border-dark"
+          className={clsx(
+            "top-0 left-0 absolute flex items-center justify-center",
+            "border-dashed rounded-full border-2 p-2 border-dark",
+            "lg:left-1/2"
+          )}
         >
           <div
             className={clsx("h-3 w-3 rounded-full", {
@@ -40,9 +49,17 @@ export function ExperienceTimeline({
           />
         </div>
 
-        <div className="absolute border-dark border border-dashed bottom-0 top-8 left-4" />
+        {/* Timeline  */}
+        <div
+          className={clsx(
+            "absolute border-dark border border-dashed",
+            "bottom-0 top-8 left-4",
+            "lg:left-[calc(50%+1rem)]"
+          )}
+        />
 
-        <div className="flex flex-col gap-3">
+        {/* Content */}
+        <div className={clsx("flex flex-col gap-3", "lg:pl-10")}>
           <h3 className="font-bold text-2xl">{title}</h3>
           <ul className="flex gap-2 flex-wrap">
             {technologies.map((tech) => (
@@ -52,13 +69,14 @@ export function ExperienceTimeline({
           <MDXRemote {...serializedContent} components={components} />
         </div>
 
-        <div>
+        {/* Date & type  */}
+        <div className="lg:order-first">
           <h4 className="font-bold text-xl">
             {company}, {type}
           </h4>
 
           <p>
-            {formatDate(startDate)} -{" "}
+            {formatDate(startDate)} -&nbsp;
             {endDate ? formatDate(endDate) : "Aujourd'hui"}
           </p>
         </div>

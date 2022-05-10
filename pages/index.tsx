@@ -6,7 +6,7 @@ import { MDXRemote } from "next-mdx-remote";
 // components
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
-import { ExperienceTimeline } from "../components/experience";
+import { ExperienceTimeline } from "../components/experience-timeline";
 import { ProjectCard } from "../components/project-card";
 import { CompetenceCard } from "../components/competence-card";
 import {
@@ -81,7 +81,7 @@ function StartingSection() {
       className={clsx(
         "pt-20 flex flex-col gap-4 px-4 bg-light",
         "md:px-8 md:relative md:pt-48",
-        "lg:pt-52"
+        "lg:pt-52 lg:px-10"
       )}
     >
       <div
@@ -192,14 +192,24 @@ function ExperienceSection({
   experiences: MarkdownData<Experience>[];
 }) {
   return (
-    <section className="bg-light py-4 px-4" id="experience">
-      <h2 className="text-center font-bold text-2xl mb-4">
+    <section
+      className={clsx("bg-light py-4 px-4", "md:px-8", "lg:px-10")}
+      id="experience"
+    >
+      <h2
+        className={clsx(
+          "text-center font-bold text-2xl my-4",
+          "md:mb-8 md:text-3xl lg:text-4xl"
+        )}
+      >
         Mon Expérience Professionnelle
       </h2>
 
-      {experiences.map((exp, i) => (
-        <ExperienceTimeline key={i} {...exp} />
-      ))}
+      <ul className="max-w-[1280px] m-auto">
+        {experiences.map((exp, i) => (
+          <ExperienceTimeline key={i} {...exp} />
+        ))}
+      </ul>
     </section>
   );
 }
@@ -216,7 +226,7 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
   };
 
   return (
-    <section className={`bg-white py-8 px-8`} id={`skills`}>
+    <section className={clsx(`bg-white py-8 px-8`, `lg:px-10`)} id={`skills`}>
       <h2
         className={clsx(
           "text-center font-bold text-2xl mb-4",
