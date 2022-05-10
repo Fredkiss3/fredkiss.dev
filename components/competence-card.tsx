@@ -24,7 +24,7 @@ export function CompetenceCard({
         `transition duration-200 ease-in-out`,
         `focus:shadow-md focus:shadow-gray-200/50`,
         {
-          "bg-white": selected,
+          "border-2 border-secondary": selected,
         }
       )}
     >

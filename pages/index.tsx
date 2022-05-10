@@ -155,8 +155,6 @@ function StartingSection() {
           />
         </div>
 
-        {/* <div className="asoblute hidden lg:block"></div> */}
-
         <Image
           src={`/adrien.png`}
           objectFit="contain"
@@ -212,63 +210,78 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
   const [currentSkill, setCurrentSkill] = React.useState<Skills>(`frontend`);
 
   const components = {
-    h3: (props: any) => <h3 {...props} className={`text-xl font-bold`} />,
+    h3: (props: any) => (
+      <h3 {...props} className={`text-xl font-bold md:text-2xl lg:text-3xl`} />
+    ),
   };
 
   return (
     <section className={`bg-white py-8 px-8`} id={`skills`}>
-      <h2 className="text-center font-bold text-2xl mb-4">
+      <h2
+        className={clsx(
+          "text-center font-bold text-2xl mb-4",
+          "md:mb-8 md:text-3xl lg:text-4xl"
+        )}
+      >
         En quoi je peux vous aider ?
       </h2>
 
-      <ul className={`flex flex-col gap-4`}>
-        <li>
-          <CompetenceCard
-            title={`Frontend`}
-            selected={currentSkill === `frontend`}
-            icon={DesktopComputerIcon}
-            onClick={() => setCurrentSkill(`frontend`)}
-          />
-        </li>
-        <li>
-          <CompetenceCard
-            title={`Backend`}
-            icon={ChipIcon}
-            selected={currentSkill === `backend`}
-            onClick={() => setCurrentSkill(`backend`)}
-            iconColor={`tertiary`}
-          />
-        </li>
-        <li>
-          <CompetenceCard
-            title={`Intégration HTML`}
-            icon={PhotographIcon}
-            selected={currentSkill === `integration`}
-            onClick={() => setCurrentSkill(`integration`)}
-            iconColor={`secondary`}
-          />
-        </li>
-      </ul>
+      <div
+        className={clsx(
+          "max-w-[1280px] m-auto grid gap-4",
+          "md:grid-cols-2 md:place-items-center md:gap-14",
+          "lg:grid-cols-12"
+        )}
+      >
+        <ul className={clsx(`flex flex-col gap-4 w-full`, `lg:col-span-5`)}>
+          <li>
+            <CompetenceCard
+              title={`Frontend`}
+              selected={currentSkill === `frontend`}
+              icon={DesktopComputerIcon}
+              onClick={() => setCurrentSkill(`frontend`)}
+            />
+          </li>
+          <li>
+            <CompetenceCard
+              title={`Backend`}
+              icon={ChipIcon}
+              selected={currentSkill === `backend`}
+              onClick={() => setCurrentSkill(`backend`)}
+              iconColor={`tertiary`}
+            />
+          </li>
+          <li>
+            <CompetenceCard
+              title={`Intégration HTML`}
+              icon={PhotographIcon}
+              selected={currentSkill === `integration`}
+              onClick={() => setCurrentSkill(`integration`)}
+              iconColor={`secondary`}
+            />
+          </li>
+        </ul>
 
-      <div className={`my-4`}>
-        {skills.map(({ serializedContent, data }) => (
-          <div
-            className={clsx(`transition duration-200 flex flex-col gap-4`, {
-              hidden: currentSkill !== data.id,
-            })}
-            key={data.name}
-          >
-            <MDXRemote {...serializedContent} components={components} />
+        <div className={clsx(`my-4`, `lg:col-span-7`)}>
+          {skills.map(({ serializedContent, data }) => (
+            <div
+              className={clsx(`transition duration-200 flex flex-col gap-4`, {
+                hidden: currentSkill !== data.id,
+              })}
+              key={data.name}
+            >
+              <MDXRemote {...serializedContent} components={components} />
 
-            <ul className="flex gap-2 flex-wrap">
-              {data.technologies.map((tech) => (
-                <li key={tech}>
-                  <Tag color="secondary">{tech}</Tag>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+              <ul className="flex gap-2 flex-wrap">
+                {data.technologies.map((tech) => (
+                  <li key={tech}>
+                    <Tag color="secondary">{tech}</Tag>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
