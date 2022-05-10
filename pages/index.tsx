@@ -63,7 +63,7 @@ const Home: NextPage<HomePageProps> = (props) => {
 
       <Header />
 
-      <main>
+      <main className="space-y-8">
         <StartingSection />
         <SkillsSection skills={props.skills} />
         <ExperienceSection experiences={props.experiences} />
@@ -169,13 +169,20 @@ function StartingSection() {
 
 function ProjectSection({ projects }: { projects: MarkdownData<Project>[] }) {
   return (
-    <section className="bg-white py-8 px-8" id="projects">
-      <h2 className="text-center font-bold text-2xl mb-4">Mes projets</h2>
+    <section className="bg-white py-8 px-8 lg:px-10" id="projects">
+      <h2
+        className={clsx(
+          "text-center font-bold text-2xl mb-4",
+          "md:mb-8 md:text-3xl lg:text-4xl"
+        )}
+      >
+        Mes projets
+      </h2>
       <p className="text-center mb-4">
         Retrouvez ici les joujous qui font ma fierté.
       </p>
 
-      <ul className="grid gap-10">
+      <ul className="grid gap-10 max-w-[1280px] mx-auto md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
           <li key={index}>
             <ProjectCard {...project} />
@@ -205,7 +212,7 @@ function ExperienceSection({
         Mon Expérience Professionnelle
       </h2>
 
-      <ul className="max-w-[1280px] m-auto">
+      <ul className="max-w-[1280px] mx-auto">
         {experiences.map((exp, i) => (
           <ExperienceTimeline key={i} {...exp} />
         ))}
@@ -221,7 +228,10 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
 
   const components = {
     h3: (props: any) => (
-      <h3 {...props} className={`text-xl font-bold md:text-2xl lg:text-3xl`} />
+      <h3
+        {...props}
+        className={`text-xl font-bold md:text-2xl lg:text-3xl md:mb-4`}
+      />
     ),
   };
 
@@ -238,7 +248,7 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
 
       <div
         className={clsx(
-          "max-w-[1280px] m-auto grid gap-4",
+          "max-w-[1280px] mx-auto grid gap-4",
           "md:grid-cols-2 md:place-items-center md:gap-14",
           "lg:grid-cols-12"
         )}
@@ -282,7 +292,7 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
             >
               <MDXRemote {...serializedContent} components={components} />
 
-              <ul className="flex gap-2 flex-wrap">
+              <ul className="flex gap-2 flex-wrap md:mt-4">
                 {data.technologies.map((tech) => (
                   <li key={tech}>
                     <Tag color="secondary">{tech}</Tag>

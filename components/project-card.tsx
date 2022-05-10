@@ -45,74 +45,81 @@ export function ProjectCard({
         "bg-dark text-white": color === `dark`,
       })}
     >
-      <div className={"relative z-10 grid gap-4 p-5 "}>
-        <div className="grid gap-2">
+      <div className={clsx("relative z-10 grid gap-4 p-5")}>
+        <div className="flex h-full items-center">
           <Image
             src={`/${image}`}
             alt={`Screenshot du projet ${name}`}
-            className={`w-full h-40 rounded-md`}
+            className={clsx(`w-full h-40 rounded-md`)}
             objectFit={`cover`}
             imageClassName={`rounded-md`}
           />
+        </div>
 
+        <div className="flex flex-col gap-4 md:justify-center">
           <h3 className="text-xl font-bold">{name}</h3>
-        </div>
 
-        <ul className="flex gap-2 flex-wrap">
-          {technologies.map((tech) => (
-            <li key={tech}>
-              <Tag color="light">{tech}</Tag>
-            </li>
-          ))}
-        </ul>
+          <ul className="flex gap-2 flex-wrap">
+            {technologies.map((tech) => (
+              <li key={tech}>
+                <Tag color="light">{tech}</Tag>
+              </li>
+            ))}
+          </ul>
 
-        <div className="flex gap-2">
-          {url && (
-            <a
-              href={url}
-              target={`_blank`}
-              className="font-bold underline flex  items-center"
-            >
-              <span>Lien du projet</span>
-              <ExternalLinkIcon className="h-4" />
-            </a>
-          )}
-          {github ? (
-            <a
-              href={github}
-              target={`_blank`}
-              className="font-bold underline flex items-center"
-            >
-              <span>Github</span>
-              <ExternalLinkIcon className="h-4" />
-            </a>
-          ) : (
-            <span className="font-bold  flex items-center">
-              <span>[Code Privé]</span> <LockClosedIcon className="h-4" />
-            </span>
-          )}
-        </div>
+          <div className="flex gap-2">
+            {url && (
+              <a
+                href={url}
+                target={`_blank`}
+                className="font-bold underline flex  items-center"
+              >
+                <span>Lien du projet</span>
+                <ExternalLinkIcon className="h-4" />
+              </a>
+            )}
+            {github ? (
+              <a
+                href={github}
+                target={`_blank`}
+                className="font-bold underline flex items-center"
+              >
+                <span>Github</span>
+                <ExternalLinkIcon className="h-4" />
+              </a>
+            ) : (
+              <span className="font-bold  flex items-center">
+                <span>[Code Privé]</span> <LockClosedIcon className="h-4" />
+              </span>
+            )}
+          </div>
 
-        <button
-          type="button"
-          className="inline-flex justify-center rounded-md border border-transparent bg-light px-4 py-2 text-sm font-medium text-primary hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          onClick={toggle}
-        >
-          {isOpen ? `Fermer` : `Voir les détails`}
-        </button>
-
-        {isOpen && (
-          <motion.article
-            key={`project-card`}
-            variants={containerAnimationOptions}
-            initial="hide"
-            animate="show"
-            exit={`hide`}
-            className={"text-sm grid gap-2"}
+          <button
+            type="button"
+            className={clsx(
+              "inline-flex justify-center rounded-md border border-transparent",
+              "bg-light px-4 py-2 text-sm font-medium text-primary",
+              "hover:bg-white",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            )}
+            onClick={toggle}
           >
-            <MDXRemote {...serializedContent} components={components} />
-          </motion.article>
-        )}
+            {isOpen ? `Fermer` : `Voir les détails`}
+          </button>
+
+          {isOpen && (
+            <motion.article
+              key={`project-card`}
+              variants={containerAnimationOptions}
+              initial="hide"
+              animate="show"
+              exit={`hide`}
+              className={"text-sm grid gap-2 md:hidden"}
+            >
+              <MDXRemote {...serializedContent} components={components} />
+            </motion.article>
+          )}
+        </div>
       </div>
 
       <div
@@ -120,7 +127,7 @@ export function ProjectCard({
         style={{
           backgroundImage: `url(/pattern.svg)`,
           backgroundPosition: `center`,
-          backgroundSize: `30%`,
+          backgroundSize: `35px`,
         }}
       />
     </div>
