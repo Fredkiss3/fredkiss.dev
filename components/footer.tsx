@@ -3,7 +3,7 @@ import { Link } from "./link";
 
 export function Footer() {
   return (
-    <footer className="grid pt-5 px-5 grid-cols-1 gap-8 bg-white">
+    <footer className="grid pt-5 px-5 md:px-8 grid-cols-1 gap-8 bg-light">
       <div className="flex flex-col gap-4 text-2xl font-bold">
         <h2>
           Contactez-moi pour construire quelque chose d&rsquo;incroyable
@@ -26,6 +26,15 @@ export function Footer() {
               rel="noreferrer"
             >
               <Icon icon="github" className="text-secondary h-8" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitch.tv/Fredkisss"
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              <Icon icon="twitch" className="text-secondary h-8" />
             </a>
           </li>
         </ul>
@@ -57,7 +66,7 @@ export function Footer() {
           </li>
 
           <li>
-            <Link empty href="/resume.pdf" download>
+            <Link href="/resume.pdf" download>
               Télécharger CV
             </Link>
           </li>

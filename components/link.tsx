@@ -5,7 +5,6 @@ export interface LinkProps extends NextLinkProps {
   children: React.ReactNode;
   download?: boolean;
   onClick?: (e: React.MouseEvent) => void;
-  empty?: boolean;
 }
 
 export function Link({
@@ -13,18 +12,14 @@ export function Link({
   children,
   href,
   download,
-  empty,
   ...restProps
 }: LinkProps) {
-  const Component = empty ? React.Fragment : NextLink;
-
   return (
-    <Component {...restProps} href={href}>
-      <a
-        onClick={onClick}
-        href={href.toString()}
-        download={download}
-        className={`uppercase
+    <a
+      onClick={onClick}
+      href={href.toString()}
+      download={download}
+      className={`uppercase
         relative 
         group
         active:text-secondary  
@@ -35,9 +30,9 @@ export function Link({
         p-2
         ml-4
       `}
-      >
-        <span
-          className="
+    >
+      <span
+        className="
           hidden
           group-hover:block
           group-active:block
@@ -53,11 +48,11 @@ export function Link({
           rounded-tl-full
           rounded-bl-full
         "
-        />
-        <span>{children}</span>
+      />
+      <span>{children}</span>
 
-        <span
-          className="
+      <span
+        className="
           hidden
           group-hover:block
           group-active:block
@@ -73,8 +68,7 @@ export function Link({
           rounded-tr-full
           rounded-br-full
         "
-        />
-      </a>
-    </Component>
+      />
+    </a>
   );
 }

@@ -2,7 +2,6 @@
 import * as React from "react";
 import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
-import Image from "next/image";
 
 // components
 import { Header } from "../components/header";
@@ -16,6 +15,7 @@ import {
   PhotographIcon,
 } from "@heroicons/react/outline";
 import { Tag } from "../components/tag";
+import { Image } from "../components/image";
 
 // lib and utils
 import type { Experience, MarkdownData, Project, Skill } from "../lib/types";
@@ -54,7 +54,7 @@ const Home: NextPage<HomePageProps> = (props) => {
   }, []);
 
   return (
-    <div className={`container`}>
+    <div>
       <Head>
         <title>Adrien KISSIE - Portfolio</title>
         <meta name="description" content="My portfolio" />
@@ -63,11 +63,11 @@ const Home: NextPage<HomePageProps> = (props) => {
 
       <Header />
 
-      <main className="mt-[4.2rem] pt-10">
+      <main>
         <StartingSection />
         <SkillsSection skills={props.skills} />
-        <ProjectSection projects={props.projects} />
         <ExperienceSection experiences={props.experiences} />
+        <ProjectSection projects={props.projects} />
       </main>
 
       <Footer />
@@ -77,27 +77,55 @@ const Home: NextPage<HomePageProps> = (props) => {
 
 function StartingSection() {
   return (
-    <section className="flex flex-col gap-4 px-4">
-      <h1 className="text-4xl font-bold leading-relaxed">
-        Hello world, je suis Adrien KISSIE
-      </h1>
-
-      <p>
-        Développeur web et streamer sur&nbsp;
-        <a
-          href="https://twitch.tv/fredkisss"
-          target={`_blank`}
-          className="text-primary underline"
+    <section
+      className={clsx(
+        "pt-20 flex flex-col gap-4 px-4 bg-light",
+        "md:px-8 md:relative md:pt-48",
+        "lg:pt-52"
+      )}
+    >
+      <div
+        className={clsx(
+          "max-w-[1280px] mx-auto grid gap-4",
+          "md:grid-cols-2 md:gap-20 md:absolute md:top-28 md:left-8 md:right-8",
+          "lg:top-32"
+        )}
+      >
+        <h1
+          className={clsx("text-4xl font-bold leading-relaxed", "lg:text-5xl")}
         >
-          twitch
-        </a>
-        , je crée des applications web orientées performance du{" "}
-        <strong className="font-bold">backend</strong> au{" "}
-        <strong className="font-bold">frontend</strong>.
-      </p>
+          Hello world, je suis Adrien KISSIE
+        </h1>
 
-      <div className="relative h-96 overflow-hidden">
-        <div className="absolute top-10 left-0 right-0">
+        <p className="md:text-right lg:text-lg">
+          Développeur web et streamer sur&nbsp;
+          <a
+            href="https://twitch.tv/fredkisss"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline"
+          >
+            twitch
+          </a>
+          , je crée des applications web orientées performance du&nbsp;
+          <strong className="font-bold">backend</strong> au&nbsp;
+          <strong className="font-bold">frontend</strong>.
+        </p>
+      </div>
+
+      <div
+        className={clsx(
+          "relative h-96 overflow-hidden",
+          "md:h-[450px] lg:h-[600px]"
+        )}
+      >
+        <div
+          className={clsx(
+            "absolute bottom-0 w-[350px] left-1/2 -translate-x-1/2",
+            "md:w-[430px] md:-bottom-5",
+            "lg:w-[550px]"
+          )}
+        >
           <img
             src="/brush-stroke-1.png"
             alt="brush stroke"
@@ -126,11 +154,15 @@ function StartingSection() {
             }}
           />
         </div>
+
+        {/* <div className="asoblute hidden lg:block"></div> */}
+
         <Image
-          src="/adrien.png"
-          layout="fill"
-          objectFit="cover"
+          src={`/adrien.png`}
+          objectFit="contain"
+          objectPosition="bottom"
           alt="Photo de Adrien KISSIE"
+          className="h-full"
         />
       </div>
     </section>
@@ -184,7 +216,7 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
   };
 
   return (
-    <section className={`bg-light py-8 px-8`} id={`skills`}>
+    <section className={`bg-white py-8 px-8`} id={`skills`}>
       <h2 className="text-center font-bold text-2xl mb-4">
         En quoi je peux vous aider ?
       </h2>
