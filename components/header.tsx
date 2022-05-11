@@ -62,7 +62,7 @@ export function Header() {
         </div>
 
         <nav className="relative z-20 hidden lg:flex flex-grow justify-center">
-          <ul className="flex gap-2">
+          <ul className="flex gap-4">
             <li>
               <Link onClick={(e) => scrollTo("#projects", e)} href="#projects">
                 Projets
