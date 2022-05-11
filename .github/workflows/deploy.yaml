@@ -52,7 +52,14 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_DOMAIN "echo $DCR_PASSWD | docker login  --username=$DCR_USER --password-stdin dcr.fredkiss.dev && docker pull dcr.fredkiss.dev/fredkiss.dev && docker stop fredkiss.dev | docker rm fredkiss.dev | docker run -d -p 127.0.0.1:8081:3000 --restart=always --name fredkiss.dev dcr.fredkiss.dev/fredkiss.dev"
+          ssh -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_DOMAIN '
+            echo $DCR_PASSWD | docker login  --username=$DCR_USER --password-stdin dcr.fredkiss.dev 
+            set -e # ignore errors
+            docker pull dcr.fredkiss.dev/fredkiss.dev || true
+            docker stop fredkiss.dev || true
+            docker rm fredkiss.dev || true
+            docker run -d -p 127.0.0.1:8081:3000 --restart=always --name fredkiss.dev dcr.fredkiss.dev/fredkiss.dev
+            '
         env:
           DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
           DEPLOY_DOMAIN: ${{ secrets.DEPLOY_DOMAIN }}
