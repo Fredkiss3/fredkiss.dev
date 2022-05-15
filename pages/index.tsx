@@ -61,7 +61,7 @@ const Home: NextPage<HomePageProps> = (props) => {
           Adrien KISSIE est un developpeur web et streamer sur twitch, 
           spécialiste en frontend et backend.
         `} />
-        <link rel="icon" href="/favicon.icon" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
