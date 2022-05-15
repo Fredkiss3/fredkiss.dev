@@ -57,8 +57,11 @@ const Home: NextPage<HomePageProps> = (props) => {
     <div>
       <Head>
         <title>Adrien KISSIE - Portfolio</title>
-        <meta name="description" content="My portfolio" />
-        <link rel="icon" href="/favicon.png" />
+        <meta name="description" content={`
+          Adrien KISSIE est un developpeur web et streamer sur twitch, 
+          spécialiste en frontend et backend.
+        `} />
+        <link rel="icon" href="/favicon.icon" />
       </Head>
 
       <Header />
