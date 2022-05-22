@@ -57,23 +57,44 @@ const Home: NextPage<HomePageProps> = (props) => {
     <div>
       <Head>
         <title>Adrien KISSIE - Portfolio</title>
-        <meta name="title" content="Adrien KISSIE | Développeur FullStack"/>
-        <meta name="description" content={`Adrien KISSIE est un développeur web et streamer sur twitch, spécialiste en frontend et backend.`} />
+        <meta name="title" content="Adrien KISSIE | Développeur FullStack" />
+        <meta
+          name="description"
+          content={`Adrien KISSIE est un développeur web et streamer sur twitch, spécialiste en frontend et backend.`}
+        />
         <link rel="icon" href="/favicon.ico" />
 
         {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://fredkiss.dev/"/>
-        <meta property="og:title" content="Adrien KISSIE | Développeur FullStack"/>
-        <meta property="og:description" content="Adrien KISSIE est un développeur web et streamer sur twitch, spécialiste en frontend et backend."/>
-        <meta property="og:image" content="https://fredkiss.dev/favicon.ico" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fredkiss.dev/" />
+        <meta
+          property="og:title"
+          content="Adrien KISSIE | Développeur FullStack"
+        />
+        <meta
+          property="og:description"
+          content="Adrien KISSIE est un développeur web et streamer sur twitch, spécialiste en frontend et backend."
+        />
+        <meta
+          property="og:image"
+          content="https://fredkiss.dev/adrien-avatar.png"
+        />
 
         {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:url" content="https://fredkiss.dev/"/>
-        <meta property="twitter:title" content="Adrien KISSIE | Développeur FullStack"/>
-        <meta property="twitter:description" content="Adrien KISSIE est un développeur web et streamer sur twitch, spécialiste en frontend et backend."/>
-        <meta property="twitter:image" content="https://fredkiss.dev/favicon.ico" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://fredkiss.dev/" />
+        <meta
+          property="twitter:title"
+          content="Adrien KISSIE | Développeur FullStack"
+        />
+        <meta
+          property="twitter:description"
+          content="Adrien KISSIE est un développeur web et streamer sur twitch, spécialiste en frontend et backend."
+        />
+        <meta
+          property="twitter:image"
+          content="https://fredkiss.dev/adrien-avatar.png"
+        />
       </Head>
 
       <Header />
