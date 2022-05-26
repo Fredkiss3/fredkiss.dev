@@ -57,8 +57,9 @@ export function Footer() {
               target="_blank"
               className="text-primary underline"
             >
-              fredkiss3@gmail.com <span role="img">👋</span>
+              fredkiss3@gmail.com 
             </a>
+            <span role="img">👋</span>
           </p>
         </div>
 
