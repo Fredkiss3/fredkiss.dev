@@ -100,7 +100,7 @@ const Home: NextPage<HomePageProps> = (props) => {
       <Header />
 
       <main className="space-y-8">
-        <StartingSection />
+        <HeroSection />
         <SkillsSection skills={props.skills} />
         <ExperienceSection experiences={props.experiences} />
         <ProjectSection projects={props.projects} />
@@ -111,7 +111,7 @@ const Home: NextPage<HomePageProps> = (props) => {
   );
 };
 
-function StartingSection() {
+function HeroSection() {
   return (
     <section
       className={clsx(
