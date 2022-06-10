@@ -1,9 +1,9 @@
 import * as React from "react";
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
 
-export interface LinkProps extends NextLinkProps {
+export interface LinkProps {
   children: React.ReactNode;
   download?: boolean;
+  href: string;
   onClick?: (e: React.MouseEvent) => void;
 }
 
@@ -12,12 +12,11 @@ export function Link({
   children,
   href,
   download,
-  ...restProps
 }: LinkProps) {
   return (
     <a
       onClick={onClick}
-      href={href.toString()}
+      href={href}
       download={download}
       className={`uppercase
         relative 
