@@ -10,7 +10,7 @@ export function Tag({ children, color = `secondary` }: TagProps) {
   return (
     <small
       className={clsx("px-2 py-1 text-white rounded-md", {
-        "bg-primary": color === `primary`,
+        "bg-primary text-light": color === `primary`,
         "bg-secondary": color === `secondary`,
         "bg-tertiary": color === `tertiary`,
         "bg-light text-dark": color === `light`,

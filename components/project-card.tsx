@@ -43,6 +43,7 @@ export function ProjectCard({
         "bg-secondary text-white": color === `secondary`,
         "bg-tertiary text-dark": color === `tertiary`,
         "bg-dark text-white": color === `dark`,
+        "bg-light text-dark": color === `light`,
       })}
     >
       <div className={clsx("relative z-10 grid gap-4 p-5")}>
@@ -62,7 +63,7 @@ export function ProjectCard({
           <ul className="flex gap-2 flex-wrap">
             {technologies.map((tech) => (
               <li key={tech}>
-                <Tag color="light">{tech}</Tag>
+                <Tag color={color !== `light` ? "light" : `primary`}>{tech}</Tag>
               </li>
             ))}
           </ul>
@@ -98,9 +99,12 @@ export function ProjectCard({
             type="button"
             className={clsx(
               "inline-flex justify-center rounded-md border border-transparent",
-              "bg-light px-4 py-2 text-sm font-medium text-primary",
-              "hover:bg-white",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              "px-4 py-2 text-sm font-medium",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2", 
+              {
+                "bg-light text-primary hover:bg-white": color !== `light`,
+                "bg-primary text-light hover:text-primary hover:bg-light": color === `light`
+              }
             )}
             onClick={toggle}
           >

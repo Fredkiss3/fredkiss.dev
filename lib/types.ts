@@ -14,7 +14,7 @@ export type Project = {
   name: string;
   image: string;
   startDate: string;
-  color: "secondary" | "tertiary" | "dark";
+  color: "secondary" | "tertiary" | "dark" | "light";
   technologies: string[];
   url?: string;
   github?: string;
