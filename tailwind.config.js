@@ -1,7 +1,8 @@
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./content/**/*.mdx",
   ],
   theme: {
     extend: {
@@ -12,9 +13,9 @@ module.exports = {
         dark: "#264754",
         light: "#F8F7F1",
       },
-
       fontFamily: {
-        custom: ["Square Peg", "cursive"],
+        custom: ["var(--font-custom)"],
+        sans: ["var(--font-satoshi)"],
       },
     },
   },

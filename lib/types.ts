@@ -35,3 +35,8 @@ export type MarkdownData<
   content: string;
   serializedContent: MDXRemoteSerializeResult;
 };
+
+export type NavLink = {
+  href: string;
+  label: string;
+};
