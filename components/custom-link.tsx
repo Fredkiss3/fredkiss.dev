@@ -9,7 +9,9 @@ export interface LinkProps {
 
 export function CustomLink({ onClick, children, href }: LinkProps) {
   return (
-    <Link
+    // FIXME: I should use the next <Link /> component, but it does not support scrolling to hash yet
+    // Waiting for this to be merged : https://github.com/vercel/next.js/pull/46995
+    <a
       onClick={onClick}
       href={href}
       className={`group
@@ -61,6 +63,6 @@ export function CustomLink({ onClick, children, href }: LinkProps) {
           group-active:block
         "
       />
-    </Link>
+    </a>
   );
 }
