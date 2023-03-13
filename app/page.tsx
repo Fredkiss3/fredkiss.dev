@@ -1,5 +1,15 @@
 // components
 import Image from "next/image";
+import {
+  Tabs,
+  TabsBody,
+  TabsHeader,
+  TabsHeaderItem,
+  TabsItem,
+} from "~/components/tabs";
+import { CpuChipIcon } from "@heroicons/react/24/outline";
+import { ComputerDesktopIcon } from "@heroicons/react/24/outline";
+import { PhotoIcon } from "@heroicons/react/24/outline";
 
 // utils
 import { clsx } from "~/lib/webutils";
@@ -12,6 +22,7 @@ export default function HomePage() {
   return (
     <main className="space-y-8">
       <HeroSection />
+      <SkillsSection />
     </main>
   );
 }
@@ -25,7 +36,11 @@ function HeroSection() {
           "pt-20 md:relative md:grid-cols-2 md:px-8 md:pt-32",
           "lg:px-10"
         )}>
-        <div className={clsx("flex flex-col gap-4 lg:gap-8 lg:pt-20")}>
+        <div
+          className={clsx(
+            "flex flex-col gap-4 lg:gap-8 lg:pt-20",
+            "xl:my-auto xl:pt-0 xl:pb-20"
+          )}>
           <h1
             className={clsx(
               "text-4xl font-bold leading-relaxed",
@@ -105,6 +120,44 @@ function HeroSection() {
           />
         </div>
       </div>
+    </section>
+  );
+}
+
+function SkillsSection() {
+  return (
+    <section className={clsx(`bg-white py-8 px-8`, `lg:px-10`)} id={`skills`}>
+      <h2
+        className={clsx(
+          "mb-4 text-center text-2xl font-bold",
+          "md:mb-8 md:text-3xl lg:text-4xl"
+        )}>
+        En quoi je peux vous aider ?
+      </h2>
+
+      <Tabs>
+        <TabsHeader>
+          <TabsHeaderItem icon={<CpuChipIcon className={`h-6 w-6`} />}>
+            Frontend
+          </TabsHeaderItem>
+          <TabsHeaderItem
+            icon={<ComputerDesktopIcon className={`h-6 w-6`} />}
+            iconColor={`tertiary`}>
+            Backend
+          </TabsHeaderItem>
+          <TabsHeaderItem
+            icon={<PhotoIcon className={`h-6 w-6`} />}
+            iconColor={`secondary`}>
+            Intégration HTML
+          </TabsHeaderItem>
+        </TabsHeader>
+
+        <TabsBody>
+          <TabsItem>frontend</TabsItem>
+          <TabsItem>backend</TabsItem>
+          <TabsItem>Intégration</TabsItem>
+        </TabsBody>
+      </Tabs>
     </section>
   );
 }
