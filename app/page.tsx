@@ -10,19 +10,28 @@ import {
 import { CpuChipIcon } from "@heroicons/react/24/outline";
 import { ComputerDesktopIcon } from "@heroicons/react/24/outline";
 import { PhotoIcon } from "@heroicons/react/24/outline";
+import { MdxBody } from "~/components/mdx";
+import { Tag } from "~/components/tag";
+import { Cta } from "~/components/cta";
 
 // utils
-import { clsx } from "~/lib/webutils";
 import photoImgURL from "../public/adrien.png";
 import brush1ImgURL from "../public/brush-stroke-1.png";
 import brush2ImgURL from "../public/brush-stroke-2.png";
 import brush3ImgURL from "../public/brush-stroke-3.png";
+import { clsx } from "~/lib/webutils";
+import { allSkills, allExperiences } from "contentlayer/generated";
+
+// types
+import type { Skill } from "contentlayer/generated";
+import { ExperienceTimeline } from "~/components/experience-timeline";
 
 export default function HomePage() {
   return (
     <main className="space-y-8">
       <HeroSection />
       <SkillsSection />
+      <ExperienceSection />
     </main>
   );
 }
@@ -32,14 +41,14 @@ function HeroSection() {
     <section className="bg-light px-4" id="hero">
       <div
         className={clsx(
-          "mx-auto grid max-w-[1200px] gap-4",
+          "mx-auto grid max-w-[1200px] gap-8",
           "pt-20 md:relative md:grid-cols-2 md:px-8 md:pt-32",
           "lg:px-10"
         )}>
         <div
           className={clsx(
             "flex flex-col gap-4 lg:gap-8 lg:pt-20",
-            "xl:my-auto xl:pt-0 xl:pb-20"
+            "md:gap-6 xl:my-auto xl:pt-0 xl:pb-20"
           )}>
           <h1
             className={clsx(
@@ -62,6 +71,8 @@ function HeroSection() {
             <strong className="font-bold">backend</strong> au&nbsp;
             <strong className="font-bold">frontend</strong>.
           </p>
+
+          <Cta className="self-start" />
         </div>
 
         <div
@@ -125,6 +136,21 @@ function HeroSection() {
 }
 
 function SkillsSection() {
+  const skills = allSkills.sort((a, b) => a.id - b.id);
+
+  function getIcon(icon: Skill["icon"], className: string) {
+    switch (icon) {
+      case "computer":
+        return <ComputerDesktopIcon className={className} />;
+      case "cpu":
+        return <CpuChipIcon className={className} />;
+      case "photo":
+        return <PhotoIcon className={className} />;
+      default:
+        throw new Error("Icon type not supported");
+    }
+  }
+
   return (
     <section className={clsx(`bg-white py-8 px-8`, `lg:px-10`)} id={`skills`}>
       <h2
@@ -137,27 +163,57 @@ function SkillsSection() {
 
       <Tabs>
         <TabsHeader>
-          <TabsHeaderItem icon={<CpuChipIcon className={`h-6 w-6`} />}>
-            Frontend
-          </TabsHeaderItem>
-          <TabsHeaderItem
-            icon={<ComputerDesktopIcon className={`h-6 w-6`} />}
-            iconColor={`tertiary`}>
-            Backend
-          </TabsHeaderItem>
-          <TabsHeaderItem
-            icon={<PhotoIcon className={`h-6 w-6`} />}
-            iconColor={`secondary`}>
-            Intégration HTML
-          </TabsHeaderItem>
+          {skills.map(skill => (
+            <TabsHeaderItem
+              key={`tab-headeritem-${skill.id}`}
+              icon={getIcon(skill.icon, `h-6 w-6`)}
+              iconColor={skill.iconColor}>
+              {skill.name}
+            </TabsHeaderItem>
+          ))}
         </TabsHeader>
 
         <TabsBody>
-          <TabsItem>frontend</TabsItem>
-          <TabsItem>backend</TabsItem>
-          <TabsItem>Intégration</TabsItem>
+          {skills.map(skill => (
+            <TabsItem key={`tab-item-${skill.id}`}>
+              <MdxBody type="div" content={skill.body.code} />
+              <ul className="flex flex-wrap gap-2 md:mt-4">
+                {skill.technologies.map(tech => (
+                  <li key={tech}>
+                    <Tag color="secondary">{tech}</Tag>
+                  </li>
+                ))}
+              </ul>
+            </TabsItem>
+          ))}
         </TabsBody>
       </Tabs>
+    </section>
+  );
+}
+
+function ExperienceSection() {
+  const experiences = allExperiences.sort(
+    (a, b) => new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
+  );
+
+  return (
+    <section
+      className={clsx("bg-light py-4 px-4", "md:px-8", "lg:px-10")}
+      id="experience">
+      <h2
+        className={clsx(
+          "my-4 text-center text-2xl font-bold",
+          "md:mb-8 md:text-3xl lg:text-4xl"
+        )}>
+        Mon Expérience Professionnelle
+      </h2>
+
+      <ul className="mx-auto max-w-[1280px]">
+        {experiences.map((exp, i) => (
+          <ExperienceTimeline key={i} experience={exp} />
+        ))}
+      </ul>
     </section>
   );
 }

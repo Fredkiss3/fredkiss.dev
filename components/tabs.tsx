@@ -64,6 +64,7 @@ export function TabsHeaderItem({
             `focus:shadow-md focus:shadow-gray-200/50`,
             {
               "border-2 border-secondary": selected,
+              "grayscale-[80%] filter hover:grayscale-0": !selected,
             }
           )}>
           <div
@@ -89,7 +90,7 @@ export function TabsBody({
   className?: string;
 }) {
   return (
-    <Tab.Panels className={clsx(className, `w-full py-4`)}>
+    <Tab.Panels className={clsx(className, `my-4`, `lg:col-span-7`)}>
       {children}
     </Tab.Panels>
   );

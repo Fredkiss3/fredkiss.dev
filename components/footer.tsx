@@ -22,10 +22,7 @@ export function Footer({ links }: FooterProps) {
             "md:col-span-7",
             "lg:col-span-8"
           )}>
-          <h2>
-            Contactez-moi pour construire quelque chose d&rsquo;incroyable
-            ensemble.
-          </h2>
+          <h2>Retrouvez-moi sur les réseaux sociaux : </h2>
           <ul className="flex gap-2">
             <li>
               <a
@@ -53,10 +50,18 @@ export function Footer({ links }: FooterProps) {
                 <Icon icon="twitch" className="h-8 text-secondary" />
               </a>
             </li>
+            <li>
+              <a
+                href="https://twitter.com/@fredkisss"
+                target={"_blank"}
+                rel="noreferrer">
+                <Icon icon="twitter" className="h-8 text-secondary" />
+              </a>
+            </li>
           </ul>
 
           <p>
-            Commencez par dire bonjour à l&rsquo;adresse{" "}
+            Ou contactez-moi directement à l&rsquo;adresse:&nbsp;
             <a
               rel="noreferrer"
               href="mailto:fredkiss3@gmail.com"

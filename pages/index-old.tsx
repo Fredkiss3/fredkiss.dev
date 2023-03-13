@@ -29,16 +29,16 @@ type HomePageProps = {
   skills: MarkdownData<Skill>[];
 };
 
-const Home: NextPage<HomePageProps> = (props) => {
+const Home: NextPage<HomePageProps> = props => {
   React.useEffect(() => {
     // smooth scroll to element with id
-    document.querySelectorAll("a").forEach((anchor) => {
+    document.querySelectorAll("a").forEach(anchor => {
       if (anchor.hash) {
         const el = document.querySelector(anchor.hash) as HTMLElement;
 
         if (el) {
           const offset = el.offsetTop - 50;
-          anchor.addEventListener("click", (e) => {
+          anchor.addEventListener("click", e => {
             e.preventDefault();
 
             scroll({
@@ -115,21 +115,18 @@ function HeroSection() {
   return (
     <section
       className={clsx(
-        "pt-20 flex flex-col gap-4 px-4 bg-light",
-        "md:px-8 md:relative md:pt-48",
-        "lg:pt-52 lg:px-10"
-      )}
-    >
+        "flex flex-col gap-4 bg-light px-4 pt-20",
+        "md:relative md:px-8 md:pt-48",
+        "lg:px-10 lg:pt-52"
+      )}>
       <div
         className={clsx(
-          "max-w-[1280px] mx-auto grid gap-4",
-          "md:grid-cols-2 md:gap-20 md:absolute md:top-28 md:left-8 md:right-8",
+          "mx-auto grid max-w-[1280px] gap-4",
+          "md:absolute md:top-28 md:left-8 md:right-8 md:grid-cols-2 md:gap-20",
           "lg:top-32"
-        )}
-      >
+        )}>
         <h1
-          className={clsx("text-4xl font-bold leading-relaxed", "lg:text-5xl")}
-        >
+          className={clsx("text-4xl font-bold leading-relaxed", "lg:text-5xl")}>
           Hello world, je suis Adrien KISSIE
         </h1>
 
@@ -139,8 +136,7 @@ function HeroSection() {
             href="https://twitch.tv/fredkisss"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline"
-          >
+            className="text-primary underline">
             twitch
           </a>
           , je crée des applications web orientées performance du&nbsp;
@@ -153,15 +149,13 @@ function HeroSection() {
         className={clsx(
           "relative h-96 overflow-hidden",
           "md:h-[450px] lg:h-[600px]"
-        )}
-      >
+        )}>
         <div
           className={clsx(
-            "absolute bottom-0 w-[350px] left-1/2 -translate-x-1/2",
-            "md:w-[430px] md:-bottom-5",
+            "absolute bottom-0 left-1/2 w-[350px] -translate-x-1/2",
+            "md:-bottom-5 md:w-[430px]",
             "lg:w-[550px]"
-          )}
-        >
+          )}>
           <img
             src="/brush-stroke-1.png"
             alt="brush stroke"
@@ -208,17 +202,16 @@ function ProjectSection({ projects }: { projects: MarkdownData<Project>[] }) {
     <section className="bg-white py-8 px-8 lg:px-10" id="projects">
       <h2
         className={clsx(
-          "text-center font-bold text-2xl mb-4",
+          "mb-4 text-center text-2xl font-bold",
           "md:mb-8 md:text-3xl lg:text-4xl"
-        )}
-      >
+        )}>
         Mes projets
       </h2>
-      <p className="text-center mb-4">
+      <p className="mb-4 text-center">
         Retrouvez ici les joujous qui font ma fierté.
       </p>
 
-      <ul className="grid gap-10 max-w-[1280px] mx-auto md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <ul className="mx-auto grid max-w-[1280px] gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {projects.map((project, index) => (
           <li key={index}>
             <ProjectCard {...project} />
@@ -237,18 +230,16 @@ function ExperienceSection({
   return (
     <section
       className={clsx("bg-light py-4 px-4", "md:px-8", "lg:px-10")}
-      id="experience"
-    >
+      id="experience">
       <h2
         className={clsx(
-          "text-center font-bold text-2xl my-4",
+          "my-4 text-center text-2xl font-bold",
           "md:mb-8 md:text-3xl lg:text-4xl"
-        )}
-      >
+        )}>
         Mon Expérience Professionnelle
       </h2>
 
-      <ul className="max-w-[1280px] mx-auto">
+      <ul className="mx-auto max-w-[1280px]">
         {experiences.map((exp, i) => (
           <ExperienceTimeline key={i} {...exp} />
         ))}
@@ -266,7 +257,7 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
     h3: (props: any) => (
       <h3
         {...props}
-        className={`text-xl font-bold md:text-2xl lg:text-3xl md:mb-4`}
+        className={`text-xl font-bold md:mb-4 md:text-2xl lg:text-3xl`}
       />
     ),
   };
@@ -275,21 +266,19 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
     <section className={clsx(`bg-white py-8 px-8`, `lg:px-10`)} id={`skills`}>
       <h2
         className={clsx(
-          "text-center font-bold text-2xl mb-4",
+          "mb-4 text-center text-2xl font-bold",
           "md:mb-8 md:text-3xl lg:text-4xl"
-        )}
-      >
+        )}>
         En quoi je peux vous aider ?
       </h2>
 
       <div
         className={clsx(
-          "max-w-[1280px] mx-auto grid gap-4",
+          "mx-auto grid max-w-[1280px] gap-4",
           "md:grid-cols-2 md:place-items-center md:gap-14",
           "lg:grid-cols-12"
-        )}
-      >
-        <ul className={clsx(`flex flex-col gap-4 w-full`, `lg:col-span-5`)}>
+        )}>
+        <ul className={clsx(`flex w-full flex-col gap-4`, `lg:col-span-5`)}>
           <li>
             <CompetenceCard
               title={`Frontend`}
@@ -302,9 +291,9 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
             <CompetenceCard
               title={`Backend`}
               icon={ChipIcon}
+              iconColor={`tertiary`}
               selected={currentSkill === `backend`}
               onClick={() => setCurrentSkill(`backend`)}
-              iconColor={`tertiary`}
             />
           </li>
           <li>
@@ -321,15 +310,14 @@ function SkillsSection({ skills }: { skills: MarkdownData<Skill>[] }) {
         <div className={clsx(`my-4`, `lg:col-span-7`)}>
           {skills.map(({ serializedContent, data }) => (
             <div
-              className={clsx(`transition duration-200 flex flex-col gap-4`, {
+              className={clsx(`flex flex-col gap-4 transition duration-200`, {
                 hidden: currentSkill !== data.id,
               })}
-              key={data.name}
-            >
+              key={data.name}>
               <MDXRemote {...serializedContent} components={components} />
 
-              <ul className="flex gap-2 flex-wrap md:mt-4">
-                {data.technologies.map((tech) => (
+              <ul className="flex flex-wrap gap-2 md:mt-4">
+                {data.technologies.map(tech => (
                   <li key={tech}>
                     <Tag color="secondary">{tech}</Tag>
                   </li>
