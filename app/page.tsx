@@ -152,7 +152,9 @@ function SkillsSection() {
   }
 
   return (
-    <section className={clsx(`bg-white py-8 px-8`, `lg:px-10`)} id={`skills`}>
+    <section
+      className={clsx(`scroll-mt-20 bg-white py-8 px-8`, `lg:px-10`)}
+      id={`skills`}>
       <h2
         className={clsx(
           "mb-4 text-center text-2xl font-bold",
@@ -199,7 +201,7 @@ function ExperienceSection() {
 
   return (
     <section
-      className={clsx("bg-light py-4 px-4", "md:px-8", "lg:px-10")}
+      className={clsx("scroll-mt-20 bg-light py-4 px-4", "md:px-8", "lg:px-10")}
       id="experience">
       <h2
         className={clsx(
