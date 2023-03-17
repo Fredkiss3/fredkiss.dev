@@ -89,6 +89,7 @@ export function Footer({ links }: FooterProps) {
             ))}
 
             <li>
+              {/* @ts-expect-error */}
               <CustomLink href="/resume.pdf">Télécharger CV</CustomLink>
             </li>
           </ul>

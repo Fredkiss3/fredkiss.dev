@@ -83,6 +83,7 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
               transition={{
                 duration: 0.1,
               }}>
+              {/* @ts-expect-error */}
               <CustomLink href="/resume.pdf">Télécharger CV</CustomLink>
             </motion.li>
           </motion.ul>
