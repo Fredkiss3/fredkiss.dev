@@ -32,6 +32,7 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
   return (
     <>
       <button
+        aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
         className="rounded-full bg-white p-2 shadow-xl lg:hidden"
         onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <Bars3Icon className="h-5" />

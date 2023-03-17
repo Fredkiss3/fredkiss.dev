@@ -28,6 +28,7 @@ export function Footer({ links }: FooterProps) {
               <a
                 href="https://www.linkedin.com/in/adrien-kissie-3b6b32162/"
                 target={"_blank"}
+                aria-label="linkedin"
                 rel="noreferrer">
                 <Icon icon="linkedin" className="h-8 text-secondary" />
               </a>
@@ -37,6 +38,7 @@ export function Footer({ links }: FooterProps) {
               <a
                 href="https://github.com/Fredkiss3"
                 target={"_blank"}
+                aria-label="github"
                 rel="noreferrer">
                 <Icon icon="github" className="h-8 text-secondary" />
               </a>
@@ -46,6 +48,7 @@ export function Footer({ links }: FooterProps) {
               <a
                 href="https://twitch.tv/Fredkisss"
                 target={"_blank"}
+                aria-label="twitch"
                 rel="noreferrer">
                 <Icon icon="twitch" className="h-8 text-secondary" />
               </a>
@@ -54,6 +57,7 @@ export function Footer({ links }: FooterProps) {
               <a
                 href="https://twitter.com/@fredkisss"
                 target={"_blank"}
+                aria-label="twitter"
                 rel="noreferrer">
                 <Icon icon="twitter" className="h-8 text-secondary" />
               </a>
