@@ -10,7 +10,7 @@ import {
 import { CpuChipIcon } from "@heroicons/react/24/outline";
 import { ComputerDesktopIcon } from "@heroicons/react/24/outline";
 import { PhotoIcon } from "@heroicons/react/24/outline";
-import { MdxBody } from "~/components/mdx";
+import { MdxBody } from "~/components/mdx-body";
 import { Tag } from "~/components/tag";
 import { Cta } from "~/components/cta";
 
@@ -20,18 +20,20 @@ import brush1ImgURL from "../public/brush-stroke-1.png";
 import brush2ImgURL from "../public/brush-stroke-2.png";
 import brush3ImgURL from "../public/brush-stroke-3.png";
 import { clsx } from "~/lib/webutils";
-import { allSkills, allExperiences } from "contentlayer/generated";
+import { allSkills, allExperiences, allProjects } from "contentlayer/generated";
 
 // types
 import type { Skill } from "contentlayer/generated";
 import { ExperienceTimeline } from "~/components/experience-timeline";
+import { ProjectCardSlider } from "~/components/project-card-slider";
 
 export default function HomePage() {
   return (
-    <main className="space-y-8">
+    <main>
       <HeroSection />
       <SkillsSection />
       <ExperienceSection />
+      <ProjectSection />
     </main>
   );
 }
@@ -153,7 +155,7 @@ function SkillsSection() {
 
   return (
     <section
-      className={clsx(`scroll-mt-20 bg-white py-8 px-8`, `lg:px-10`)}
+      className={clsx(`scroll-mt-20 bg-white py-16 px-8`, `lg:px-10`)}
       id={`skills`}>
       <h2
         className={clsx(
@@ -201,7 +203,11 @@ function ExperienceSection() {
 
   return (
     <section
-      className={clsx("scroll-mt-20 bg-light py-4 px-4", "md:px-8", "lg:px-10")}
+      className={clsx(
+        "scroll-mt-20 bg-light py-16 px-4",
+        "md:px-8",
+        "lg:px-10"
+      )}
       id="experience">
       <h2
         className={clsx(
@@ -216,6 +222,37 @@ function ExperienceSection() {
           <ExperienceTimeline key={i} experience={exp} />
         ))}
       </ul>
+    </section>
+  );
+}
+
+function ProjectSection() {
+  const projects = allProjects
+    .sort(
+      (a, b) =>
+        new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
+    )
+    .map(p => ({
+      ...p,
+      mdx: <MdxBody content={p.body.code} />,
+    }));
+
+  return (
+    <section
+      id="projects"
+      className={clsx(
+        "scroll-mt-20 bg-white py-16 px-4",
+        "md:px-8",
+        "lg:px-10"
+      )}>
+      <h2
+        className={clsx(
+          "my-4 text-center text-2xl font-bold",
+          "md:mb-8 md:text-3xl lg:text-4xl"
+        )}>
+        Mes projets
+      </h2>
+      <ProjectCardSlider projects={projects} />
     </section>
   );
 }

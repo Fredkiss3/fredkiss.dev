@@ -1,3 +1,4 @@
+import { Route } from "next";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 export type Experience = {
@@ -37,6 +38,6 @@ export type MarkdownData<
 };
 
 export type NavLink = {
-  href: string;
+  href: Route;
   label: string;
 };

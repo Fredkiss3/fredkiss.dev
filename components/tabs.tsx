@@ -107,3 +107,5 @@ export function TabsItem({
     <Tab.Panel className={clsx(className, `w-full`)}>{children}</Tab.Panel>
   );
 }
+
+Tabs.Item = TabsItem;

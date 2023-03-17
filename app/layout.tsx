@@ -97,10 +97,10 @@ export default function RootLayout({
       href: "/#projects",
       label: "Projets",
     },
-    {
-      href: "/blog",
-      label: "blog",
-    },
+    // {
+    //   href: "/blog",
+    //   label: "blog",
+    // },
   ];
   return (
     <html

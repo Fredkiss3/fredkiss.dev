@@ -1,17 +1,25 @@
-import Link from "next/link";
+"use client";
 import * as React from "react";
+// components
+import Link from "next/link";
 
-export interface LinkProps {
+// utils
+import { usePathname } from "next/navigation";
+// types
+import type { Route } from "next";
+export type LinkProps = {
   children: React.ReactNode;
-  href: string;
+  href: Route;
   onClick?: (e: React.MouseEvent) => void;
-}
+};
 
 export function CustomLink({ onClick, children, href }: LinkProps) {
+  const path = usePathname();
+  const hrefPath = href.split(`#`)[0];
+
+  const Tag = path !== hrefPath ? Link : "a";
   return (
-    // FIXME: I should use the next <Link /> component, but it does not support scrolling to hash yet
-    // Waiting for this to be merged : https://github.com/vercel/next.js/pull/46995
-    <a
+    <Tag
       onClick={onClick}
       href={href}
       className={`group
@@ -63,6 +71,6 @@ export function CustomLink({ onClick, children, href }: LinkProps) {
           group-active:block
         "
       />
-    </a>
+    </Tag>
   );
 }

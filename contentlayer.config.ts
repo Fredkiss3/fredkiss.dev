@@ -69,7 +69,45 @@ const Experience = defineDocumentType(() => ({
   },
 }));
 
+const Project = defineDocumentType(() => ({
+  name: "Project",
+  filePathPattern: `projects/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    startDate: {
+      type: "date",
+      required: true,
+    },
+    color: {
+      type: "enum",
+      options: ["primary", "secondary", "tertiary", "light", "dark"],
+      required: true,
+    },
+    name: {
+      type: "string",
+      required: true,
+    },
+    url: {
+      type: "string",
+      required: false,
+    },
+    github: {
+      type: "string",
+      required: false,
+    },
+    technologies: {
+      type: "list",
+      of: { type: "string" },
+      required: true,
+    },
+    image: {
+      type: "string",
+      required: true,
+    },
+  },
+}));
+
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Skill, Experience],
+  documentTypes: [Skill, Experience, Project],
 });

@@ -1,4 +1,4 @@
-import { MdxBody } from "./mdx";
+import { MdxBody } from "./mdx-body";
 import { Tag } from "./tag";
 
 // utils
