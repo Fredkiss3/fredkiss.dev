@@ -13,12 +13,9 @@
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
     "contentlayer": "^0.3.0",
-    "embla-carousel-react": "^7.1.0",
     "framer-motion": "^10.2.4",
-    "gray-matter": "^4.0.3",
     "next": "13.2.5-canary.8",
     "next-contentlayer": "^0.3.0",
-    "next-mdx-remote": "^4.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sharp": "^0.31.3"

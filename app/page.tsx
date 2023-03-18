@@ -128,7 +128,7 @@ function HeroSection() {
             priority
             width={500}
             height={500}
-            sizes="(max-width: 640px) 50vw, 640px"
+            sizes="(min-width: 640px) 50vw, 384px"
             alt="Photo de Adrien KISSIE"
             className="relative z-10 mx-auto h-full object-contain object-bottom"
           />
