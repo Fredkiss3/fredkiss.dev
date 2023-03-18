@@ -3,7 +3,7 @@ import Icon from "./icon";
 import { CustomLink } from "./custom-link";
 
 // utils
-import { clsx } from "../lib/webutils";
+import { clsx } from "../lib/functions";
 
 // types
 import type { NavLink } from "~/lib/types";

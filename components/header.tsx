@@ -4,7 +4,7 @@ import { CustomLink } from "./custom-link";
 import Icon from "./icon";
 
 // utils
-import { clsx } from "../lib/webutils";
+import { clsx } from "../lib/functions";
 import { MobileMenu } from "./mobile-menu";
 
 // types

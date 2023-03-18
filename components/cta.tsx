@@ -2,7 +2,7 @@
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
 // utils
-import { clsx } from "~/lib/webutils";
+import { clsx } from "~/lib/functions";
 
 // types
 export type CtaProps = {

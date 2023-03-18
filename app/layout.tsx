@@ -7,7 +7,7 @@ import { NavLink } from "~/lib/types";
 import { TailwindIndicator } from "~/components/tailwind-indicator";
 
 // utils
-import { clsx } from "~/lib/webutils";
+import { clsx } from "~/lib/functions";
 import localFont from "next/font/local";
 import { Square_Peg } from "next/font/google";
 

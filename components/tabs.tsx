@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Tab } from "@headlessui/react";
-import { clsx } from "~/lib/webutils";
+import { clsx } from "~/lib/functions";
 
 export type TabsProps = {
   className?: string;

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { CustomLink } from "./custom-link";
 
 // utils
-import { clsx } from "~/lib/webutils";
+import { clsx } from "~/lib/functions";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
 // types

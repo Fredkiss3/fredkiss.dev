@@ -2,7 +2,7 @@ import { MdxBody } from "./mdx-body";
 import { Tag } from "./tag";
 
 // utils
-import { clsx, formatDate } from "~/lib/webutils";
+import { clsx, formatDate } from "~/lib/functions";
 
 // types
 import type { Experience } from "contentlayer/generated";

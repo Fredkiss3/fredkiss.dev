@@ -4,7 +4,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 // utils
 import { useMDXComponent } from "next-contentlayer/hooks";
-import { clsx } from "~/lib/webutils";
+import { clsx } from "~/lib/functions";
 
 // types
 export type MdxBodyProps = {

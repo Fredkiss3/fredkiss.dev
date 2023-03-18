@@ -19,7 +19,7 @@ import photoImgURL from "../public/adrien.png";
 import brush1ImgURL from "../public/brush-stroke-1.png";
 import brush2ImgURL from "../public/brush-stroke-2.png";
 import brush3ImgURL from "../public/brush-stroke-3.png";
-import { clsx } from "~/lib/webutils";
+import { clsx } from "~/lib/functions";
 import { allSkills, allExperiences, allProjects } from "contentlayer/generated";
 
 // types

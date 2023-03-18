@@ -11,7 +11,7 @@ import Image from "next/image";
 import { Tag } from "./tag";
 
 // utils
-import { clsx } from "../lib/webutils";
+import { clsx } from "../lib/functions";
 
 // types
 import { Project } from "contentlayer/generated";

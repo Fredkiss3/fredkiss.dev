@@ -1,5 +1,5 @@
 import * as React from "react";
-import { clsx } from "../lib/webutils";
+import { clsx } from "../lib/functions";
 
 export interface TagProps {
   children: React.ReactNode;
@@ -9,13 +9,12 @@ export interface TagProps {
 export function Tag({ children, color = `secondary` }: TagProps) {
   return (
     <small
-      className={clsx("px-2 py-1 text-white rounded-md", {
+      className={clsx("rounded-md px-2 py-1 text-white", {
         "bg-primary text-light": color === `primary`,
         "bg-secondary": color === `secondary`,
         "bg-tertiary": color === `tertiary`,
         "bg-light text-dark": color === `light`,
-      })}
-    >
+      })}>
       {children}
     </small>
   );
