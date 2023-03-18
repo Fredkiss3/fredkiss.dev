@@ -13,32 +13,51 @@ import { PhotoIcon } from "@heroicons/react/24/outline";
 import { MdxBody } from "~/components/mdx-body";
 import { Tag } from "~/components/tag";
 import { Cta } from "~/components/cta";
+import { ExperienceTimeline } from "~/components/experience-timeline";
+import { ProjectCardSlider } from "~/components/project-card-slider";
+import ReactMarkdown from "react-markdown";
 
 // utils
-import photoImgURL from "../public/adrien.png";
-import brush1ImgURL from "../public/brush-stroke-1.png";
-import brush2ImgURL from "../public/brush-stroke-2.png";
-import brush3ImgURL from "../public/brush-stroke-3.png";
+import photoImgURL from "../../public/adrien.png";
+import brush1ImgURL from "../../public/brush-stroke-1.png";
+import brush2ImgURL from "../../public/brush-stroke-2.png";
+import brush3ImgURL from "../../public/brush-stroke-3.png";
 import { clsx } from "~/lib/functions";
 import { allSkills, allExperiences, allProjects } from "contentlayer/generated";
+import { getDictionary } from "~/lib/get-dictionnaries";
 
 // types
 import type { Skill } from "contentlayer/generated";
-import { ExperienceTimeline } from "~/components/experience-timeline";
-import { ProjectCardSlider } from "~/components/project-card-slider";
+import type { TranslationDictionary, Lang } from "~/lib/get-dictionnaries";
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: { locale: Lang };
+}) {
+  const dict = await getDictionary(params.locale);
   return (
     <main>
-      <HeroSection />
-      <SkillsSection />
-      <ExperienceSection />
-      <ProjectSection />
+      <HeroSection t={dict} />
+      <SkillsSection t={dict} />
+      <ExperienceSection t={dict} />
+      <ProjectSection t={dict} />
     </main>
   );
 }
 
-function HeroSection() {
+function HeroSection({ t }: { t: TranslationDictionary }) {
+  const components = {
+    a: (props: any) => (
+      <a
+        href="https://twitch.tv/fredkisss"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-primary underline"
+        {...props}
+      />
+    ),
+  };
   return (
     <section className="bg-light px-4" id="hero">
       <div
@@ -57,24 +76,14 @@ function HeroSection() {
               "text-4xl font-bold leading-relaxed",
               "lg:text-5xl"
             )}>
-            Hello world, je suis Adrien KISSIE
+            {t.hero.title}
           </h1>
 
-          <p className=" lg:text-lg">
-            Développeur web et streamer sur&nbsp;
-            <a
-              href="https://twitch.tv/fredkisss"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary underline">
-              twitch
-            </a>
-            , je crée des applications web orientées performance du&nbsp;
-            <strong className="font-bold">backend</strong> au&nbsp;
-            <strong className="font-bold">frontend</strong>.
-          </p>
+          <ReactMarkdown className="lg:text-lg" components={components}>
+            {t.hero.subtitle}
+          </ReactMarkdown>
 
-          <Cta className="self-start" />
+          <Cta className="self-start">{t.hero.cta}</Cta>
         </div>
 
         <div
@@ -126,6 +135,7 @@ function HeroSection() {
           <Image
             src={photoImgURL}
             priority
+            suppressHydrationWarning
             width={500}
             height={500}
             sizes="(min-width: 640px) 50vw, 384px"
@@ -138,7 +148,7 @@ function HeroSection() {
   );
 }
 
-function SkillsSection() {
+function SkillsSection({ t }: { t: TranslationDictionary }) {
   const skills = allSkills.sort((a, b) => a.id - b.id);
 
   function getIcon(icon: Skill["icon"], className: string) {
@@ -163,7 +173,7 @@ function SkillsSection() {
           "mb-4 text-center text-2xl font-bold",
           "md:mb-8 md:text-3xl lg:text-4xl"
         )}>
-        En quoi je peux vous aider ?
+        {t.skills.title}
       </h2>
 
       <Tabs>
@@ -197,7 +207,7 @@ function SkillsSection() {
   );
 }
 
-function ExperienceSection() {
+function ExperienceSection({ t }: { t: TranslationDictionary }) {
   const experiences = allExperiences.sort(
     (a, b) => new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
   );
@@ -215,7 +225,7 @@ function ExperienceSection() {
           "my-4 text-center text-2xl font-bold",
           "md:mb-8 md:text-3xl lg:text-4xl"
         )}>
-        Mon Expérience Professionnelle
+        {t.experience.title}
       </h2>
 
       <ul className="mx-auto max-w-[1280px]">
@@ -227,7 +237,7 @@ function ExperienceSection() {
   );
 }
 
-function ProjectSection() {
+function ProjectSection({ t }: { t: TranslationDictionary }) {
   const projects = allProjects
     .sort(
       (a, b) =>
@@ -251,7 +261,7 @@ function ProjectSection() {
           "my-4 text-center text-2xl font-bold",
           "md:mb-8 md:text-3xl lg:text-4xl"
         )}>
-        Mes projets
+        {t.projects.title}
       </h2>
       <ProjectCardSlider projects={projects} />
     </section>

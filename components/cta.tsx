@@ -7,9 +7,10 @@ import { clsx } from "~/lib/functions";
 // types
 export type CtaProps = {
   className?: string;
+  children: React.ReactNode;
 };
 
-export function Cta({ className }: CtaProps) {
+export function Cta({ className, children }: CtaProps) {
   return (
     <a
       rel="noreferrer"
@@ -21,7 +22,7 @@ export function Cta({ className }: CtaProps) {
         "flex items-center gap-2"
       )}>
       <EnvelopeIcon className="h-6 w-6" />
-      <span>Contactez-moi</span>
+      <span>{children}</span>
     </a>
   );
 }

@@ -11,6 +11,7 @@ export type MdxBodyProps = {
   content: string;
   type?: "article" | "div";
   className?: string;
+  components?: Record<string, (props: any) => React.ReactNode>;
 };
 
 const components = {
@@ -47,6 +48,7 @@ export function MdxBody({
   content,
   className,
   type = "article",
+  components: defaultComponents = {},
 }: MdxBodyProps) {
   const Component = useMDXComponent(content);
   const Tag = type === "article" ? "article" : "div";
@@ -54,7 +56,7 @@ export function MdxBody({
   return (
     <>
       <Tag className={clsx(className)}>
-        <Component components={{ ...components }} />
+        <Component components={{ ...components, ...defaultComponents }} />
       </Tag>
     </>
   );

@@ -7,12 +7,15 @@ import { clsx } from "../lib/functions";
 
 // types
 import type { NavLink } from "~/lib/types";
+import type { TranslationDictionary } from "~/lib/get-dictionnaries";
+import { LangSwitcher } from "./lang-switcher";
 
 export type FooterProps = {
   links: Array<NavLink>;
+  t: TranslationDictionary;
 };
 
-export function Footer({ links }: FooterProps) {
+export function Footer({ links, t }: FooterProps) {
   return (
     <footer className="mt-8 grid gap-8 bg-light px-5 pt-5 md:px-8">
       <div className={clsx("grid grid-cols-1 gap-8", "md:grid-cols-12")}>
@@ -22,7 +25,7 @@ export function Footer({ links }: FooterProps) {
             "md:col-span-7",
             "lg:col-span-8"
           )}>
-          <h2>Retrouvez-moi sur les réseaux sociaux : </h2>
+          <h2>{t.footer.socials}</h2>
           <ul className="flex gap-2">
             <li>
               <a
@@ -65,7 +68,7 @@ export function Footer({ links }: FooterProps) {
           </ul>
 
           <p>
-            Ou contactez-moi directement à l&rsquo;adresse:&nbsp;
+            {t.footer.contact}&nbsp;
             <a
               rel="noreferrer"
               href="mailto:fredkiss3@gmail.com"
@@ -93,10 +96,13 @@ export function Footer({ links }: FooterProps) {
             ))}
 
             <li>
-              {/* @ts-expect-error */}
-              <CustomLink href="/resume.pdf">Télécharger CV</CustomLink>
+              <CustomLink href="/resume.pdf">{t.links.cv}</CustomLink>
             </li>
           </ul>
+
+          <div>
+            <LangSwitcher />
+          </div>
         </div>
       </div>
 

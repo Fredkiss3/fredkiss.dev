@@ -6,10 +6,9 @@ import Link from "next/link";
 // utils
 import { usePathname } from "next/navigation";
 // types
-import type { Route } from "next";
 export type LinkProps = {
   children: React.ReactNode;
-  href: Route;
+  href: string;
   onClick?: (e: React.MouseEvent) => void;
 };
 
@@ -18,6 +17,7 @@ export function CustomLink({ onClick, children, href }: LinkProps) {
   const hrefPath = href.split(`#`)[0];
 
   const Tag = path !== hrefPath ? Link : "a";
+
   return (
     <Tag
       onClick={onClick}
