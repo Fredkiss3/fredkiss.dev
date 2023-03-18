@@ -78,11 +78,6 @@ const Project = defineDocumentType(() => ({
       type: "date",
       required: true,
     },
-    color: {
-      type: "enum",
-      options: ["primary", "secondary", "tertiary", "light", "dark"],
-      required: true,
-    },
     name: {
       type: "string",
       required: true,
