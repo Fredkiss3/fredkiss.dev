@@ -39,9 +39,9 @@ export default async function HomePage({
   return (
     <main>
       <HeroSection t={dict} />
-      <SkillsSection t={dict} />
-      <ExperienceSection t={dict} />
-      <ProjectSection t={dict} />
+      <SkillsSection t={dict} locale={params.locale} />
+      <ExperienceSection t={dict} locale={params.locale} />
+      <ProjectSection t={dict} locale={params.locale} />
     </main>
   );
 }
@@ -148,8 +148,16 @@ function HeroSection({ t }: { t: TranslationDictionary }) {
   );
 }
 
-function SkillsSection({ t }: { t: TranslationDictionary }) {
-  const skills = allSkills.sort((a, b) => a.id - b.id);
+function SkillsSection({
+  t,
+  locale,
+}: {
+  t: TranslationDictionary;
+  locale: Lang;
+}) {
+  const skills = allSkills
+    .filter(skill => skill.lang === locale)
+    .sort((a, b) => a.id - b.id);
 
   function getIcon(icon: Skill["icon"], className: string) {
     switch (icon) {
@@ -207,10 +215,19 @@ function SkillsSection({ t }: { t: TranslationDictionary }) {
   );
 }
 
-function ExperienceSection({ t }: { t: TranslationDictionary }) {
-  const experiences = allExperiences.sort(
-    (a, b) => new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
-  );
+function ExperienceSection({
+  t,
+  locale,
+}: {
+  t: TranslationDictionary;
+  locale: Lang;
+}) {
+  const experiences = allExperiences
+    .filter(xp => xp.lang === locale)
+    .sort(
+      (a, b) =>
+        new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
+    );
 
   return (
     <section
@@ -237,7 +254,13 @@ function ExperienceSection({ t }: { t: TranslationDictionary }) {
   );
 }
 
-function ProjectSection({ t }: { t: TranslationDictionary }) {
+function ProjectSection({
+  t,
+  locale,
+}: {
+  t: TranslationDictionary;
+  locale: Lang;
+}) {
   const projects = allProjects
     .sort(
       (a, b) =>

@@ -46,7 +46,9 @@ export function ExperienceTimeline({ experience: xp }: ExperienceProps) {
 
         {/* Content */}
         <div className={clsx("flex flex-col gap-3", "lg:pl-10")}>
-          <h3 className="text-2xl font-bold">{xp.title}</h3>
+          <h3 className="text-2xl font-bold">
+            {xp.title}, {xp.jobType}
+          </h3>
           <ul className="flex flex-wrap gap-2">
             {xp.technologies.map(tech => (
               <Tag key={tech}>{tech}</Tag>
@@ -57,9 +59,7 @@ export function ExperienceTimeline({ experience: xp }: ExperienceProps) {
 
         {/* Date & type  */}
         <div className="lg:order-first">
-          <h4 className="text-xl font-bold">
-            {xp.company}, {xp.jobType}
-          </h4>
+          <h4 className="text-xl font-bold">{xp.company}</h4>
 
           <p>
             {formatDate(xp.startDate)} -&nbsp;
