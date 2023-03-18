@@ -90,7 +90,6 @@ function HeroSection() {
             )}>
             <Image
               src={brush1ImgURL}
-              placeholder="blur"
               alt="brush stroke"
               className="w-[500px] rotate-12"
               height={250}
@@ -105,7 +104,6 @@ function HeroSection() {
               alt="brush stroke"
               height={250}
               width={250}
-              placeholder="blur"
               className="w-[500px] -rotate-[20deg]"
               style={{
                 filter:
@@ -117,7 +115,6 @@ function HeroSection() {
               alt="brush stroke"
               height={250}
               width={250}
-              placeholder="blur"
               className="w-[500px] -rotate-[25deg]"
               style={{
                 filter:
@@ -131,7 +128,6 @@ function HeroSection() {
             priority
             width={500}
             height={500}
-            // placeholder="blur"
             sizes="(min-width: 640px) 50vw, 384px"
             alt="Photo de Adrien KISSIE"
             className="relative z-10 mx-auto h-full object-contain object-bottom"
