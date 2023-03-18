@@ -91,9 +91,9 @@ function HeroSection() {
             <Image
               src={brush1ImgURL}
               alt="brush stroke"
-              className="rotate-12"
+              className="w-[500px] rotate-12"
               height={250}
-              width={500}
+              width={250}
               style={{
                 filter:
                   "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)",
@@ -103,8 +103,8 @@ function HeroSection() {
               src={brush2ImgURL}
               alt="brush stroke"
               height={250}
-              width={500}
-              className="-rotate-[20deg]"
+              width={250}
+              className="w-[500px] -rotate-[20deg]"
               style={{
                 filter:
                   "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)",
@@ -114,8 +114,8 @@ function HeroSection() {
               src={brush3ImgURL}
               alt="brush stroke"
               height={250}
-              width={500}
-              className="-rotate-[25deg]"
+              width={250}
+              className="w-[500px] -rotate-[25deg]"
               style={{
                 filter:
                   "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)",
@@ -128,6 +128,7 @@ function HeroSection() {
             priority
             width={500}
             height={500}
+            sizes="(max-width: 640px) 50vw, 640px"
             alt="Photo de Adrien KISSIE"
             className="relative z-10 mx-auto h-full object-contain object-bottom"
           />

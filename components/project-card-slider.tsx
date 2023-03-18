@@ -22,7 +22,6 @@ type ProjectCardProps = {
 } & Project;
 
 export function ProjectCard({
-  color,
   name,
   technologies,
   github,
@@ -45,8 +44,9 @@ export function ProjectCard({
         <div className="flex h-full items-center md:order-last lg:col-span-2">
           <Image
             src={`/${image}`}
-            width={500}
-            height={500}
+            width={250}
+            height={250}
+            sizes="(max-width: 640px) 50vw, 640px"
             alt={`Screenshot du projet ${name}`}
             className={clsx(
               `h-52 w-full rounded-md border-2 border-dark object-cover object-center`,
