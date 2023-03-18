@@ -1,197 +1,61 @@
-import React from "react";
-import NextLink from "next/link";
-import { clsx } from "../lib/webutils";
-import { MenuIcon } from "@heroicons/react/solid";
-import { Link } from "./link";
-import { motion } from "framer-motion";
+// components
+import Link from "next/link";
+import { CustomLink } from "./custom-link";
 import Icon from "./icon";
 
-export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const containerAnimationOptions = {
-    hide: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+// utils
+import { clsx } from "../lib/functions";
+import { MobileMenu } from "./mobile-menu";
 
-  const itemAnimationOptions = {
-    hide: { opacity: 0 },
-    show: { opacity: 1 },
-  };
+// types
+import type { NavLink } from "~/lib/types";
 
-  const scrollTo = (hash: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    const el = document.querySelector(hash) as HTMLElement;
-    if (el) {
-      const offset = el.offsetTop - 50;
-      scroll({
-        top: offset,
-        behavior: "smooth",
-      });
-      window.location.hash = hash;
-    }
-  };
+export type HeaderProps = {
+  links: Array<NavLink>;
+};
 
+export function Header({ links }: HeaderProps) {
   return (
     <>
       <header
         className={clsx(
-          `bg-light px-4 pt-4 fixed top-0 left-0 right-0 z-30 `,
+          `fixed top-0 left-0 right-0 z-30 bg-light px-4 pt-4 `,
           `items-center bg-opacity-80`,
           `md:px-8`,
           `lg:flex lg:py-2`,
-          `before:backdrop-blur-md before:absolute before:inset-0`,
-          `before:z-10 before:pointer-events-none`
-        )}
-      >
-        <div className="relative z-20 flex justify-between items-center">
-          <NextLink href={`/`}>
-            <a className="font-custom text-4xl font-bold">Adrien</a>
-          </NextLink>
+          `before:absolute before:inset-0 before:backdrop-blur-md`,
+          `before:pointer-events-none before:z-10`
+        )}>
+        <div className="relative z-20 flex items-center justify-between">
+          <Link href={`/`} className="font-custom text-4xl font-bold">
+            Adrien
+          </Link>
 
-          <button
-            className="rounded-full bg-white p-2 shadow-xl lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <MenuIcon className="h-5" />
-          </button>
+          <MobileMenu links={links} />
         </div>
 
-        <nav className="relative z-20 hidden lg:flex flex-grow justify-center">
+        <nav className="relative z-20 hidden flex-grow justify-center lg:flex">
           <ul className="flex gap-4">
-            <li>
-              <Link onClick={(e) => scrollTo("#projects", e)} href="#projects">
-                Projets
-              </Link>
-            </li>
-
-            <li>
-              <Link onClick={(e) => scrollTo("#skills", e)} href="#skills">
-                EXPERTISE
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                onClick={(e) => scrollTo("#experience", e)}
-                href="#experience"
-              >
-                Expérience
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/resume.pdf" download>
-                CV
-              </Link>
-            </li>
+            {links.map(link => (
+              <li key={link.href}>
+                <CustomLink href={link.href}>{link.label}</CustomLink>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        {isMenuOpen && (
-          <motion.nav
-            transition={{
-              duration: 0.1,
-            }}
-            key={"nav-header"}
-            variants={itemAnimationOptions}
-            initial="hide"
-            animate="show"
-            className={clsx(
-              `
-              fixed 
-              top-[4.3rem]
-              bottom-0 left-0 right-0 
-              text-left
-            bg-light z-20`,
-              "bg-opacity-75 backdrop-blur-md",
-              "lg:hidden",
-              "flex flex-col items-center justify-center"
-            )}
-          >
-            <motion.ul
-              className="flex flex-col gap-4"
-              key={"header"}
-              transition={{
-                duration: 0.1,
-              }}
-              variants={containerAnimationOptions}
-              initial="hide"
-              animate="show"
-            >
-              <motion.li
-                key={`projects`}
-                variants={itemAnimationOptions}
-                transition={{
-                  duration: 0.1,
-                }}
-              >
-                <Link
-                  onClick={(e) => scrollTo("#projects", e)}
-                  href="#projects"
-                >
-                  Projets
-                </Link>
-              </motion.li>
-
-              <motion.li
-                key={`about`}
-                variants={itemAnimationOptions}
-                transition={{
-                  duration: 0.05,
-                }}
-              >
-                <Link onClick={(e) => scrollTo("#skills", e)} href="#skills">
-                  EXPERTISE
-                </Link>
-              </motion.li>
-
-              <motion.li
-                key={`experience`}
-                variants={itemAnimationOptions}
-                transition={{
-                  duration: 0.1,
-                }}
-              >
-                <Link
-                  onClick={(e) => scrollTo("#experience", e)}
-                  href="#experience"
-                >
-                  Expérience
-                </Link>
-              </motion.li>
-
-              <motion.li
-                key={`resume`}
-                variants={itemAnimationOptions}
-                transition={{
-                  duration: 0.1,
-                }}
-              >
-                <Link href="/resume.pdf" download>
-                  Télécharger CV
-                </Link>
-              </motion.li>
-            </motion.ul>
-          </motion.nav>
-        )}
-
-        <ul className="relative z-20 gap-4 hidden lg:flex">
+        <ul className="relative z-20 hidden gap-4 lg:flex">
           <li>
             <a
               href="https://www.linkedin.com/in/adrien-kissie-3b6b32162/"
               target={"_blank"}
               rel="noreferrer"
               className={clsx(
-                "flex rounded-full p-3 items-center justify-center",
-                "shadow-sm bg-white hover:shadow-lg transition-shadow duration-100"
-              )}
-            >
-              <Icon icon="linkedin" className="text-secondary h-6" />
+                "flex items-center justify-center rounded-full p-3",
+                "bg-white shadow-sm transition-shadow duration-100 hover:shadow-lg"
+              )}>
+              <span className="sr-only">Linkedin</span>
+              <Icon icon="linkedin" className="h-6 text-secondary" />
             </a>
           </li>
           <li>
@@ -200,11 +64,11 @@ export function Header() {
               target={"_blank"}
               rel="noreferrer"
               className={clsx(
-                "flex rounded-full p-3 items-center justify-center",
-                "shadow-sm bg-white hover:shadow-lg transition-shadow duration-100"
-              )}
-            >
-              <Icon icon="github" className="text-secondary h-6" />
+                "flex items-center justify-center rounded-full p-3",
+                "bg-white shadow-sm transition-shadow duration-100 hover:shadow-lg"
+              )}>
+              <span className="sr-only">Github</span>
+              <Icon icon="github" className="h-6 text-secondary" />
             </a>
           </li>
           <li>
@@ -213,11 +77,11 @@ export function Header() {
               target={"_blank"}
               rel="noreferrer"
               className={clsx(
-                "flex rounded-full p-3 items-center justify-center",
-                "shadow-sm bg-white hover:shadow-lg transition-shadow duration-100"
-              )}
-            >
-              <Icon icon="twitch" className="text-secondary h-6" />
+                "flex items-center justify-center rounded-full p-3",
+                "bg-white shadow-sm transition-shadow duration-100 hover:shadow-lg"
+              )}>
+              <span className="sr-only">Twitch</span>
+              <Icon icon="twitch" className="h-6 text-secondary" />
             </a>
           </li>
         </ul>
