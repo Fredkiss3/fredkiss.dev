@@ -1,12 +1,18 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import { i18n } from "./lib/i18n-config";
 
 const Skill = defineDocumentType(() => ({
   name: "Skill",
-  filePathPattern: `skills/*.mdx`,
+  filePathPattern: `skills/**/*.mdx`,
   contentType: "mdx",
   fields: {
     id: {
       type: "number",
+      required: true,
+    },
+    lang: {
+      type: "enum",
+      options: i18n.locales,
       required: true,
     },
     icon: {
@@ -33,11 +39,16 @@ const Skill = defineDocumentType(() => ({
 
 const Experience = defineDocumentType(() => ({
   name: "Experience",
-  filePathPattern: `experiences/*.mdx`,
+  filePathPattern: `experiences/**/*.mdx`,
   contentType: "mdx",
   fields: {
     startDate: {
       type: "date",
+      required: true,
+    },
+    lang: {
+      type: "enum",
+      options: i18n.locales,
       required: true,
     },
     endDate: {
@@ -71,11 +82,16 @@ const Experience = defineDocumentType(() => ({
 
 const Project = defineDocumentType(() => ({
   name: "Project",
-  filePathPattern: `projects/*.mdx`,
+  filePathPattern: `projects/**/*.mdx`,
   contentType: "mdx",
   fields: {
     startDate: {
       type: "date",
+      required: true,
+    },
+    lang: {
+      type: "enum",
+      options: i18n.locales,
       required: true,
     },
     name: {

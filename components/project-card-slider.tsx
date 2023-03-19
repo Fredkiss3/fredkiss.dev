@@ -1,11 +1,6 @@
-"use client";
 import * as React from "react";
 // components
-import {
-  ArrowTopRightOnSquareIcon,
-  ChevronRightIcon,
-  ChevronLeftIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { Tag } from "./tag";
@@ -15,10 +10,12 @@ import { clsx } from "../lib/functions";
 
 // types
 import { Project } from "contentlayer/generated";
+import { TranslationDictionary } from "~/lib/get-dictionnaries";
 
 type ProjectCardProps = {
   children: React.ReactNode;
-  show: boolean;
+  inversed?: boolean;
+  t: TranslationDictionary;
 } & Project;
 
 export function ProjectCard({
@@ -28,20 +25,21 @@ export function ProjectCard({
   url,
   image,
   children,
-  show,
+  inversed = false,
+  t,
 }: ProjectCardProps) {
   return (
-    <div
-      className={clsx("relative", {
-        hidden: !show,
-      })}>
+    <div>
       <div
         className={clsx(
-          "relative z-10 grid gap-4 p-5",
-          "md:grid-cols-2 md:p-10",
+          "relative z-10 grid gap-4 py-5",
+          "md:grid-cols-2 md:gap-8 md:p-10",
           "lg:grid-cols-5"
         )}>
-        <div className="flex h-full items-center md:order-last lg:col-span-2">
+        <div
+          className={clsx("flex h-full items-start", "lg:col-span-2", {
+            "md:order-last": !inversed,
+          })}>
           <Image
             src={`/${image}`}
             width={250}
@@ -55,7 +53,7 @@ export function ProjectCard({
           />
         </div>
 
-        <div className="flex flex-col gap-4 md:justify-center lg:col-span-3">
+        <div className="flex flex-col gap-4  lg:col-span-3">
           <h3 className="text-2xl font-bold">{name}</h3>
 
           <ul className="flex flex-wrap gap-2">
@@ -72,7 +70,7 @@ export function ProjectCard({
                 href={url}
                 target={`_blank`}
                 className="flex items-center font-bold  underline">
-                <span>Lien du projet</span>
+                <span>{t.projects.link}</span>
                 <ArrowTopRightOnSquareIcon className="h-4" />
               </a>
             )}
@@ -86,7 +84,8 @@ export function ProjectCard({
               </a>
             ) : (
               <span className="flex  items-center font-bold">
-                <span>[Code Privé]</span> <LockClosedIcon className="h-4" />
+                <span>[{t.projects.private}]</span>{" "}
+                <LockClosedIcon className="h-4" />
               </span>
             )}
           </div>
@@ -101,63 +100,27 @@ export function ProjectCard({
 export type ProjectCardSliderProps = {
   projects: Array<Project & { mdx: React.ReactNode }>;
   className?: string;
+  t: TranslationDictionary;
 };
 
 export function ProjectCardSlider({
   projects,
   className,
+  t,
 }: ProjectCardSliderProps) {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-
-  function goToPrevious() {
-    let nextIndex = currentIndex - 1;
-
-    if (nextIndex < 0) {
-      nextIndex = projects.length - 1;
-    }
-
-    setCurrentIndex(nextIndex);
-  }
-  function goToNext() {
-    let nextIndex = currentIndex + 1;
-
-    if (nextIndex > projects.length - 1) {
-      nextIndex = 0;
-    }
-
-    setCurrentIndex(nextIndex);
-  }
-
   return (
-    <ul className={clsx(className, "relative mx-auto max-w-[1200px]")}>
-      <button
-        onClick={goToPrevious}
-        className={clsx(
-          "absolute top-40 left-0 z-20 bg-tertiary p-2",
-          "flex items-center rounded-full",
-          "md:top-1/2 md:-translate-y-1/2"
-        )}
-        aria-label="Précédent">
-        <ChevronLeftIcon className="h-4 w-4 text-dark" strokeWidth="2" />
-      </button>
+    <ul
+      className={clsx(
+        className,
+        "relative mx-auto flex max-w-[1200px] flex-col items-stretch gap-8"
+      )}>
       {projects.map((p, index) => (
         <li key={p._id} className={`relative z-10`}>
-          <ProjectCard show={currentIndex === index} {...p}>
+          <ProjectCard t={t} {...p} inversed={index % 2 !== 0}>
             {p.mdx}
           </ProjectCard>
         </li>
       ))}
-
-      <button
-        onClick={goToNext}
-        className={clsx(
-          "absolute top-40 right-0 z-20 bg-tertiary p-2",
-          "flex items-center rounded-full",
-          "md:top-1/2 md:-translate-y-1/2"
-        )}
-        aria-label="Précédent">
-        <ChevronRightIcon className="h-4 w-4 text-dark" strokeWidth="2" />
-      </button>
     </ul>
   );
 }

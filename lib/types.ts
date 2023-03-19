@@ -1,6 +1,4 @@
-import { Route } from "next";
-
 export type NavLink = {
-  href: Route;
+  href: string;
   label: string;
 };

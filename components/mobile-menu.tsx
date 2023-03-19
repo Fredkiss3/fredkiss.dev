@@ -4,10 +4,11 @@ import * as React from "react";
 // components
 import { motion } from "framer-motion";
 import { CustomLink } from "./custom-link";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 // utils
 import { clsx } from "~/lib/functions";
-import { Bars3Icon } from "@heroicons/react/24/outline";
+import { useTranslation } from "./translation-context";
 
 // types
 import { NavLink } from "~/lib/types";
@@ -29,6 +30,8 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
     show: { opacity: 1 },
   };
 
+  const t = useTranslation();
+
   return (
     <>
       <button
@@ -48,15 +51,10 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
           initial="hide"
           animate="show"
           className={clsx(
-            `
-              fixed 
-              top-[4.3rem]
-              bottom-0 left-0 right-0 
-              z-20
-            bg-light text-left`,
-            "bg-opacity-75 backdrop-blur-md",
-            "lg:hidden",
-            "flex flex-col items-center justify-center"
+            "fixed top-[4.3rem] bottom-0 left-0 right-0 z-20",
+            "bg-light bg-opacity-75 text-left backdrop-blur-md",
+            "flex flex-col items-center justify-center",
+            "lg:hidden"
           )}>
           <motion.ul
             className="flex flex-col gap-4"
@@ -84,8 +82,7 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
               transition={{
                 duration: 0.1,
               }}>
-              {/* @ts-expect-error */}
-              <CustomLink href="/resume.pdf">Télécharger CV</CustomLink>
+              <CustomLink href="/resume.pdf">{t.links.cv}</CustomLink>
             </motion.li>
           </motion.ul>
         </motion.nav>

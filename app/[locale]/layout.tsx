@@ -8,11 +8,15 @@ import { TailwindIndicator } from "~/components/tailwind-indicator";
 
 // utils
 import { clsx } from "~/lib/functions";
+import { i18n } from "~/lib/i18n-config";
 import localFont from "next/font/local";
 import { Square_Peg } from "next/font/google";
+import { getDictionary } from "~/lib/get-dictionnaries";
 
 // types
 import type { Metadata } from "next";
+import type { Lang } from "~/lib/get-dictionnaries";
+import { TranslationProvider } from "~/components/translation-context";
 
 export const metadata: Metadata = {
   title: {
@@ -60,11 +64,11 @@ export const metadata: Metadata = {
 const satoshi = localFont({
   src: [
     {
-      path: "../public/fonts/Satoshi-Variable.ttf",
+      path: "../../public/fonts/Satoshi-Variable.ttf",
       style: "normal",
     },
     {
-      path: "../public/fonts/Satoshi-VariableItalic.ttf",
+      path: "../../public/fonts/Satoshi-VariableItalic.ttf",
       style: "italic",
     },
   ],
@@ -79,23 +83,32 @@ const squarePeg = Square_Peg({
   display: "swap",
 });
 
-export default function RootLayout({
+export async function generateStaticParams() {
+  return i18n.locales.map(locale => ({ lang: locale }));
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: {
+    locale: Lang;
+  };
 }) {
+  const t = await getDictionary(params.locale);
   const links: Array<NavLink> = [
     {
-      href: "/#skills",
-      label: "expertise",
+      href: `/${params.locale}#skills`,
+      label: t.links.expertise,
     },
     {
-      href: "/#experience",
-      label: "expérience",
+      href: `/${params.locale}#experience`,
+      label: t.links.experience,
     },
     {
-      href: "/#projects",
-      label: "Projets",
+      href: `/${params.locale}#projects`,
+      label: t.links.projects,
     },
     // {
     //   href: "/blog",
@@ -104,15 +117,17 @@ export default function RootLayout({
   ];
   return (
     <html
-      lang="fr"
+      lang={params.locale}
       suppressHydrationWarning
       className={clsx(satoshi.variable, squarePeg.variable)}>
       <body suppressHydrationWarning>
-        <Header links={links} />
-        {children}
-        <Footer links={links} />
+        <TranslationProvider dictionnary={t}>
+          <Header links={links} />
+          {children}
+          <Footer links={links} t={t} />
 
-        <TailwindIndicator />
+          <TailwindIndicator />
+        </TranslationProvider>
       </body>
     </html>
   );

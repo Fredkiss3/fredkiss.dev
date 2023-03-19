@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "title": "Hello world, je suis Adrien KISSIE",
+    "subtitle": "Développeur web et streamer sur [twitch](https://twitch.tv), je crée des applications web orientées performance du **backend** au **frontend**.",
+    "cta": "Contactez-moi"
+  },
+  "skills": {
+    "title": "En quoi je peux vous aider ?"
+  },
+  "experience": {
+    "title": "Mon Expérience Professionnelle"
+  },
+  "projects": {
+    "title": "Mes projets",
+    "private": "Code Privé",
+    "link": "Lien du projet"
+  },
+  "footer": {
+    "socials": "Retrouvez-moi sur les réseaux sociaux :",
+    "contact": "Ou contactez-moi directement à l’adresse:"
+  },
+  "links": {
+    "expertise": "expertise",
+    "experience": "expérience",
+    "projects": "projets",
+    "cv": "Voir le CV"
+  }
+}

@@ -10,14 +10,18 @@
     "telemetry:disable": "next telemetry disable"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.2.32",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
     "contentlayer": "^0.3.0",
     "framer-motion": "^10.2.4",
+    "negotiator": "^0.6.3",
     "next": "13.2.5-canary.8",
     "next-contentlayer": "^0.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-markdown": "^8.0.5",
+    "server-only": "^0.0.1",
     "sharp": "^0.31.3"
   },
   "devDependencies": {
