@@ -18,10 +18,14 @@ export type FooterProps = {
 export function Footer({ links, t }: FooterProps) {
   return (
     <footer className="mt-8 grid gap-8 bg-light px-5 pt-5 md:px-8">
-      <div className={clsx("grid grid-cols-1 gap-8", "md:grid-cols-12")}>
+      <div
+        className={clsx(
+          "mx-auto grid w-full max-w-[1280px] grid-cols-1 items-stretch gap-8",
+          "md:grid-cols-12"
+        )}>
         <div
           className={clsx(
-            "mx-auto flex max-w-[1280px] flex-col gap-4 text-2xl font-bold",
+            " flex   flex-col gap-4 text-2xl font-bold",
             "md:col-span-7",
             "lg:col-span-8"
           )}>
@@ -69,6 +73,7 @@ export function Footer({ links, t }: FooterProps) {
 
           <p>
             {t.footer.contact}&nbsp;
+            <br />
             <a
               rel="noreferrer"
               href="mailto:fredkiss3@gmail.com"
