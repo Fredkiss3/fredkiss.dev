@@ -262,6 +262,7 @@ function ProjectSection({
   locale: Lang;
 }) {
   const projects = allProjects
+    .filter(p => p.lang === locale)
     .sort(
       (a, b) =>
         new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
@@ -286,7 +287,7 @@ function ProjectSection({
         )}>
         {t.projects.title}
       </h2>
-      <ProjectCardSlider projects={projects} />
+      <ProjectCardSlider projects={projects} t={t} />
     </section>
   );
 }

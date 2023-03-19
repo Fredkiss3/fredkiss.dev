@@ -82,11 +82,16 @@ const Experience = defineDocumentType(() => ({
 
 const Project = defineDocumentType(() => ({
   name: "Project",
-  filePathPattern: `projects/*.mdx`,
+  filePathPattern: `projects/**/*.mdx`,
   contentType: "mdx",
   fields: {
     startDate: {
       type: "date",
+      required: true,
+    },
+    lang: {
+      type: "enum",
+      options: i18n.locales,
       required: true,
     },
     name: {

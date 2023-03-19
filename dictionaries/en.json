@@ -11,7 +11,9 @@
     "title": "My Work Experience"
   },
   "projects": {
-    "title": "My projects"
+    "title": "My projects",
+    "private": "Private code",
+    "link": "Project link"
   },
   "footer": {
     "socials": "Find me on my socials :",
