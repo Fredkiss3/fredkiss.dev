@@ -4,8 +4,6 @@
   </a>
 </p>
 
-![Build Status](https://github.com/Fredkiss3/fredkiss.dev/workflows/CI%2FCD%20For%20the%20Deployment/badge.svg?branch=main)
-
 # My portfolio
 
 This is my portfolio.
