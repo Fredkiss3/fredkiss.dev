@@ -37,7 +37,8 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
       <button
         aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
         className="rounded-full bg-white p-2 shadow-xl lg:hidden"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
         <Bars3Icon className="h-5" />
       </button>
 
@@ -55,7 +56,8 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
             "bg-light bg-opacity-75 text-left backdrop-blur-md",
             "flex flex-col items-center justify-center",
             "lg:hidden"
-          )}>
+          )}
+        >
           <motion.ul
             className="flex flex-col gap-4"
             key={"header"}
@@ -64,15 +66,22 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
             }}
             variants={containerAnimationOptions}
             initial="hide"
-            animate="show">
-            {props.links.map(link => (
+            animate="show"
+          >
+            {props.links.map((link) => (
               <motion.li
                 key={link.href}
                 variants={itemAnimationOptions}
                 transition={{
                   duration: 0.1,
-                }}>
-                <CustomLink href={link.href}>{link.label}</CustomLink>
+                }}
+              >
+                <CustomLink
+                  onClick={() => setIsMenuOpen(false)}
+                  href={link.href}
+                >
+                  {link.label}
+                </CustomLink>
               </motion.li>
             ))}
 
@@ -81,7 +90,8 @@ export function MobileMenu(props: { links: Array<NavLink> }) {
               variants={itemAnimationOptions}
               transition={{
                 duration: 0.1,
-              }}>
+              }}
+            >
               <CustomLink href="/resume.pdf">{t.links.cv}</CustomLink>
             </motion.li>
           </motion.ul>
