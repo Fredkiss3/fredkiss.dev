@@ -9,7 +9,7 @@ import type { NextRequest } from "next/server";
 function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-  if (!("accept-langage" in negotiatorHeaders)) {
+  if (!("accept-language" in negotiatorHeaders)) {
     return "fr";
   }
 
