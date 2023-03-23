@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description: "Développeur web fullstack et streamer sur twitch.",
     images: [
       {
-        url: "https://fredkiss.dev/adrien-avatar.png",
+        url: "https://fredkiss.dev/og.png",
         width: 764,
         height: 685,
       },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     description: "Développeur web fullstack et streamer sur twitch.",
     images: [
       {
-        url: "https://fredkiss.dev/adrien-avatar.png",
+        url: "https://fredkiss.dev/og.png",
         width: 764,
         height: 685,
       },
