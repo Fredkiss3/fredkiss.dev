@@ -5,6 +5,7 @@ import { Header } from "~/components/header";
 import { Footer } from "~/components/footer";
 import { NavLink } from "~/lib/types";
 import { TailwindIndicator } from "~/components/tailwind-indicator";
+import { TranslationProvider } from "~/components/translation-context";
 
 // utils
 import { clsx } from "~/lib/functions";
@@ -16,7 +17,8 @@ import { getDictionary } from "~/lib/get-dictionnaries";
 // types
 import type { Metadata } from "next";
 import type { Lang } from "~/lib/get-dictionnaries";
-import { TranslationProvider } from "~/components/translation-context";
+
+export const dynamicParams = false;
 
 export function generateMetadata({
   params,
