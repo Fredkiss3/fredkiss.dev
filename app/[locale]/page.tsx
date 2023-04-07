@@ -38,10 +38,10 @@ export function generateMetadata({
 }): Metadata {
   return {
     alternates: {
-      canonical: `https://fredkiss.dev/${params.locale}`,
+      canonical: `/${params.locale}`,
       languages: {
-        en: "https://fredkiss.dev/en",
-        fr: "https://fredkiss.dev/fr",
+        en: "/en",
+        fr: "/fr",
       },
     },
   };

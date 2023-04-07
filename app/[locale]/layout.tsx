@@ -18,36 +18,42 @@ import type { Metadata } from "next";
 import type { Lang } from "~/lib/get-dictionnaries";
 import { TranslationProvider } from "~/components/translation-context";
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Adrien KISSIE",
-    default: "Adrien KISSIE",
-  },
-  metadataBase: new URL(
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://fredkiss.dev"
-  ),
-  description: "Développeur web fullstack et streamer sur twitch.",
-  openGraph: {
-    type: "website",
+export function generateMetadata({
+  params,
+}: {
+  params: {
+    locale: Lang;
+  };
+}): Metadata {
+  return {
     title: {
       template: "%s | Adrien KISSIE",
       default: "Adrien KISSIE",
     },
-    url: "https://fredkiss.dev/",
-    siteName: "Adrien KISSIE",
+    // @ts-expect-error the variable is defined
+    metadataBase: new URL(process.env.VERCEL_URL),
     description: "Développeur web fullstack et streamer sur twitch.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: {
-      template: "%s | Adrien KISSIE",
-      default: "Adrien KISSIE",
+    openGraph: {
+      type: "website",
+      title: {
+        template: "%s | Adrien KISSIE",
+        default: "Adrien KISSIE",
+      },
+      url: "https://fredkiss.dev/",
+      siteName: "Adrien KISSIE",
+      description: "Développeur web fullstack et streamer sur twitch.",
+      locale: params.locale,
     },
-    description: "Développeur web fullstack et streamer sur twitch.",
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: {
+        template: "%s | Adrien KISSIE",
+        default: "Adrien KISSIE",
+      },
+      description: "Développeur web fullstack et streamer sur twitch.",
+    },
+  };
+}
 
 const satoshi = localFont({
   src: [
