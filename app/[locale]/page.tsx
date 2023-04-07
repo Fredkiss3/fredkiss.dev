@@ -264,7 +264,7 @@ function ExperienceSection({
 
       <ul className="mx-auto max-w-[1280px]">
         {experiences.map((exp, i) => (
-          <ExperienceTimeline key={i} experience={exp} />
+          <ExperienceTimeline key={i} experience={exp} locale={locale} />
         ))}
       </ul>
     </section>

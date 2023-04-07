@@ -1,3 +1,5 @@
+import type { Lang } from "./get-dictionnaries";
+
 /**
  * Petit utilitaire pour chainer les classes css en react tout en évitant
  *  les "false" et "null" dans les classes.
@@ -40,8 +42,11 @@ export function clsx(
   return classes.join(" ");
 }
 
-export function formatDate(dateStr: string | Date): string {
-  return new Intl.DateTimeFormat("fr-FR", {
+export function formatDate(
+  dateStr: string | Date,
+  locale: Lang = "fr"
+): string {
+  return new Intl.DateTimeFormat(locale, {
     month: "short",
     day: "2-digit",
     year: "numeric",

@@ -6,12 +6,17 @@ import { clsx, formatDate } from "~/lib/functions";
 
 // types
 import type { Experience } from "contentlayer/generated";
+import { Lang } from "~/lib/get-dictionnaries";
 
 export type ExperienceProps = {
   experience: Experience;
+  locale: Lang;
 };
 
-export function ExperienceTimeline({ experience: xp }: ExperienceProps) {
+export function ExperienceTimeline({
+  experience: xp,
+  locale,
+}: ExperienceProps) {
   return (
     <>
       <div
@@ -62,8 +67,8 @@ export function ExperienceTimeline({ experience: xp }: ExperienceProps) {
           <h4 className="text-xl font-bold">{xp.company}</h4>
 
           <p>
-            {formatDate(xp.startDate)} -&nbsp;
-            {xp.endDate ? formatDate(xp.endDate) : "Aujourd'hui"}
+            {formatDate(xp.startDate, locale)} -&nbsp;
+            {xp.endDate ? formatDate(xp.endDate, locale) : "Aujourd'hui"}
           </p>
         </div>
       </div>
