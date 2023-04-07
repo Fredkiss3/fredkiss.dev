@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     template: "%s | Adrien KISSIE",
     default: "Adrien KISSIE",
   },
+  metadataBase: new URL(
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://fredkiss.dev"
+  ),
   description: "Développeur web fullstack et streamer sur twitch.",
   openGraph: {
     type: "website",
@@ -33,13 +38,6 @@ export const metadata: Metadata = {
     url: "https://fredkiss.dev/",
     siteName: "Adrien KISSIE",
     description: "Développeur web fullstack et streamer sur twitch.",
-    images: [
-      {
-        url: "https://fredkiss.dev/og.png",
-        width: 764,
-        height: 685,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -48,16 +46,6 @@ export const metadata: Metadata = {
       default: "Adrien KISSIE",
     },
     description: "Développeur web fullstack et streamer sur twitch.",
-    images: [
-      {
-        url: "https://fredkiss.dev/og.png",
-        width: 764,
-        height: 685,
-      },
-    ],
-  },
-  icons: {
-    shortcut: "/favicon.ico",
   },
 };
 
