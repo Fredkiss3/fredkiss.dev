@@ -5,6 +5,7 @@ import { Header } from "~/components/header";
 import { Footer } from "~/components/footer";
 import { NavLink } from "~/lib/types";
 import { TailwindIndicator } from "~/components/tailwind-indicator";
+import { TranslationProvider } from "~/components/translation-context";
 
 // utils
 import { clsx } from "~/lib/functions";
@@ -16,50 +17,46 @@ import { getDictionary } from "~/lib/get-dictionnaries";
 // types
 import type { Metadata } from "next";
 import type { Lang } from "~/lib/get-dictionnaries";
-import { TranslationProvider } from "~/components/translation-context";
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Adrien KISSIE",
-    default: "Adrien KISSIE",
-  },
-  description: "Développeur web fullstack et streamer sur twitch.",
-  openGraph: {
-    type: "website",
+export const dynamic = "force-static",
+  dynamicParams = false;
+
+export function generateMetadata({
+  params,
+}: {
+  params: {
+    locale: Lang;
+  };
+}): Metadata {
+  return {
     title: {
       template: "%s | Adrien KISSIE",
       default: "Adrien KISSIE",
     },
-    url: "https://fredkiss.dev/",
-    siteName: "Adrien KISSIE",
+    // @ts-ignore the variable is defined
+    metadataBase: new URL(process.env.SITE_URL ?? "https://fredkiss.dev"),
     description: "Développeur web fullstack et streamer sur twitch.",
-    images: [
-      {
-        url: "https://fredkiss.dev/og.png",
-        width: 764,
-        height: 685,
+    openGraph: {
+      type: "website",
+      title: {
+        template: "%s | Adrien KISSIE",
+        default: "Adrien KISSIE",
       },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: {
-      template: "%s | Adrien KISSIE",
-      default: "Adrien KISSIE",
+      url: "https://fredkiss.dev/",
+      siteName: "Adrien KISSIE",
+      description: "Développeur web fullstack et streamer sur twitch.",
+      locale: params.locale,
     },
-    description: "Développeur web fullstack et streamer sur twitch.",
-    images: [
-      {
-        url: "https://fredkiss.dev/og.png",
-        width: 764,
-        height: 685,
+    twitter: {
+      card: "summary_large_image",
+      title: {
+        template: "%s | Adrien KISSIE",
+        default: "Adrien KISSIE",
       },
-    ],
-  },
-  icons: {
-    shortcut: "/favicon.ico",
-  },
-};
+      description: "Développeur web fullstack et streamer sur twitch.",
+    },
+  };
+}
 
 const satoshi = localFont({
   src: [
@@ -84,7 +81,7 @@ const squarePeg = Square_Peg({
 });
 
 export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ lang: locale }));
+  return i18n.locales.map(locale => ({ locale }));
 }
 
 export default async function RootLayout({

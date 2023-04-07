@@ -29,6 +29,23 @@ import { getDictionary } from "~/lib/get-dictionnaries";
 // types
 import type { Skill } from "contentlayer/generated";
 import type { TranslationDictionary, Lang } from "~/lib/get-dictionnaries";
+import type { Metadata } from "next";
+
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: Lang };
+}): Metadata {
+  return {
+    alternates: {
+      canonical: `/${params.locale}`,
+      languages: {
+        en: "/en",
+        fr: "/fr",
+      },
+    },
+  };
+}
 
 export default async function HomePage({
   params,
@@ -247,7 +264,7 @@ function ExperienceSection({
 
       <ul className="mx-auto max-w-[1280px]">
         {experiences.map((exp, i) => (
-          <ExperienceTimeline key={i} experience={exp} />
+          <ExperienceTimeline key={i} experience={exp} locale={locale} />
         ))}
       </ul>
     </section>
