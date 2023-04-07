@@ -18,7 +18,8 @@ import { getDictionary } from "~/lib/get-dictionnaries";
 import type { Metadata } from "next";
 import type { Lang } from "~/lib/get-dictionnaries";
 
-export const dynamicParams = false;
+export const dynamic = "force-static",
+  dynamicParams = false;
 
 export function generateMetadata({
   params,
@@ -80,7 +81,7 @@ const squarePeg = Square_Peg({
 });
 
 export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ lang: locale }));
+  return i18n.locales.map(locale => ({ locale }));
 }
 
 export default async function RootLayout({
