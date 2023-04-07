@@ -30,8 +30,8 @@ export function generateMetadata({
       template: "%s | Adrien KISSIE",
       default: "Adrien KISSIE",
     },
-    // @ts-expect-error the variable is defined
-    metadataBase: new URL(process.env.VERCEL_URL),
+    // @ts-ignore the variable is defined
+    metadataBase: new URL(process.env.SITE_URL ?? "https://fredkiss.dev"),
     description: "Développeur web fullstack et streamer sur twitch.",
     openGraph: {
       type: "website",
