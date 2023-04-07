@@ -29,6 +29,23 @@ import { getDictionary } from "~/lib/get-dictionnaries";
 // types
 import type { Skill } from "contentlayer/generated";
 import type { TranslationDictionary, Lang } from "~/lib/get-dictionnaries";
+import type { Metadata } from "next";
+
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: Lang };
+}): Metadata {
+  return {
+    alternates: {
+      canonical: `https://fredkiss.dev/${params.locale}`,
+      languages: {
+        en: "https://fredkiss.dev/en",
+        fr: "https://fredkiss.dev/fr",
+      },
+    },
+  };
+}
 
 export default async function HomePage({
   params,
