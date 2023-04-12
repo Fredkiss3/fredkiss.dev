@@ -24,7 +24,7 @@ export function Cta({
   return (
     <a
       rel="noreferrer"
-      href="mailto:fredkiss3@gmail.com"
+      href={type === 'cv' ? "/resume.pdf" : "mailto:fredkiss3@gmail.com"}
       target={external ? "_blank" : "_self"}
       className={clsx(
         className,
