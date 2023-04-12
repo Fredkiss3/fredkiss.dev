@@ -2,7 +2,8 @@
   "hero": {
     "title": "Hello world, I am Adrien KISSIE",
     "subtitle": "web developper and streamer on [twitch](https://twitch.tv),  I create performance oriented web applications from **backend** to **frontend**.",
-    "cta": "Contact-me"
+    "cta_mail": "Contact-me",
+    "cta_cv": "See resume"
   },
   "skills": {
     "title": "How can i help you ?"

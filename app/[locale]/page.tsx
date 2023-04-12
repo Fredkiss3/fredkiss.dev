@@ -100,7 +100,14 @@ function HeroSection({ t }: { t: TranslationDictionary }) {
             {t.hero.subtitle}
           </ReactMarkdown>
 
-          <Cta className="self-start">{t.hero.cta}</Cta>
+          <div className="flex flex-col gap-2">
+            <Cta className="self-start" external type="mail">
+              {t.hero.cta_mail}
+            </Cta>
+            <Cta className="self-start" type="cv">
+              {t.hero.cta_cv}
+            </Cta>
+          </div>
         </div>
 
         <div
