@@ -2,7 +2,8 @@
   "hero": {
     "title": "Hello world, je suis Adrien KISSIE",
     "subtitle": "Développeur web et streamer sur [twitch](https://twitch.tv), je crée des applications web orientées performance du **backend** au **frontend**.",
-    "cta": "Contactez-moi"
+    "cta_mail": "Contactez-moi",
+    "cta_cv": "Voir le CV"
   },
   "skills": {
     "title": "En quoi je peux vous aider ?"
