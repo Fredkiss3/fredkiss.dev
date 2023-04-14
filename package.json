@@ -13,6 +13,7 @@
     "@formatjs/intl-localematcher": "^0.2.32",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
+    "@vercel/analytics": "^0.1.11",
     "contentlayer": "^0.3.0",
     "framer-motion": "^10.2.4",
     "negotiator": "^0.6.3",

@@ -6,6 +6,7 @@ import { Footer } from "~/components/footer";
 import { NavLink } from "~/lib/types";
 import { TailwindIndicator } from "~/components/tailwind-indicator";
 import { TranslationProvider } from "~/components/translation-context";
+import { Analytics } from "@vercel/analytics/react";
 
 // utils
 import { clsx } from "~/lib/functions";
@@ -81,7 +82,7 @@ const squarePeg = Square_Peg({
 });
 
 export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ locale }));
+  return i18n.locales.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout({
@@ -116,7 +117,8 @@ export default async function RootLayout({
     <html
       lang={params.locale}
       suppressHydrationWarning
-      className={clsx(satoshi.variable, squarePeg.variable)}>
+      className={clsx(satoshi.variable, squarePeg.variable)}
+    >
       <body suppressHydrationWarning>
         <TranslationProvider dictionnary={t}>
           <Header links={links} />
@@ -124,6 +126,7 @@ export default async function RootLayout({
           <Footer links={links} t={t} />
 
           <TailwindIndicator />
+          <Analytics />
         </TranslationProvider>
       </body>
     </html>
