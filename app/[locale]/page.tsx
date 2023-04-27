@@ -55,7 +55,7 @@ export default async function HomePage({
   const dict = await getDictionary(params.locale);
   return (
     <main>
-      <HeroSection t={dict} />
+      <HeroSection t={dict} locale={params.locale} />
       <SkillsSection t={dict} locale={params.locale} />
       <ExperienceSection t={dict} locale={params.locale} />
       <ProjectSection t={dict} locale={params.locale} />
@@ -63,7 +63,13 @@ export default async function HomePage({
   );
 }
 
-function HeroSection({ t }: { t: TranslationDictionary }) {
+function HeroSection({
+  t,
+  locale,
+}: {
+  t: TranslationDictionary;
+  locale: Lang;
+}) {
   const components = {
     a: (props: any) => (
       <a
@@ -101,10 +107,10 @@ function HeroSection({ t }: { t: TranslationDictionary }) {
           </ReactMarkdown>
 
           <div className="flex flex-col gap-2">
-            <Cta className="self-start" external type="mail">
+            <Cta className="self-start" type="mail">
               {t.hero.cta_mail}
             </Cta>
-            <Cta className="self-start" type="cv">
+            <Cta className="self-start" type="cv" locale={locale}>
               {t.hero.cta_cv}
             </Cta>
           </div>
