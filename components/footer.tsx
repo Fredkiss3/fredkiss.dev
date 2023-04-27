@@ -1,6 +1,7 @@
 // components
 import Icon from "./icon";
 import { CustomLink } from "./custom-link";
+import { LangSwitcher } from "./lang-switcher";
 
 // utils
 import { clsx } from "../lib/functions";
@@ -8,14 +9,15 @@ import { clsx } from "../lib/functions";
 // types
 import type { NavLink } from "~/lib/types";
 import type { TranslationDictionary } from "~/lib/get-dictionnaries";
-import { LangSwitcher } from "./lang-switcher";
+import type { Locale } from "~/lib/i18n-config";
 
 export type FooterProps = {
   links: Array<NavLink>;
   t: TranslationDictionary;
+  locale: Locale;
 };
 
-export function Footer({ links, t }: FooterProps) {
+export function Footer({ links, t, locale }: FooterProps) {
   return (
     <footer className="mt-8 grid gap-8 bg-light px-5 pt-5 md:px-8">
       <div
@@ -101,7 +103,9 @@ export function Footer({ links, t }: FooterProps) {
             ))}
 
             <li>
-              <CustomLink href="/resume.pdf">{t.links.cv}</CustomLink>
+              <CustomLink href={`${locale}/resume.pdf`}>
+                {t.links.cv}
+              </CustomLink>
             </li>
           </ul>
 

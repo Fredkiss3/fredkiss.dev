@@ -108,10 +108,6 @@ export default async function RootLayout({
       href: `/${params.locale}#projects`,
       label: t.links.projects,
     },
-    // {
-    //   href: "/blog",
-    //   label: "blog",
-    // },
   ];
   return (
     <html
@@ -123,7 +119,7 @@ export default async function RootLayout({
         <TranslationProvider dictionnary={t}>
           <Header links={links} />
           {children}
-          <Footer links={links} t={t} />
+          <Footer links={links} t={t} locale={params.locale} />
 
           <TailwindIndicator />
           <Analytics />
