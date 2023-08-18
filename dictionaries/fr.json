@@ -1,4 +1,7 @@
 {
+  "meta": {
+    "description": "Développeur web fullstack et streamer sur twitch."
+  },
   "hero": {
     "title": "Hello world, je suis Adrien KISSIE",
     "subtitle": "Développeur web et streamer sur [twitch](https://twitch.tv), je crée des applications web orientées performance du **backend** au **frontend**.",
