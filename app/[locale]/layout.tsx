@@ -22,13 +22,14 @@ import type { Lang } from "~/lib/get-dictionnaries";
 export const dynamic = "force-static",
   dynamicParams = false;
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: {
     locale: Lang;
   };
-}): Metadata {
+}): Promise<Metadata> {
+  const t = await getDictionary(params.locale);
   return {
     title: {
       template: "%s | Adrien KISSIE",
@@ -36,7 +37,7 @@ export function generateMetadata({
     },
     // @ts-ignore the variable is defined
     metadataBase: new URL(process.env.SITE_URL ?? "https://fredkiss.dev"),
-    description: "Développeur web fullstack et streamer sur twitch.",
+    description: t.meta.description,
     openGraph: {
       type: "website",
       title: {
@@ -45,7 +46,7 @@ export function generateMetadata({
       },
       url: "https://fredkiss.dev/",
       siteName: "Adrien KISSIE",
-      description: "Développeur web fullstack et streamer sur twitch.",
+      description: t.meta.description,
       locale: params.locale,
     },
     twitter: {
@@ -54,7 +55,7 @@ export function generateMetadata({
         template: "%s | Adrien KISSIE",
         default: "Adrien KISSIE",
       },
-      description: "Développeur web fullstack et streamer sur twitch.",
+      description: t.meta.description,
     },
   };
 }
