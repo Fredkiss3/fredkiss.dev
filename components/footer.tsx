@@ -78,10 +78,10 @@ export function Footer({ links, t, locale }: FooterProps) {
             <br />
             <a
               rel="noreferrer"
-              href="mailto:fredkiss3@gmail.com"
+              href="mailto:hello@fredkiss.dev"
               target="_blank"
               className="text-primary underline">
-              fredkiss3@gmail.com
+              hello@fredkiss.dev
             </a>
             <span role="img">👋</span>
           </p>
