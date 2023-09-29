@@ -31,7 +31,7 @@ export function Cta(props: MailCta | ResumeCta) {
       href={
         props.type === "cv"
           ? `${props.locale}/resume.pdf`
-          : "mailto:fredkiss3@gmail.com"
+          : "mailto:hello@fredkiss.dev"
       }
       target={props.type === "mail" ? "_blank" : "_self"}
       className={clsx(
