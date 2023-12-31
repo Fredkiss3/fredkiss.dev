@@ -1,0 +1,12 @@
+{
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.workspaceSymbols.excludeLibrarySymbols": true,
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"editor.defaultFormatter": "biomejs.biome",
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode"
+	}
+}
