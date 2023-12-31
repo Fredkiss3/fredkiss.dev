@@ -8,16 +8,6 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  i18n: {
-    defaultLocale: "en",
-    locales: ["fr", "en"],
-    routing: {
-      prefixDefaultLocale: true
-    },
-    fallback: {
-      fr: "en"
-    }
-  },
   integrations: [
     react(),
     markdoc(),

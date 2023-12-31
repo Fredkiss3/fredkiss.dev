@@ -11,8 +11,6 @@ export function getStaticPaths() {
   </h1>
 
   <pre>
-    preferred locale: {Astro.preferredLocale}
-    locale list: {Astro.preferredLocaleList?.join(", ")}
-    current locale: {Astro.currentLocale}
+    current locale: {Astro.params.locale}
   </pre>
 </Layout>
