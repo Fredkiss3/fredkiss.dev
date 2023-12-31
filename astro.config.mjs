@@ -10,9 +10,12 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "fr"],
+    locales: ["fr", "en"],
     routing: {
-      prefixDefaultLocale: false
+      prefixDefaultLocale: true
+    },
+    fallback: {
+      fr: "en"
     }
   },
   integrations: [
@@ -25,6 +28,7 @@ export default defineConfig({
   ],
   output: "hybrid",
   adapter: vercel({
+    edgeMiddleware: true,
     speedInsights: {
       enabled: true
     }

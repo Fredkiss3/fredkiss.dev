@@ -9,4 +9,10 @@ export function getStaticPaths() {
   <h1 class="text-4xl font-bold leading-relaxed lg:text-5xl">
     Hello world, je suis Adrien KISSIE
   </h1>
+
+  <pre>
+    preferred locale: {Astro.preferredLocale}
+    locale list: {Astro.preferredLocaleList?.join(", ")}
+    current locale: {Astro.currentLocale}
+  </pre>
 </Layout>
