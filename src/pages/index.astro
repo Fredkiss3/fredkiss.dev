@@ -1,8 +1,7 @@
 ---
 export const prerender = false;
-import Layout from "~/layouts/Layout.astro";
----
+import { getLocale } from "~/lib/i18n-utils";
 
-<Layout>
-  <h1>Hello homepage</h1>
-</Layout>
+const locale = getLocale(Astro.request);
+return Astro.redirect(`/${locale}`);
+---
