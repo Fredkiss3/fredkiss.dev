@@ -18,7 +18,8 @@ export default defineConfig({
   ],
   output: "hybrid",
   adapter: vercel({
-    edgeMiddleware: true,
+    functionPerRoute: true,
+    // edgeMiddleware: true,
     speedInsights: {
       enabled: true
     }

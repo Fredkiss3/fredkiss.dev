@@ -19,21 +19,30 @@ function getLocale(request: Request): string | undefined {
   return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
-export const onRequest = defineMiddleware(({ request, redirect }, next) => {
-  const pathname = new URL(request.url).pathname;
-  const isIgnoredPath = IGNORED_PATHS.some((path) => pathname.startsWith(path));
+export const onRequest = defineMiddleware(
+  ({ params, request, redirect }, next) => {
+    const pathname = new URL(request.url).pathname;
+    console.log({
+      params,
+      pathname
+    });
+    const isIgnoredPath = IGNORED_PATHS.some((path) =>
+      pathname.startsWith(path)
+    );
 
-  if (isIgnoredPath) {
-    return next();
+    if (isIgnoredPath) {
+      return next();
+    }
+
+    const pathnameIsMissingLocale = i18n.locales.every(
+      (locale) =>
+        !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    );
+    if (!pathnameIsMissingLocale) return next();
+
+    const locale = getLocale(request);
+    return redirect(`/${locale}/${pathname === "/" ? "" : pathname}`, 302);
   }
-
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
-  if (!pathnameIsMissingLocale) return next();
-
-  const locale = getLocale(request);
-  return redirect(`/${locale}/${pathname === "/" ? "" : pathname}`, 302);
-});
+);
 
 const IGNORED_PATHS = ["/keystatic", "/api", "/sitemap.xml"];
