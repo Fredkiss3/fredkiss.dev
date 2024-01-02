@@ -1,13 +1,19 @@
 ---
 import Layout from "~/layouts/Layout.astro";
+import { getDictionary } from "~/lib/get-dictionnaries";
+import type { Locale } from "~/lib/i18n-utils";
+
 export function getStaticPaths() {
   return [{ params: { locale: "fr" } }, { params: { locale: "en" } }];
 }
+
+const locale = Astro.params.locale as Locale;
+const t = await getDictionary(locale);
 ---
 
 <Layout>
   <h1 class="text-4xl font-bold leading-relaxed lg:text-5xl">
-    Hello world, je suis Adrien KISSIE
+    {t.hero.title}
   </h1>
 
   <pre>
