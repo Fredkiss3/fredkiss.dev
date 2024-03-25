@@ -1,44 +1,54 @@
-<p align="center">
-  <a href="https://fredkiss.dev">
-    <img alt="Sreenshot portfolio" src="https://user-images.githubusercontent.com/38298743/231404339-32480393-3629-499f-95a9-b8f64c706357.png" width="100%" />
-  </a>
-</p>
+# Astro Starter Kit: Basics
 
-# My portfolio
+```sh
+npm create astro@latest -- --template basics
+```
 
-This is my portfolio.
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-# Requirements
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-- Node >= v16.6.2
-- npm or [PNPM](https://pnpm.io/installation) >= v6.22.2
+![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
 
+## 🚀 Project Structure
 
-## 🚀 How to work on the project ?
+Inside of your Astro project, you'll see the following folders and files:
 
-1. First you have to clone the repository
-    
-    ```bash
-    git clone https://github.com/Fredkiss3/fredkiss.dev.git
-    ```    
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-2. **Then, Install the dependencies :**
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-    ```bash
-    npm install
-    # or
-    pnpm install --shamefully-hoist
-    ```
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-3. **Then, Run the project :**     
+Any static assets, like images, can be placed in the `public/` directory.
 
-    ```bash
-    npm run dev
-    # or
-    pnpm run dev
-    ```
+## 🧞 Commands
 
-    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+All commands are run from the root of the project, from a terminal:
 
-6. **Open the source code and start rocking ! 😎**
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

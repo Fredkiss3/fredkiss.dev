@@ -3,7 +3,5 @@
   "useTabs": false,
   "bracketSameLine": true,
   "arrowParens": "avoid",
-  "jsxBracketSameLine": true,
-  "pluginSearchDirs": ["."],
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "jsxBracketSameLine": true
 }

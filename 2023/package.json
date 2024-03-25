@@ -1,0 +1,41 @@
+{
+  "name": "fredkiss.dev",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "telemetry:disable": "next telemetry disable"
+  },
+  "dependencies": {
+    "@formatjs/intl-localematcher": "^0.4.0",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@vercel/analytics": "^1.0.2",
+    "contentlayer": "^0.3.4",
+    "framer-motion": "^10.16.0",
+    "negotiator": "^0.6.3",
+    "next": "13.4.17",
+    "next-contentlayer": "^0.3.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-markdown": "^8.0.7",
+    "server-only": "^0.0.1",
+    "sharp": "^0.32.5"
+  },
+  "devDependencies": {
+    "@types/node": "20.5.1",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "^10.4.15",
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.18",
+    "postcss": "^8.4.28",
+    "prettier": "^3.0.2",
+    "prettier-plugin-tailwindcss": "^0.5.3",
+    "tailwindcss": "^3.3.3",
+    "typescript": "5.1.6"
+  }
+}

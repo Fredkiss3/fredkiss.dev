@@ -1,0 +1,28 @@
+---
+import "@fontsource/square-peg";
+import "~/globals.css";
+import Header from "~/components/Header.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+const { locale } = Astro.params;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ? `${title} | Adrien KISSIE` : `Adrien KISSIE`}</title>
+  </head>
+  <body>
+    <Header links={[]} />
+    <slot />
+  </body>
+</html>

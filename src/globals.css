@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-size: 16px;
+    font-weight: 400;
+    scroll-behavior: smooth;
+    color: theme("colors.dark");
+    font-family: theme("fontFamily.sans");
+    --font-satoshi: "SatoshiVariable";
+    --font-title: "Square Peg";
+  }
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-optical-sizing: auto;
+  }
+}
+@font-face {
+  font-family: SatoshiVariable;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Satoshi-Variable.ttf") format("truetype");
+}
+@font-face {
+  font-family: SatoshiVariable;
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Satoshi-VariableItalic.ttf") format("truetype");
+}
