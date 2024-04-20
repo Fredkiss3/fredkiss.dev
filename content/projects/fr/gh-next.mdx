@@ -1,0 +1,27 @@
+---
+name: Github Clone en Nextjs
+url: https://gh.fredkiss.dev
+github: https://github.com/fredkiss3/gh-next
+startDate: "2023-07-01"
+image: gh-next.png
+lang: en
+technologies:
+  - Next.js
+  - TailwindCSS
+  - PostgreSQL
+  - DrizzleORM
+---
+
+J'ai travaillé sur la recréation de github à partir de zéro avec nextjs comme défi, j'ai entrepris de recréer le 
+Frontend de l'application en utilisant React et TailwindCSS et aussi recréer le backend, en utilisant PostgreSQL comme base de données et [DrizzleORM](https://orm.drizzle.team/) comme ORM. 
+
+J'ai réussi à implémenter la page de recherche des issues de github, avec l'objectif de la rendre vraiment rapide, j'ai tiré plus de 
+plus de 200+ des issues les plus commentés trouvés dans le dépôt github de [vercel/next.js ](https://github.com/vercel/next.js/issues?q=is%3Aissue+is%3Aopen+sort%3Acomments-desc)
+pour alimenter ma base de données et j'ai réussi à mettre en œuvre la recherche de labels, d'auteurs, de titres et de contenus de commentaires à l'aide de requêtes SQL. 
+Initiallement, la recherche était lente en raison de la taille de l'ensemble de données (plus de 200 000 commentaires), j'ai réussi à améliorer les performances de ces requêtes en les passant de plus de 40 secondes à seulement 5 millisecondes, à travers 
+plusieurs optimisations telles que l'indexation et l'élimination des requêtes avec LIKE et ILIKE car elle éliminent les optimisations obtenus par les autres méthodes nécessitant de parcourir toutes la table.
+La démo de la liste des issues est disponible sur ce [lien] (https://gh.fredkiss.dev/fredkiss3/gh-next/issues).
+
+J'ai également travaillé sur d'autres fonctionnalités telles que : 
+- L'implémentation de l'authentification à partir de zéro en utilisant des cookies de sessions et REDIS avec la possibilité de gérer les sessions entre plusieurs appareils.
+- Travailler sur un système de preview deployments, c'est-à-dire la possibilité de créer un environnement éphémère pour chaque Pull Request qui serait lancé à la demande et arrêté après un certain temps d'inactivité, un tel environment peut être trouvée ici : [https://gh-feat-markdown-editor.gh.fredkiss.dev/](https://gh-feat-markdown-editor.gh.fredkiss.dev/)

@@ -19,7 +19,8 @@ my database and [DrizzleORM](https://orm.drizzle.team/) ad my ORM.
 I managed to implement the github issues search page, with the objective of making it really fast, I pulled more 
 than 200+ of the top most commented issues found in [vercel/next.js repository](https://github.com/vercel/next.js/issues?q=is%3Aissue+is%3Aopen+sort%3Acomments-desc)
 to seed my database and managed to implement searching for labels, authors, titles, and comment contents using SQL queries, initially searching for issues 
-was slow due to the dataset being very large (more than 200000 comments), I managed to improve on the performance of these queries going from more than 40 seconds to only 5 milliseconds.
+was slow due to the dataset being very large (more than 200000 comments), I managed to improve on the performance of these queries going from more than 40 seconds to only 5 milliseconds through 
+a number of optimisations, such as indexing and eliminating queries with LIKE and ILIKE, because they eliminate the optimisations obtained by other methods and require the query to scan the entire table.
 The demo of the issues list can be found on this [link](https://gh.fredkiss.dev/fredkiss3/gh-next/issues).
 
 I also worked on other features such as : 
