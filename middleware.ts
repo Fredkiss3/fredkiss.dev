@@ -22,9 +22,12 @@ function getLocale(request: NextRequest): string | undefined {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  if (pathname.endsWith("png")) {
+    return NextResponse.next();
+  }
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
-    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
   // Redirect if there is no locale
@@ -40,6 +43,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   // Matcher ignoring `/_next/`, `/api/` and `/fonts/`
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|fonts|screen-|og.png|opengraph-image.png|twitter-image.png|robots.txt|sitemap.xml).*)",
-  ],
+    "/((?!api|_next/static|_next/image|favicon.ico|fonts|screen-|og.png|opengraph-image.png|twitter-image.png|robots.txt|sitemap.xml).*)"
+  ]
 };

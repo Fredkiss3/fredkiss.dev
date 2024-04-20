@@ -1,0 +1,27 @@
+---
+name: Zaneops
+github: https://github.com/zane-ops/zane-ops
+startDate: "2024-02-01"
+image: zaneops.png
+lang: en
+technologies:
+  - Python
+  - Django
+  - Docker
+  - PostgreSQL
+  - React 
+---
+
+I am working on Zaneops, a self-hosted platform as a service for deploying and managing apps, inspired by projects like [vercel](https://vercel.com) and [coolify](https://coolify.io).
+This project allow developpers who wish to deploy their apps on their own servers to not manage the CI/CD and configuration of their apps manually.
+It supports multiple features such as :
+
+- Deploying services from docker images as well from github repositories
+- Preview deploying i.e  ephemeral environment created for each Pull Requests that would be spin up on demand and brought down after a certain time of inactivity
+- Deploying CRONs i.e scheduled tasks
+- Deploying Workers i.e one-off tasks that are removed post-execution
+
+The project was made using Python and Django for the backend, [tested thoroughly](https://github.com/zane-ops/zane-ops/tree/main/backend/zane_api/tests) using integrations and unit tests where it mattered,
+with a documented openapi schema that is used to generate a typescript sdk and used by the frontend to make api requests, the frontend was made using vite/react.
+
+This project is open source and was made in collaboration with [Mohamed CHERIF](https://github.com/mo-cherif) who works on the frontend while I work on the backend.

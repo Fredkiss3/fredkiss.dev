@@ -27,12 +27,13 @@ export function CustomLink({ onClick, children, href }: LinkProps) {
         ml-4
         p-2  
         uppercase
-        hover:font-bold
+        hover:font-semibold
         hover:text-secondary  
         focus:text-secondary
-        active:font-bold
+        active:font-semibold
         active:text-secondary
-      `}>
+      `}
+    >
       <span
         className="
           absolute

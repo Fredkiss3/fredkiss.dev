@@ -18,14 +18,15 @@ const components = {
   h3: (props: any) => (
     <h3
       {...props}
-      className={`text-xl font-bold md:mb-4 md:text-2xl lg:text-3xl`}
+      className={`text-xl font-semibold md:mb-4 md:text-2xl lg:text-3xl`}
     />
   ),
   a: (props: any) => (
     <a
       {...props}
-      className={`inline-flex items-center font-bold underline`}
-      target={`_blank`}>
+      className={`inline-flex items-center font-semibold underline`}
+      target={`_blank`}
+    >
       <span>{props.children}</span>
       <ArrowTopRightOnSquareIcon className="h-4" />
     </a>
@@ -41,14 +42,14 @@ const components = {
         "before:absolute before:top-3"
       )}
     />
-  ),
+  )
 };
 
 export function MdxBody({
   content,
   className,
   type = "article",
-  components: defaultComponents = {},
+  components: defaultComponents = {}
 }: MdxBodyProps) {
   const Component = useMDXComponent(content);
   const Tag = type === "article" ? "article" : "div";

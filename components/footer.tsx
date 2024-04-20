@@ -24,13 +24,15 @@ export function Footer({ links, t, locale }: FooterProps) {
         className={clsx(
           "mx-auto grid w-full max-w-[1280px] grid-cols-1 items-stretch gap-8",
           "md:grid-cols-12"
-        )}>
+        )}
+      >
         <div
           className={clsx(
-            " flex   flex-col gap-4 text-2xl font-bold",
+            " flex   flex-col gap-4 text-2xl font-semibold",
             "md:col-span-7",
             "lg:col-span-8"
-          )}>
+          )}
+        >
           <h2>{t.footer.socials}</h2>
           <ul className="flex gap-2">
             <li>
@@ -38,7 +40,8 @@ export function Footer({ links, t, locale }: FooterProps) {
                 href="https://www.linkedin.com/in/adrien-kissie-3b6b32162/"
                 target={"_blank"}
                 aria-label="linkedin"
-                rel="noreferrer">
+                rel="noreferrer"
+              >
                 <Icon icon="linkedin" className="h-8 text-secondary" />
               </a>
             </li>
@@ -48,7 +51,8 @@ export function Footer({ links, t, locale }: FooterProps) {
                 href="https://github.com/Fredkiss3"
                 target={"_blank"}
                 aria-label="github"
-                rel="noreferrer">
+                rel="noreferrer"
+              >
                 <Icon icon="github" className="h-8 text-secondary" />
               </a>
             </li>
@@ -58,7 +62,8 @@ export function Footer({ links, t, locale }: FooterProps) {
                 href="https://twitch.tv/Fredkisss"
                 target={"_blank"}
                 aria-label="twitch"
-                rel="noreferrer">
+                rel="noreferrer"
+              >
                 <Icon icon="twitch" className="h-8 text-secondary" />
               </a>
             </li>
@@ -67,7 +72,8 @@ export function Footer({ links, t, locale }: FooterProps) {
                 href="https://twitter.com/@fredkisss"
                 target={"_blank"}
                 aria-label="twitter"
-                rel="noreferrer">
+                rel="noreferrer"
+              >
                 <Icon icon="twitter" className="h-8 text-secondary" />
               </a>
             </li>
@@ -80,7 +86,8 @@ export function Footer({ links, t, locale }: FooterProps) {
               rel="noreferrer"
               href="mailto:hello@fredkiss.dev"
               target="_blank"
-              className="text-primary underline">
+              className="text-primary underline"
+            >
               hello@fredkiss.dev
             </a>
             <span role="img">👋</span>
@@ -92,11 +99,12 @@ export function Footer({ links, t, locale }: FooterProps) {
             "flex flex-col gap-4",
             "md:col-span-5 md:gap-8",
             "lg:col-span-4"
-          )}>
-          <h2 className="text-2xl font-bold">Information</h2>
+          )}
+        >
+          <h2 className="text-2xl font-semibold">Information</h2>
 
           <ul className="flex flex-col gap-4">
-            {links.map(link => (
+            {links.map((link) => (
               <li key={link.href}>
                 <CustomLink href={link.href}>{link.label}</CustomLink>
               </li>

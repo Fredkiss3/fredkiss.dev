@@ -8,6 +8,5 @@
     font-weight: 400;
     scroll-behavior: smooth;
     color: theme("colors.dark");
-    font-family: theme("fontFamily.sans");
   }
 }

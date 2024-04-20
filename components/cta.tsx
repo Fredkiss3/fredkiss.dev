@@ -1,7 +1,7 @@
 // components
 import {
   EnvelopeIcon,
-  DocumentMagnifyingGlassIcon,
+  DocumentMagnifyingGlassIcon
 } from "@heroicons/react/24/outline";
 
 // utils
@@ -36,13 +36,14 @@ export function Cta(props: MailCta | ResumeCta) {
       target={props.type === "mail" ? "_blank" : "_self"}
       className={clsx(
         props.className,
-        "rounded-md px-4 py-3 font-bold",
+        "rounded-md px-4 py-3 font-semibold",
         "flex items-center gap-2",
         {
           "bg-dark text-light": props.type === "mail",
-          "bg-primary text-light": props.type === "cv",
+          "bg-primary text-light": props.type === "cv"
         }
-      )}>
+      )}
+    >
       {props.type === "mail" ? (
         <EnvelopeIcon className="h-6 w-6" />
       ) : (

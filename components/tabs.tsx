@@ -17,7 +17,8 @@ export function Tabs({ className, children }: TabsProps) {
         "mx-auto grid max-w-[1280px] gap-4",
         "md:grid-cols-2 md:place-items-center md:gap-14",
         "lg:grid-cols-12"
-      )}>
+      )}
+    >
       <Tab.Group>{children}</Tab.Group>
     </div>
   );
@@ -25,18 +26,15 @@ export function Tabs({ className, children }: TabsProps) {
 
 export function TabsHeader({
   children,
-  className,
+  className
 }: {
   children: React.ReactNode;
   className?: string;
 }) {
   return (
     <Tab.List
-      className={clsx(
-        className,
-        `flex w-full flex-col gap-4`,
-        `lg:col-span-5`
-      )}>
+      className={clsx(className, `flex w-full flex-col gap-4`, `lg:col-span-5`)}
+    >
       {children}
     </Tab.List>
   );
@@ -46,7 +44,7 @@ export function TabsHeaderItem({
   children,
   className,
   iconColor = `primary`,
-  icon,
+  icon
 }: {
   children: React.ReactNode;
   className?: string;
@@ -64,18 +62,20 @@ export function TabsHeaderItem({
             `focus:shadow-md focus:shadow-gray-200/50`,
             {
               "border-2 border-secondary": selected,
-              "grayscale-[80%] filter hover:grayscale-0": !selected,
+              "grayscale-[80%] filter hover:grayscale-0": !selected
             }
-          )}>
+          )}
+        >
           <div
             className={clsx(`flex items-center rounded-full p-4 text-white`, {
               "bg-primary": iconColor === `primary`,
               "bg-secondary": iconColor === `secondary`,
-              "bg-tertiary": iconColor === `tertiary`,
-            })}>
+              "bg-tertiary": iconColor === `tertiary`
+            })}
+          >
             {icon}
           </div>
-          <h3 className={`text-xl font-bold`}>{children}</h3>
+          <h3 className={`text-xl font-semibold`}>{children}</h3>
         </button>
       )}
     </Tab>
@@ -84,7 +84,7 @@ export function TabsHeaderItem({
 
 export function TabsBody({
   children,
-  className,
+  className
 }: {
   children: React.ReactNode;
   className?: string;
@@ -98,7 +98,7 @@ export function TabsBody({
 
 export function TabsItem({
   children,
-  className,
+  className
 }: {
   children: React.ReactNode;
   className?: string;

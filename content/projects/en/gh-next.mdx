@@ -1,0 +1,27 @@
+---
+name: Github Clone in Nextjs
+url: https://gh.fredkiss.dev
+github: https://github.com/fredkiss3/gh-next
+startDate: "2023-07-01"
+image: gh-next.png
+lang: en
+technologies:
+  - Next.js
+  - TailwindCSS
+  - PostgreSQL
+  - DrizzleORM
+---
+
+I worked on recreating github from scratch with nextjs as a challenge, I set out to recreate the 
+Frontend of the app using React and TailwindCSS and also recreate the backend, using PostgreSQL as 
+my database and [DrizzleORM](https://orm.drizzle.team/) ad my ORM. 
+
+I managed to implement the github issues search page, with the objective of making it really fast, I pulled more 
+than 200+ of the top most commented issues found in [vercel/next.js repository](https://github.com/vercel/next.js/issues?q=is%3Aissue+is%3Aopen+sort%3Acomments-desc)
+to seed my database and managed to implement searching for labels, authors, titles, and comment contents using SQL queries, initially searching for issues 
+was slow due to the dataset being very large (more than 200000 comments), I managed to improve on the performance of these queries going from more than 40 seconds to only 5 milliseconds.
+The demo of the issues list can be found on this [link](https://gh.fredkiss.dev/fredkiss3/gh-next/issues).
+
+I also worked on other features such as : 
+- Implementing authentication from scratch using sessions cookies and REDIS with the ability to manage sessions between multiple devices
+- Working on a system of preview deployments, i.e the ability to create ephemeral environment created for each Pull Requests that would be spin up on demand and brought down after a certain time of inactivity, such a preview can be found here : [https://gh-feat-markdown-editor.gh.fredkiss.dev/](https://gh-feat-markdown-editor.gh.fredkiss.dev/)

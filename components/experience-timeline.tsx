@@ -15,7 +15,7 @@ export type ExperienceProps = {
 
 export function ExperienceTimeline({
   experience: xp,
-  locale,
+  locale
 }: ExperienceProps) {
   return (
     <>
@@ -23,19 +23,21 @@ export function ExperienceTimeline({
         className={clsx(
           "relative grid gap-8 pb-8 pl-10",
           "lg:grid-cols-2 lg:gap-10 lg:pl-0"
-        )}>
+        )}
+      >
         {/* Timeline  */}
         <div
           className={clsx(
             "absolute top-0 left-0 flex items-center justify-center",
             "rounded-full border-2 border-dashed border-dark p-2",
             "lg:left-1/2"
-          )}>
+          )}
+        >
           <div
             className={clsx("h-3 w-3 rounded-full", {
               "bg-secondary": xp.color === "secondary",
               "bg-tertiary": xp.color === "tertiary",
-              "bg-primary": xp.color === "primary",
+              "bg-primary": xp.color === "primary"
             })}
           />
         </div>
@@ -51,11 +53,11 @@ export function ExperienceTimeline({
 
         {/* Content */}
         <div className={clsx("flex flex-col gap-3", "lg:pl-10")}>
-          <h3 className="text-2xl font-bold">
+          <h3 className="text-2xl font-semibold">
             {xp.title}, {xp.jobType}
           </h3>
           <ul className="flex flex-wrap gap-2">
-            {xp.technologies.map(tech => (
+            {xp.technologies.map((tech) => (
               <Tag key={tech}>{tech}</Tag>
             ))}
           </ul>
@@ -64,7 +66,7 @@ export function ExperienceTimeline({
 
         {/* Date & type  */}
         <div className="lg:order-first">
-          <h4 className="text-xl font-bold">{xp.company}</h4>
+          <h4 className="text-xl font-semibold">{xp.company}</h4>
 
           <p>
             {formatDate(xp.startDate, locale)} -&nbsp;

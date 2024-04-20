@@ -5,7 +5,7 @@ import {
   TabsBody,
   TabsHeader,
   TabsHeaderItem,
-  TabsItem,
+  TabsItem
 } from "~/components/tabs";
 import { CpuChipIcon } from "@heroicons/react/24/outline";
 import { ComputerDesktopIcon } from "@heroicons/react/24/outline";
@@ -32,7 +32,7 @@ import type { TranslationDictionary, Lang } from "~/lib/get-dictionnaries";
 import type { Metadata } from "next";
 
 export function generateMetadata({
-  params,
+  params
 }: {
   params: { locale: Lang };
 }): Metadata {
@@ -41,14 +41,14 @@ export function generateMetadata({
       canonical: `/${params.locale}`,
       languages: {
         en: "/en",
-        fr: "/fr",
-      },
-    },
+        fr: "/fr"
+      }
+    }
   };
 }
 
 export default async function HomePage({
-  params,
+  params
 }: {
   params: { locale: Lang };
 }) {
@@ -65,7 +65,7 @@ export default async function HomePage({
 
 function HeroSection({
   t,
-  locale,
+  locale
 }: {
   t: TranslationDictionary;
   locale: Lang;
@@ -79,7 +79,7 @@ function HeroSection({
         className="text-primary underline"
         {...props}
       />
-    ),
+    )
   };
   return (
     <section className="bg-light px-4" id="hero">
@@ -88,17 +88,20 @@ function HeroSection({
           "mx-auto grid max-w-[1200px] gap-8",
           "pt-20 md:relative md:grid-cols-2 md:px-8 md:pt-32",
           "lg:px-10"
-        )}>
+        )}
+      >
         <div
           className={clsx(
             "flex flex-col gap-4 lg:gap-8 lg:pt-20",
             "md:gap-6 xl:my-auto xl:pt-0 xl:pb-20"
-          )}>
+          )}
+        >
           <h1
             className={clsx(
-              "text-4xl font-bold leading-relaxed",
+              "text-4xl font-semibold leading-relaxed",
               "lg:text-5xl"
-            )}>
+            )}
+          >
             {t.hero.title}
           </h1>
 
@@ -120,13 +123,15 @@ function HeroSection({
           className={clsx(
             "relative h-96 overflow-y-clip overflow-x-visible",
             "md:h-[450px] lg:h-[600px]"
-          )}>
+          )}
+        >
           <div
             className={clsx(
               "absolute bottom-0 left-1/2 w-[350px] -translate-x-1/2",
               "md:-bottom-5 md:w-[430px]",
               "lg:w-[550px]"
-            )}>
+            )}
+          >
             <Image
               src={brush1ImgURL}
               alt="brush stroke"
@@ -135,7 +140,7 @@ function HeroSection({
               width={250}
               style={{
                 filter:
-                  "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)",
+                  "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)"
               }}
             />
             <Image
@@ -146,7 +151,7 @@ function HeroSection({
               className="w-[500px] -rotate-[20deg]"
               style={{
                 filter:
-                  "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)",
+                  "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)"
               }}
             />
             <Image
@@ -157,7 +162,7 @@ function HeroSection({
               className="w-[500px] -rotate-[25deg]"
               style={{
                 filter:
-                  "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)",
+                  "invert(24%) sepia(56%) saturate(3292%) hue-rotate(161deg) brightness(86%) contrast(102%)"
               }}
             />
           </div>
@@ -180,13 +185,13 @@ function HeroSection({
 
 function SkillsSection({
   t,
-  locale,
+  locale
 }: {
   t: TranslationDictionary;
   locale: Lang;
 }) {
   const skills = allSkills
-    .filter(skill => skill.lang === locale)
+    .filter((skill) => skill.lang === locale)
     .sort((a, b) => a.id - b.id);
 
   function getIcon(icon: Skill["icon"], className: string) {
@@ -205,33 +210,36 @@ function SkillsSection({
   return (
     <section
       className={clsx(`scroll-mt-20 bg-white py-16 px-8`, `lg:px-10`)}
-      id={`skills`}>
+      id={`skills`}
+    >
       <h2
         className={clsx(
-          "mb-4 text-center text-2xl font-bold",
+          "mb-4 text-center text-2xl font-semibold",
           "md:mb-8 md:text-3xl lg:text-4xl"
-        )}>
+        )}
+      >
         {t.skills.title}
       </h2>
 
       <Tabs>
         <TabsHeader>
-          {skills.map(skill => (
+          {skills.map((skill) => (
             <TabsHeaderItem
               key={`tab-headeritem-${skill.id}`}
               icon={getIcon(skill.icon, `h-6 w-6`)}
-              iconColor={skill.iconColor}>
+              iconColor={skill.iconColor}
+            >
               {skill.name}
             </TabsHeaderItem>
           ))}
         </TabsHeader>
 
         <TabsBody>
-          {skills.map(skill => (
+          {skills.map((skill) => (
             <TabsItem key={`tab-item-${skill.id}`}>
               <MdxBody type="div" content={skill.body.code} />
               <ul className="flex flex-wrap gap-2 md:mt-4">
-                {skill.technologies.map(tech => (
+                {skill.technologies.map((tech) => (
                   <li key={tech}>
                     <Tag color="secondary">{tech}</Tag>
                   </li>
@@ -247,13 +255,13 @@ function SkillsSection({
 
 function ExperienceSection({
   t,
-  locale,
+  locale
 }: {
   t: TranslationDictionary;
   locale: Lang;
 }) {
   const experiences = allExperiences
-    .filter(xp => xp.lang === locale)
+    .filter((xp) => xp.lang === locale)
     .sort(
       (a, b) =>
         new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
@@ -266,12 +274,14 @@ function ExperienceSection({
         "md:px-8",
         "lg:px-10"
       )}
-      id="experience">
+      id="experience"
+    >
       <h2
         className={clsx(
-          "my-4 text-center text-2xl font-bold",
+          "my-4 text-center text-2xl font-semibold",
           "md:mb-8 md:text-3xl lg:text-4xl"
-        )}>
+        )}
+      >
         {t.experience.title}
       </h2>
 
@@ -286,20 +296,20 @@ function ExperienceSection({
 
 function ProjectSection({
   t,
-  locale,
+  locale
 }: {
   t: TranslationDictionary;
   locale: Lang;
 }) {
   const projects = allProjects
-    .filter(p => p.lang === locale)
+    .filter((p) => p.lang === locale)
     .sort(
       (a, b) =>
         new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
     )
-    .map(p => ({
+    .map((p) => ({
       ...p,
-      mdx: <MdxBody content={p.body.code} />,
+      mdx: <MdxBody content={p.body.code} />
     }));
 
   return (
@@ -309,12 +319,14 @@ function ProjectSection({
         "scroll-mt-20 bg-white py-16 px-4",
         "md:px-8",
         "lg:px-10"
-      )}>
+      )}
+    >
       <h2
         className={clsx(
-          "my-4 text-center text-2xl font-bold",
+          "my-4 text-center text-2xl font-semibold",
           "md:mb-8 md:text-3xl lg:text-4xl"
-        )}>
+        )}
+      >
         {t.projects.title}
       </h2>
       <ProjectCardSlider projects={projects} t={t} />

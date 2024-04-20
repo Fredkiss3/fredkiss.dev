@@ -26,7 +26,7 @@ export function ProjectCard({
   image,
   children,
   inversed = false,
-  t,
+  t
 }: ProjectCardProps) {
   return (
     <div>
@@ -35,11 +35,13 @@ export function ProjectCard({
           "relative z-10 grid gap-4 py-5",
           "md:grid-cols-2 md:gap-8 md:p-10",
           "lg:grid-cols-5"
-        )}>
+        )}
+      >
         <div
           className={clsx("flex h-full items-start", "lg:col-span-2", {
-            "md:order-last": !inversed,
-          })}>
+            "md:order-last": !inversed
+          })}
+        >
           <Image
             src={`/${image}`}
             width={250}
@@ -54,10 +56,10 @@ export function ProjectCard({
         </div>
 
         <div className="flex flex-col gap-4  lg:col-span-3">
-          <h3 className="text-2xl font-bold">{name}</h3>
+          <h3 className="text-2xl font-semibold">{name}</h3>
 
           <ul className="flex flex-wrap gap-2">
-            {technologies.map(tech => (
+            {technologies.map((tech) => (
               <li key={tech}>
                 <Tag>{tech}</Tag>
               </li>
@@ -69,7 +71,8 @@ export function ProjectCard({
               <a
                 href={url}
                 target={`_blank`}
-                className="flex items-center font-bold  underline">
+                className="flex items-center font-semibold  underline"
+              >
                 <span>{t.projects.link}</span>
                 <ArrowTopRightOnSquareIcon className="h-4" />
               </a>
@@ -78,12 +81,13 @@ export function ProjectCard({
               <a
                 href={github}
                 target={`_blank`}
-                className="flex items-center font-bold underline">
+                className="flex items-center font-semibold underline"
+              >
                 <span>Github</span>
                 <ArrowTopRightOnSquareIcon className="h-4" />
               </a>
             ) : (
-              <span className="flex  items-center font-bold">
+              <span className="flex  items-center font-semibold">
                 <span>[{t.projects.private}]</span>{" "}
                 <LockClosedIcon className="h-4" />
               </span>
@@ -106,14 +110,15 @@ export type ProjectCardSliderProps = {
 export function ProjectCardSlider({
   projects,
   className,
-  t,
+  t
 }: ProjectCardSliderProps) {
   return (
     <ul
       className={clsx(
         className,
         "relative mx-auto flex max-w-[1200px] flex-col items-stretch gap-8"
-      )}>
+      )}
+    >
       {projects.map((p, index) => (
         <li key={p._id} className={`relative z-10`}>
           <ProjectCard t={t} {...p} inversed={index % 2 !== 0}>

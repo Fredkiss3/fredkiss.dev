@@ -25,9 +25,10 @@ export function Header({ links }: HeaderProps) {
           `lg:flex lg:py-2`,
           `before:absolute before:inset-0 before:backdrop-blur-md`,
           `before:pointer-events-none before:z-10`
-        )}>
+        )}
+      >
         <div className="relative z-20 flex items-center justify-between">
-          <Link href={`/`} className="font-custom text-4xl font-bold">
+          <Link href={`/`} className="font-custom text-4xl font-semibold">
             Adrien
           </Link>
 
@@ -36,7 +37,7 @@ export function Header({ links }: HeaderProps) {
 
         <nav className="relative z-20 hidden flex-grow justify-center lg:flex">
           <ul className="flex gap-4">
-            {links.map(link => (
+            {links.map((link) => (
               <li key={link.href}>
                 <CustomLink href={link.href}>{link.label}</CustomLink>
               </li>
@@ -53,7 +54,8 @@ export function Header({ links }: HeaderProps) {
               className={clsx(
                 "flex items-center justify-center rounded-full p-3",
                 "bg-white shadow-sm transition-shadow duration-100 hover:shadow-lg"
-              )}>
+              )}
+            >
               <span className="sr-only">Linkedin</span>
               <Icon icon="linkedin" className="h-6 text-secondary" />
             </a>
@@ -66,7 +68,8 @@ export function Header({ links }: HeaderProps) {
               className={clsx(
                 "flex items-center justify-center rounded-full p-3",
                 "bg-white shadow-sm transition-shadow duration-100 hover:shadow-lg"
-              )}>
+              )}
+            >
               <span className="sr-only">Github</span>
               <Icon icon="github" className="h-6 text-secondary" />
             </a>
@@ -79,7 +82,8 @@ export function Header({ links }: HeaderProps) {
               className={clsx(
                 "flex items-center justify-center rounded-full p-3",
                 "bg-white shadow-sm transition-shadow duration-100 hover:shadow-lg"
-              )}>
+              )}
+            >
               <span className="sr-only">Twitch</span>
               <Icon icon="twitch" className="h-6 text-secondary" />
             </a>
