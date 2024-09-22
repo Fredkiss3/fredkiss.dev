@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-size: 16px;
+    font-weight: 400;
+    scroll-behavior: smooth;
+    color: theme("colors.dark");
+    font-family: theme("fontFamily.sans");
+  }
+}

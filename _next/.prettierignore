@@ -1,0 +1,17 @@
+node_modules/
+out/
+/marketing/
+.DS_Store
+.idea/
+dist/
+
+# turbo
+.turbo/
+
+# next.js
+.swc/
+.next/
+build
+
+*.old.*
+.env
