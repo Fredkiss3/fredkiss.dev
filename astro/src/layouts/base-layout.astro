@@ -1,0 +1,74 @@
+---
+import TailwindIndicator from "~/components/tailwind-indicator.astro";
+
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
+
+const headTitle = title ? `${title} | Adrien KISSIE` : "Adrien KISSIE";
+const description =
+	"Software Engineer, amateur chef, amateur cyclist and twitch streamer";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{headTitle}</title>
+		<meta name="description" content={description} />
+		
+		<meta property="og:title" content={headTitle}>
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content="https://fredkiss.dev/" />
+		<meta property="og:site_name" content="Adrien KISSIE" />
+		<meta property="og:locale" content="en" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="https://fredkiss.dev/opengraph-image.png">
+
+		<meta property="twitter:domain" content="fredkiss.dev" />
+		<meta property="twitter:url" content="https://fredkiss.dev/en" />
+		<meta name="twitter:card" content="summary_large_image" />		
+		<meta name="twitter:title" content={headTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="https://fredkiss.dev/opengraph-image.png" />
+
+		<style is:global>
+			@supports (font-variation-settings: normal) {
+				:root {
+					font-optical-sizing: auto;
+				}
+			}
+			@font-face {
+				font-family: "Geist";
+				font-style: normal;
+				font-weight: 100 900;
+				font-display: swap;
+				src: url("/fonts/GeistVF.woff2") format("woff2");
+			}
+			:root {
+				font-family: "Geist";
+			}
+		</style>
+	</head>
+	<body class="dark:bg-gray-900 dark:text-white text-gray-950">
+		<a
+			class:list={[
+				"sr-only focus:not-sr-only bg-white dark:bg-gray-950",
+				"focus:px-6 focus:py-4 outline-none focus:inline-flex",
+				"focus:fixed focus:top-0 focus:left-0 focus:z-50",
+				"focus:ring-accent/80 focus:ring-2",
+			]}
+			href="#main-content"
+		>
+			Skip to main content
+		</a>
+		<main id="main-content" class="max-w-2xl mx-auto mb-40 mt-8">
+			<slot />
+		</main>
+		<TailwindIndicator />
+	</body>
+</html>

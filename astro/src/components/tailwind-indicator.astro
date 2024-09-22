@@ -1,0 +1,21 @@
+<div id="tailwind-indicator" class="fixed bottom-5 left-5 z-[9999999] flex h-6 items-center justify-center gap-2 rounded-full bg-black p-3 font-mono text-xs text-white">
+    <div id="xs" class="block sm:hidden">xs</div>
+    <div id="sm" class="hidden sm:block md:hidden">sm</div>
+    <div id="md" class="hidden md:block lg:hidden">md</div>
+    <div id="lg" class="hidden lg:block xl:hidden">lg</div>
+    <div id="xl" class="hidden xl:block 2xl:hidden">xl</div>
+    <div id="xxl" class="hidden 2xl:block xxl:hidden">2xl</div>
+    | <span id="media-size">0</span>px
+</div>
+
+<script lang="ts">
+function updateMediaSize() {
+    const mediaSizeDisplay = document.getElementById('media-size');
+    mediaSizeDisplay.textContent = window.innerWidth;
+}
+
+window.addEventListener('resize', updateMediaSize);
+
+// Initial call to set the media size on page load
+updateMediaSize();
+</script>
