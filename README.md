@@ -11,7 +11,7 @@ This is my portfolio.
 # Requirements
 
 - Node >= v16.6.2
-- npm or [PNPM](https://pnpm.io/installation) >= v6.22.2
+- [PNPM](https://pnpm.io/installation) >= v8.15.9
 
 
 ## 🚀 How to work on the project ?
@@ -25,16 +25,12 @@ This is my portfolio.
 2. **Then, Install the dependencies :**
 
     ```bash
-    npm install
-    # or
-    pnpm install --shamefully-hoist
+    pnpm install --frozen-lockfile
     ```
 
 3. **Then, Run the project :**     
 
     ```bash
-    npm run dev
-    # or
     pnpm run dev
     ```
 
