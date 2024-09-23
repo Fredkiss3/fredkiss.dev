@@ -1,12 +1,6 @@
-<p align="center">
-  <a href="https://fredkiss.dev">
-    <img alt="Sreenshot portfolio" src="https://user-images.githubusercontent.com/38298743/231404339-32480393-3629-499f-95a9-b8f64c706357.png" width="100%" />
-  </a>
-</p>
-
 # My portfolio
 
-This is my portfolio.
+This is my portfolio, made @withastro.
 
 # Requirements
 
