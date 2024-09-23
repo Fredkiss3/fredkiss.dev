@@ -14,6 +14,10 @@ const workExperiences = (await getCollection("work")).sort(
     (b.data.endDate?.getTime() ?? new Date().getTime()) -
     (a.data.endDate?.getTime() ?? new Date().getTime())
 );
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
+);
 ---
 
 <BaseLayout>
@@ -137,11 +141,11 @@ const workExperiences = (await getCollection("work")).sort(
           return (
             <li>
               <article class="flex flex-col gap-2">
-                <h2 class="text-lg font-semibold">
+                <h3 class="text-lg font-semibold">
                   <a target="_blank" rel="noopener noreferrer" href={xp.link}>
                     {xp.company.toLowerCase()}
                   </a>
-                </h2>
+                </h3>
 
                 <h3 class="lowercase text-lg">
                   {xp.jobTitle} ({formattedDateRange})
@@ -158,7 +162,29 @@ const workExperiences = (await getCollection("work")).sort(
     </ul>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="flex flex-col gap-3">
     <h2 class="text-xl font-semibold">projects</h2>
+    <ul class="flex flex-col gap-5">
+      {
+        projects.map(async entry => {
+          const project = entry.data;
+          const { Content } = await entry.render();
+          return (
+            <li>
+              <article>
+                <h3 class="text-lg font-semibold">
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={project.repository}>
+                    {project.title.toLowerCase()}
+                  </a>
+                </h3>
+              </article>
+            </li>
+          );
+        })
+      }
+    </ul>
   </section>
 </BaseLayout>

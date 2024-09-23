@@ -14,11 +14,17 @@ const workExperienceCollection = defineCollection({
 const projectCollection = defineCollection({
 	type: "content",
 	schema: z.object({
-		/* ... */
+		title: z.string().min(1),
+		repository: z.string().url(),
+		role: z
+			.array(z.enum(["creator", "maintainer", "contributor"]))
+			.default(["creator"]),
+		startDate: z.coerce.date(),
+		image: z.string().min(1),
 	}),
 });
 
 export const collections = {
 	work: workExperienceCollection,
-	project: projectCollection,
+	projects: projectCollection,
 };
