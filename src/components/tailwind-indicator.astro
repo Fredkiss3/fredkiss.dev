@@ -9,13 +9,15 @@
 </div>
 
 <script>
-function updateMediaSize() {
-    const mediaSizeDisplay = document.getElementById('media-size')!;
-    mediaSizeDisplay.textContent = window.innerWidth.toString();
-}
+    document.addEventListener('astro:page-load', () => {
+        function updateMediaSize() {
+            const mediaSizeDisplay = document.getElementById('media-size')!;
+            mediaSizeDisplay.textContent = window.innerWidth.toString();
+        }
 
-window.addEventListener('resize', updateMediaSize);
+        window.addEventListener('resize', updateMediaSize);
 
-// Initial call to set the media size on page load
-updateMediaSize();
+        // Initial call to set the media size on page load
+        updateMediaSize();
+    })
 </script>

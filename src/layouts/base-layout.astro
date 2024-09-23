@@ -1,6 +1,7 @@
 ---
 import Icon from "~/components/icon.astro";
 import TailwindIndicator from "~/components/tailwind-indicator.astro";
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title?: string;
@@ -60,6 +61,7 @@ const description =
 				font-family: "Geist";
 			}
 		</style>
+		<ViewTransitions />
 	</head>
 	<body class="bg-amber-50 dark:bg-zinc-800 dark:text-white text-zinc-950">
 		<a
