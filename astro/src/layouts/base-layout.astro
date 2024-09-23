@@ -7,6 +7,8 @@ interface Props {
 
 const { title } = Astro.props;
 
+const currentPath = Astro.url.pathname;
+
 const headTitle = title ? `${title} | Adrien KISSIE` : "Adrien KISSIE";
 const description =
 	"Software Engineer, amateur chef, amateur cyclist and twitch streamer";
@@ -20,21 +22,27 @@ const description =
 		<meta name="generator" content={Astro.generator} />
 		<title>{headTitle}</title>
 		<meta name="description" content={description} />
-		
-		<meta property="og:title" content={headTitle}>
+
+		<meta property="og:title" content={headTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content="https://fredkiss.dev/" />
 		<meta property="og:site_name" content="Adrien KISSIE" />
 		<meta property="og:locale" content="en" />
 		<meta property="og:type" content="website" />
-		<meta property="og:image" content="https://fredkiss.dev/opengraph-image.png">
+		<meta
+			property="og:image"
+			content="https://fredkiss.dev/opengraph-image.png"
+		/>
 
 		<meta property="twitter:domain" content="fredkiss.dev" />
 		<meta property="twitter:url" content="https://fredkiss.dev/en" />
-		<meta name="twitter:card" content="summary_large_image" />		
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={headTitle} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="https://fredkiss.dev/opengraph-image.png" />
+		<meta
+			name="twitter:image"
+			content="https://fredkiss.dev/opengraph-image.png"
+		/>
 
 		<style is:global>
 			@supports (font-variation-settings: normal) {
@@ -54,7 +62,7 @@ const description =
 			}
 		</style>
 	</head>
-	<body class="dark:bg-zinc-900 dark:text-white text-zinc-950">
+	<body class="bg-amber-100 dark:bg-zinc-900 dark:text-white text-zinc-950">
 		<a
 			class:list={[
 				"sr-only focus:not-sr-only bg-white dark:bg-zinc-950",
@@ -66,9 +74,50 @@ const description =
 		>
 			Skip to main content
 		</a>
-		<main id="main-content" class="max-w-2xl mx-auto mb-40 mt-8">
+		<header class="max-w-2xl mx-auto my-8">
+			<nav>
+				<ul class="flex items-center gap-4">
+					<li>
+						<a
+							href="/"
+							aria-current="page"
+							class="underline decoration-wavy decoration-[0.1em]"
+							>Home</a
+						>
+					</li>
+					<li>
+						<a
+							href="/resume.pdf"
+							class="inline-flex gap-1 items-center"
+						>
+							<span>See resume</span>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="h-4 w-4"
+								><path d="M7 7h10v10"></path><path
+									d="M7 17 17 7"></path>
+							</svg>
+						</a>
+					</li>
+					<li>Blog <sup>(Coming soon)</sup></li>
+				</ul>
+			</nav>
+		</header>
+		<main id="main-content" class="max-w-2xl mx-auto">
 			<slot />
 		</main>
-		<TailwindIndicator />
+		<footer
+			class="max-w-2xl mx-auto mb-40 border-t border-zinc-500 mt-8 py-2 text-zinc-700 flex justify-between"
+		>
+			<small>Copyright &copy; 2024 - Adrien KISSIE</small>
+			<small>Built with Astro & deployed on ZaneOps</small>
+		</footer>
+		{process.env.NODE_ENV === "development" && <TailwindIndicator />}
 	</body>
 </html>
