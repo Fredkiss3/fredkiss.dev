@@ -1,6 +1,6 @@
 # My portfolio
 
-This is my portfolio, made @withastro.
+This is my portfolio, made with [astro](https://astro.build) and deployed on [ZaneOps](https://github.com/zane-ops/zane-ops).
 
 # Requirements
 
