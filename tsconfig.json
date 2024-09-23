@@ -6,5 +6,6 @@
 			"~/*": ["./src/*"]
 		},
 		"verbatimModuleSyntax": true
-	}
+	},
+	"exclude": ["_next"]
 }
