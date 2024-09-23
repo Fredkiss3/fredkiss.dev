@@ -106,7 +106,10 @@ const description =
 			class="max-w-2xl mx-auto mb-40 border-t border-zinc-500 mt-8 py-2 text-zinc-700 flex justify-between dark:text-inherit"
 		>
 			<small>Copyright &copy; 2024 - Fred KISSIE</small>
-			<small>Built with Astro & deployed on ZaneOps</small>
+			<div class="flex flex-col gap-1">
+				<small>Built with Astro & deployed on ZaneOps</small>
+				<small>Inspired by  <a href="https://nexxel.dev" class="inline-flex gap-1 items-center underline hover:decoration-wavy decoration-[0.11em]">nexxel.dev <Icon type="arrow-external" class="size-3" /> </a></small>
+			</div>
 		</footer>
 		{process.env.NODE_ENV === "development" && <TailwindIndicator />}
 	</body>

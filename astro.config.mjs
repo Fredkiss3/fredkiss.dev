@@ -8,12 +8,13 @@ const __dirname = import.meta.dirname;
 
 // https://astro.build/config
 export default defineConfig({
-    integrations: [tailwind(), sitemap()],
-    vite: {
-        resolve: {
-            alias: {
-                "~": path.resolve(__dirname, "./src"),
-            },
-        },
-    },
+	site: "https://fredkiss.dev",
+	integrations: [tailwind(), sitemap()],
+	vite: {
+		resolve: {
+			alias: {
+				"~": path.resolve(__dirname, "./src"),
+			},
+		},
+	},
 });
