@@ -1,7 +1,120 @@
 ---
 import BaseLayout from "~/layouts/base-layout.astro";
+import { Image } from "astro:assets";
+import portraitImage from "~/images/headshot.png";
+import Icon from "~/components/icon.astro";
+
+const totalYearsXP = new Date().getFullYear() - 2021;
+const totalYearsDev = new Date().getFullYear() - 2017;
 ---
 
 <BaseLayout>
-	<h1 class="text-3xl font-bold">Adrien KISSIE</h1>
+	<section id="banner" class="flex items-end gap-4 justify-between">
+		<div class="flex flex-col gap-4">
+			<h1 class="text-xl font-medium">Fred Kissie</h1>
+
+			<dl class="flex flex-col gap-2">
+				<div class="flex items-center gap-2">
+					<dt>
+						<span class="sr-only">Location</span>
+						<Icon type="map-pin" class="size-4" />
+					</dt>
+					<dd>Rennes, France</dd>
+				</div>
+				<div class="flex items-center gap-2">
+					<dt>
+						<span class="sr-only">Occupation</span>
+						<Icon type="suitcase" class="size-4" />
+					</dt>
+					<dd>Freelance full-stack developer</dd>
+				</div>
+			</dl>
+		</div>
+
+		<Image
+			src={portraitImage}
+			alt="Portrait of Fred KISSIE"
+			width={120}
+			height={120}
+			loading="eager"
+			class:list={[
+				"rounded-md object-center object-cover border-zinc-700 dark:border-white border-2",
+				"hover:rotate-0 -rotate-6 transition duration-150",
+			]}
+		/>
+	</section>
+
+	<section id="description">
+		<p>
+			I am a Software Engineer with over {totalYearsXP} years of professional
+			experience and more than {totalYearsDev} years of coding under my belt.
+			When I'm not writing code, you’ll find me exploring the city on my bike
+			or cooking up some delicious meals. I also stream regularly on Twitch,
+			where I share progress on my latest side projects.
+		</p>
+	</section>
+
+	<section id="work">
+		<h2 class="text-xl font-semibold">work</h2>
+	</section>
+
+	<section id="projects">
+		<h2 class="text-xl font-semibold">projects</h2>
+	</section>
+
+	<section id="links" class="flex flex-col gap-4">
+		<h2 class="text-xl font-semibold">links</h2>
+		<ul class="flex items-center gap-4 text-zinc-600 dark:text-inherit">
+			<li class="underline hover:decoration-wavy decoration-[0.1em]">
+				<a
+					class="inline-flex gap-1 items-center"
+					href="https://github.com/fredkiss3"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					github <Icon type="arrow-external" class="size-4" />
+				</a>
+			</li>
+			<li class="underline hover:decoration-wavy decoration-[0.1em]">
+				<a
+					class="inline-flex gap-1 items-center"
+					href="malto:hello@fredkiss.dev"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					email <Icon type="arrow-external" class="size-4" />
+				</a>
+			</li>
+			<li class="underline hover:decoration-wavy decoration-[0.1em]">
+				<a
+					class="inline-flex gap-1 items-center"
+					href="https://www.linkedin.com/in/adrien-kissie-3b6b32162/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					linkedin <Icon type="arrow-external" class="size-4" />
+				</a>
+			</li>
+			<li class="underline hover:decoration-wavy decoration-[0.1em]">
+				<a
+					class="inline-flex gap-1 items-center"
+					href="https://twitter.com/fredkisss"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					twitter <Icon type="arrow-external" class="size-4" />
+				</a>
+			</li>
+			<li class="underline hover:decoration-wavy decoration-[0.1em]">
+				<a
+					class="inline-flex gap-1 items-center"
+					href="https://twitch.tv/fredkisss"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					twitch <Icon type="arrow-external" class="size-4" />
+				</a>
+			</li>
+		</ul>
+	</section>
 </BaseLayout>
