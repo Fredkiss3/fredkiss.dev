@@ -8,10 +8,10 @@
     | <span id="media-size">0</span>px
 </div>
 
-<script lang="ts">
+<script>
 function updateMediaSize() {
-    const mediaSizeDisplay = document.getElementById('media-size');
-    mediaSizeDisplay.textContent = window.innerWidth;
+    const mediaSizeDisplay = document.getElementById('media-size')!;
+    mediaSizeDisplay.textContent = window.innerWidth.toString();
 }
 
 window.addEventListener('resize', updateMediaSize);
