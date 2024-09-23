@@ -32,3 +32,8 @@ This is my portfolio, made with [astro](https://astro.build) and deployed on [Za
 
 6. **Open the source code and start rocking ! 😎**
 
+
+
+## 🙏 Credits
+
+- [Nexxel](https://github.com/nexxeln/nexxel.dev): for the design inspiration
