@@ -1,8 +1,6 @@
-name: Build and Push production Image
+name: Build and Push Image in DEV
 on:
-  push:
-    branches:
-      - main
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -49,7 +47,8 @@ jobs:
                 file: Dockerfile
                 push: true
                 platforms: linux/amd64,linux/arm64
-                tags: ghcr.io/fredkiss3/fredkiss-dev:latest,ghcr.io/fredkiss3/fredkiss-dev:${{ github.sha }}
+                tags: ghcr.io/fredkiss3/fredkiss-dev:pr-${{ github.event.pull_request.number }},ghcr.io/fredkiss3/fredkiss-dev:${{ github.sha }}
                 cache-from: |
+                    type=registry,ref=ghcr.io/fredkiss3/fredkiss-dev:pr-${{ github.event.pull_request.number }}
                     type=registry,ref=ghcr.io/fredkiss3/fredkiss-dev:latest
                 cache-to: type=inline
