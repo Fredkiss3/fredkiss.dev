@@ -50,6 +50,7 @@ const projects = (await getCollection("projects")).sort(
       height={500}
       loading="eager"
       class:list={[
+        "hidden md:inline",
         "rounded-md object-center object-cover border-zinc-700 dark:border-white border-2",
         "hover:rotate-0 -rotate-6 transition duration-150",
         "size-32",
@@ -66,7 +67,8 @@ const projects = (await getCollection("projects")).sort(
       side projects.
     </p>
 
-    <ul class="flex items-center gap-4 text-zinc-600 dark:text-inherit">
+    <ul
+      class="flex items-center gap-4 text-zinc-600 dark:text-inherit flex-wrap">
       <li>
         <a
           class="inline-flex gap-1.5 items-center"
@@ -81,7 +83,7 @@ const projects = (await getCollection("projects")).sort(
       <li>
         <a
           class="inline-flex gap-1.5 items-center"
-          href="malto:hello@fredkiss.dev"
+          href="mailto:hello@fredkiss.dev"
           target="_blank"
           rel="noopener noreferrer">
           <Icon type="arobase" class="size-4" />
@@ -92,7 +94,7 @@ const projects = (await getCollection("projects")).sort(
       <li>
         <a
           class="inline-flex gap-1.5 items-center"
-          href="https://www.linkedin.com/in/adrien-kissie-3b6b32162/"
+          href="https://www.linkedin.com/in/fredhel-adrien-de-justesse-kissie-3b6b32162/"
           target="_blank"
           rel="noopener noreferrer">
           <Icon type="linkedin" class="size-4" />
