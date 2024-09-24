@@ -10,9 +10,7 @@ const totalYearsXP = new Date().getFullYear() - 2021;
 const totalYearsDev = new Date().getFullYear() - 2017;
 
 const workExperiences = (await getCollection("work")).sort(
-  (a, b) =>
-    (b.data.endDate?.getTime() ?? new Date().getTime()) -
-    (a.data.endDate?.getTime() ?? new Date().getTime())
+  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
 );
 
 const projects = (await getCollection("projects")).sort(
@@ -81,15 +79,13 @@ const projects = (await getCollection("projects")).sort(
         </a>
       </li>
       <li>
-        <a
-          class="inline-flex gap-1.5 items-center"
-          href="mailto:hello@fredkiss.dev"
-          target="_blank"
-          rel="noopener noreferrer">
+        <button
+          class="inline-flex gap-1.5 items-center underline hover:decoration-wavy decoration-[0.1em]"
+          id="email">
           <Icon type="arobase" class="size-4" />
           <span>email</span>
           <Icon type="arrow-external" class="size-4" />
-        </a>
+        </button>
       </li>
       <li>
         <a
@@ -136,10 +132,12 @@ const projects = (await getCollection("projects")).sort(
           const xp = entry.data;
           const { Content } = await entry.render();
           const startDate = formattedDate(xp.startDate);
-          const endDate = xp.endDate ? formattedDate(xp.endDate) : "present";
+          const endDate = xp.endDate
+            ? `to ${formattedDate(xp.endDate)}`
+            : "present";
 
           const formattedDateRange =
-            startDate === endDate ? startDate : `${startDate} to ${endDate}`;
+            startDate === endDate ? startDate : `${startDate} ${endDate}`;
           return (
             <li>
               <article class="flex flex-col gap-2">
@@ -183,7 +181,9 @@ const projects = (await getCollection("projects")).sort(
                   </a>
                 </h3>
 
-                <div>TODO...</div>
+                <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc">
+                  <Content />
+                </div>
               </article>
             </li>
           );
@@ -191,4 +191,19 @@ const projects = (await getCollection("projects")).sort(
       }
     </ul>
   </section>
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const emailBtn = document.querySelector(
+        "button#email"
+      ) as HTMLButtonElement;
+
+      console.log({ emailBtn });
+      if (emailBtn) {
+        emailBtn.addEventListener("click", () => {
+          window.location.href =
+            "mailto:hello@fredkiss.dev?subject=Contact+Website";
+        });
+      }
+    });
+  </script>
 </BaseLayout>
