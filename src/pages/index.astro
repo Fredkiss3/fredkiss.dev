@@ -1,0 +1,278 @@
+---
+import BaseLayout from "~/layouts/base-layout.astro";
+import { Image, Picture } from "astro:assets";
+import portraitImage from "~/images/headshot.png";
+import Icon from "~/components/icon.astro";
+import { getCollection } from "astro:content";
+import { formattedDate } from "~/lib/utils";
+
+const totalYearsXP = new Date().getFullYear() - 2021;
+const totalYearsDev = new Date().getFullYear() - 2017;
+
+const workExperiences = (await getCollection("work")).sort(
+  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
+);
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
+);
+---
+
+<BaseLayout>
+  <section id="banner" class="flex items-end gap-4 justify-between">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-xl font-medium">Fred Kissie</h1>
+
+      <dl class="flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <dt>
+            <span class="sr-only">Location</span>
+            <Icon type="map-pin" class="size-4" />
+          </dt>
+          <dd>Rennes, France</dd>
+        </div>
+        <div class="flex items-center gap-2">
+          <dt>
+            <span class="sr-only">Occupation</span>
+            <Icon type="suitcase" class="size-4" />
+          </dt>
+          <dd>Freelance full-stack developer</dd>
+        </div>
+      </dl>
+    </div>
+
+    <Image
+      src={portraitImage}
+      alt="Portrait of Fred KISSIE"
+      width={500}
+      height={500}
+      loading="eager"
+      class:list={[
+        "hidden md:inline",
+        "rounded-md object-center object-cover border-zinc-700 dark:border-white border-2",
+        "hover:rotate-0 -rotate-6 transition duration-150",
+        "size-32",
+      ]}
+    />
+  </section>
+
+  <section id="description" class="flex flex-col gap-4">
+    <p>
+      I am a Software Engineer with over {totalYearsXP} years of professional experience
+      and more than {totalYearsDev} years of coding under my belt. When I'm not writing
+      code, you’ll find me exploring the city on my bike or cooking up some delicious
+      meals. I also stream regularly on Twitch, where I share progress on my latest
+      side projects.
+    </p>
+
+    <ul
+      class="flex items-center gap-4 text-zinc-600 dark:text-inherit flex-wrap">
+      <li>
+        <a
+          class="inline-flex gap-1.5 items-center"
+          href="https://github.com/fredkiss3"
+          target="_blank"
+          rel="noopener noreferrer">
+          <Icon type="github" class="size-4" />
+          <span>github</span>
+          <Icon type="arrow-external" class="size-4" />
+        </a>
+      </li>
+      <li>
+        <button
+          class="inline-flex gap-1.5 items-center underline hover:decoration-wavy decoration-[0.1em]"
+          id="email">
+          <Icon type="arobase" class="size-4" />
+          <span>email</span>
+          <Icon type="arrow-external" class="size-4" />
+        </button>
+      </li>
+      <li>
+        <a
+          class="inline-flex gap-1.5 items-center"
+          href="https://www.linkedin.com/in/fredhel-adrien-de-justesse-kissie-3b6b32162/"
+          target="_blank"
+          rel="noopener noreferrer">
+          <Icon type="linkedin" class="size-4" />
+          <span>linkedin</span>
+          <Icon type="arrow-external" class="size-4" />
+        </a>
+      </li>
+      <li>
+        <a
+          class="inline-flex gap-1.5 items-center"
+          href="https://twitter.com/fredkisss"
+          target="_blank"
+          rel="noopener noreferrer">
+          <Icon type="twitter" class="size-4" />
+          <span>twitter</span>
+          <Icon type="arrow-external" class="size-4" />
+        </a>
+      </li>
+      <li>
+        <a
+          class="inline-flex gap-1.5 items-center"
+          href="https://twitch.tv/fredkisss"
+          target="_blank"
+          rel="noopener noreferrer">
+          <Icon type="twitch" class="size-4" />
+          <span>twitch</span>
+          <Icon type="arrow-external" class="size-4" />
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="work" class="flex flex-col gap-3">
+    <h2 class="text-2xl font-semibold">work</h2>
+
+    <ul class="flex flex-col gap-8">
+      {
+        workExperiences.map(async entry => {
+          const xp = entry.data;
+          const { Content } = await entry.render();
+          const startDate = formattedDate(xp.startDate);
+          const endDate = xp.endDate
+            ? `to ${formattedDate(xp.endDate)}`
+            : "present";
+
+          const formattedDateRange =
+            xp.startDate.getMonth() === xp.endDate?.getMonth()
+              ? startDate
+              : `${startDate} ${endDate}`;
+          return (
+            <li>
+              <article class="flex flex-col gap-3">
+                <div class="flex flex-col gap-1">
+                  <h3 class="text-lg font-semibold">
+                    <a target="_blank" rel="noopener noreferrer" href={xp.link}>
+                      {xp.company.toLowerCase()}
+                    </a>
+                  </h3>
+
+                  <h4 class="lowercase text-lg">
+                    {xp.jobTitle} ({formattedDateRange})
+                  </h4>
+                </div>
+
+                <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc">
+                  <Content />
+                </div>
+              </article>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+
+  <section id="projects" class="flex flex-col gap-3">
+    <h2 class="text-2xl font-semibold">projects</h2>
+    <ul class="flex flex-col gap-20">
+      {
+        projects.map(async (entry, index) => {
+          const project = entry.data;
+          const { Content } = await entry.render();
+          const roleFormatted = project.roles.join(" and ");
+          return (
+            <li>
+              <article class="grid grid-cols-6 gap-6">
+                <div class="flex flex-col col-span-full md:col-span-4 gap-4">
+                  <div class="flex flex-col gap-1">
+                    <h3 class="text-lg font-semibold flex items-center gap-2">
+                      {project.link ? (
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={project.link}>
+                          {project.name}
+                        </a>
+                      ) : (
+                        <>{project.name}</>
+                      )}
+                    </h3>
+
+                    <h4 class="lowercase text-lg">{roleFormatted}</h4>
+                  </div>
+
+                  <div class="flex flex-col gap-2">
+                    <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc text-balance">
+                      <Content />
+                    </div>
+
+                    <footer class="">
+                      <small class="flex items-center gap-2">
+                        <Icon type="github" class="size-3" />
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={project.repository}>
+                          {project.repository}
+                        </a>
+                        <Icon type="arrow-external" class="size-3" />
+                      </small>
+                    </footer>
+                  </div>
+                </div>
+
+                <div
+                  class:list={[
+                    index % 2 === 0
+                      ? "order-last -rotate-6"
+                      : "order-first rotate-6",
+                    "hidden md:flex",
+                    "col-span-2 flex-col justify-center items-center size-full",
+                    "hover:rotate-0 transition duration-150",
+                  ]}>
+                  {typeof project.image === "string" ? (
+                    <Image
+                      src={project.image}
+                      alt={`Screenshot of ${project.name}`}
+                      width={500}
+                      height={500}
+                      loading="lazy"
+                      class="rounded-md object-center object-contain w-full"
+                    />
+                  ) : (
+                    <picture class="object-center object-contain w-full rounded-md">
+                      <source
+                        media="(prefers-color-scheme: dark)"
+                        srcset={project.image.dark}
+                      />
+                      <source
+                        media="(prefers-color-scheme: light)"
+                        srcset={project.image.light}
+                      />
+                      <Image
+                        src={project.image.light}
+                        alt={`Screenshot of ${project.name}`}
+                        width={500}
+                        height={500}
+                        class="object-center object-contain size-full rounded-md"
+                      />
+                    </picture>
+                  )}
+                </div>
+              </article>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const emailBtn = document.querySelector(
+        "button#email"
+      ) as HTMLButtonElement;
+
+      console.log({ emailBtn });
+      if (emailBtn) {
+        emailBtn.addEventListener("click", () => {
+          window.location.href =
+            "mailto:hello@fredkiss.dev?subject=Contact+Website";
+        });
+      }
+    });
+  </script>
+</BaseLayout>

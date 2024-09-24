@@ -5,5 +5,13 @@
   "arrowParens": "avoid",
   "jsxBracketSameLine": true,
   "pluginSearchDirs": ["."],
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
 }
