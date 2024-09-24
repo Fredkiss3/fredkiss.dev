@@ -18,7 +18,7 @@ const projectCollection = defineCollection({
 		repository: z.string().url(),
 		role: z
 			.array(z.enum(["creator", "maintainer", "contributor"]))
-			.default(["creator"]),
+			.default(["creator", "maintainer"]),
 		startDate: z.coerce.date(),
 		image: z.string().min(1),
 	}),
