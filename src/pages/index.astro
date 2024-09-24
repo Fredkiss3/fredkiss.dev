@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "~/layouts/base-layout.astro";
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import portraitImage from "~/images/headshot.png";
 import Icon from "~/components/icon.astro";
 import { getCollection } from "astro:content";
@@ -126,7 +126,7 @@ const projects = (await getCollection("projects")).sort(
   <section id="work" class="flex flex-col gap-3">
     <h2 class="text-xl font-semibold">work</h2>
 
-    <ul class="flex flex-col gap-5">
+    <ul class="flex flex-col gap-8">
       {
         workExperiences.map(async entry => {
           const xp = entry.data;
@@ -149,9 +149,9 @@ const projects = (await getCollection("projects")).sort(
                   </a>
                 </h3>
 
-                <h3 class="lowercase text-lg">
+                <h4 class="lowercase text-lg">
                   {xp.jobTitle} ({formattedDateRange})
-                </h3>
+                </h4>
 
                 <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc">
                   <Content />
@@ -166,25 +166,90 @@ const projects = (await getCollection("projects")).sort(
 
   <section id="projects" class="flex flex-col gap-3">
     <h2 class="text-xl font-semibold">projects</h2>
-    <ul class="flex flex-col gap-5">
+    <ul class="flex flex-col gap-20">
       {
-        projects.map(async entry => {
+        projects.map(async (entry, index) => {
           const project = entry.data;
           const { Content } = await entry.render();
+          const roleFormatted = project.roles.join(" and ");
           return (
             <li>
-              <article class="flex flex-col gap-2">
-                <h3 class="text-lg font-semibold">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={project.repository}>
-                    {project.title.toLowerCase()}
-                  </a>
-                </h3>
+              <article class="grid grid-cols-6 gap-6">
+                <div class="flex flex-col col-span-full md:col-span-4 gap-4">
+                  <div class="flex flex-col gap-1">
+                    <h3 class="text-lg font-semibold flex items-center gap-2">
+                      {project.link ? (
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={project.link}>
+                          {project.name}
+                        </a>
+                      ) : (
+                        <>{project.name}</>
+                      )}
+                    </h3>
 
-                <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc">
-                  <Content />
+                    <h4 class="lowercase text-lg">{roleFormatted}</h4>
+                  </div>
+
+                  <div class="flex flex-col gap-2">
+                    <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc text-balance">
+                      <Content />
+                    </div>
+
+                    <footer class="">
+                      <small class="flex items-center gap-2">
+                        <Icon type="github" class="size-3" />
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={project.repository}>
+                          {project.repository}
+                        </a>
+                        <Icon type="arrow-external" class="size-3" />
+                      </small>
+                    </footer>
+                  </div>
+                </div>
+
+                <div
+                  class:list={[
+                    index % 2 === 0
+                      ? "order-last -rotate-6"
+                      : "order-first rotate-6",
+                    "hidden md:flex",
+                    "col-span-2 flex-col justify-center items-center size-full",
+                    "hover:rotate-0 transition duration-150",
+                  ]}>
+                  {typeof project.image === "string" ? (
+                    <Image
+                      src={project.image}
+                      alt={`Screenshot of ${project.name}`}
+                      width={500}
+                      height={500}
+                      loading="lazy"
+                      class="rounded-md object-center object-contain w-full"
+                    />
+                  ) : (
+                    <picture class="object-center object-contain w-full rounded-md">
+                      <source
+                        media="(prefers-color-scheme: dark)"
+                        srcset={project.image.dark}
+                      />
+                      <source
+                        media="(prefers-color-scheme: light)"
+                        srcset={project.image.light}
+                      />
+                      <Image
+                        src={project.image.light}
+                        alt={`Screenshot of ${project.name}`}
+                        width={500}
+                        height={500}
+                        class="object-center object-contain size-full rounded-md"
+                      />
+                    </picture>
+                  )}
                 </div>
               </article>
             </li>
