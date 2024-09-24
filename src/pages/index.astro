@@ -137,7 +137,9 @@ const projects = (await getCollection("projects")).sort(
             : "present";
 
           const formattedDateRange =
-            startDate === endDate ? startDate : `${startDate} ${endDate}`;
+            xp.startDate.getMonth() === xp.endDate?.getMonth()
+              ? startDate
+              : `${startDate} ${endDate}`;
           return (
             <li>
               <article class="flex flex-col gap-2">
