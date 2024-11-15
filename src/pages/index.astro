@@ -36,7 +36,7 @@ const projects = (await getCollection("projects")).sort(
             <span class="sr-only">Occupation</span>
             <Icon type="suitcase" class="size-4" />
           </dt>
-          <dd>Freelance full-stack developer</dd>
+          <dd>Full-stack developer & Devops</dd>
         </div>
       </dl>
     </div>
@@ -58,11 +58,11 @@ const projects = (await getCollection("projects")).sort(
 
   <section id="description" class="flex flex-col gap-4">
     <p>
-      I am a Software Engineer with over {totalYearsXP} years of professional experience
-      and more than {totalYearsDev} years of coding under my belt. When I'm not writing
-      code, you’ll find me exploring the city on my bike or cooking up some delicious
-      meals. I also stream regularly on Twitch, where I share progress on my latest
-      side projects.
+      I am a Software Engineer with over {totalYearsXP}+ years of professional
+      experience and more than {totalYearsDev}+ years of coding under my belt.
+      When I'm not writing code, you’ll find me exploring the city on my bike or
+      cooking up some delicious meals. I also stream regularly on Twitch, where
+      I share progress on my latest side projects.
     </p>
 
     <ul
@@ -95,6 +95,17 @@ const projects = (await getCollection("projects")).sort(
           rel="noopener noreferrer">
           <Icon type="linkedin" class="size-4" />
           <span>linkedin</span>
+          <Icon type="arrow-external" class="size-4" />
+        </a>
+      </li>
+      <li>
+        <a
+          class="inline-flex gap-1.5 items-center"
+          href="https://bsky.app/profile/fredkiss.dev"
+          target="_blank"
+          rel="noopener noreferrer">
+          <Icon type="bluesky" class="size-5" />
+          <span>Bluesky</span>
           <Icon type="arrow-external" class="size-4" />
         </a>
       </li>
@@ -134,7 +145,7 @@ const projects = (await getCollection("projects")).sort(
           const startDate = formattedDate(xp.startDate);
           const endDate = xp.endDate
             ? `to ${formattedDate(xp.endDate)}`
-            : "present";
+            : "- present";
 
           const formattedDateRange =
             xp.startDate.getMonth() === xp.endDate?.getMonth()
