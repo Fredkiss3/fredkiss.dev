@@ -1,7 +1,7 @@
 ---
 name: ZaneOps
 repository: https://github.com/zane-ops/zane-ops
-link: https://zane.fredkiss.dev/docs
+link: https://zaneops.dev
 startDate: "2024-02-01"
 image:
   light: "/images/screenshot-zaneops-light.png"
