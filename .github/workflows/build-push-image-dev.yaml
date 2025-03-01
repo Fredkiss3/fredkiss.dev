@@ -55,7 +55,7 @@ jobs:
             - name: Deploy to Zaneops
               uses: zane-ops/auto-deploy-action@v4
               with:
-                  SERVICE_IMAGE: ghcr.io/zane-ops/docs:${{ github.sha }}
+                  SERVICE_IMAGE: ghcr.io/fredkiss3/fredkiss-dev:${{ github.sha }}
                   DEPLOY_WEBHOOK_URL: ${{ secrets.STAGING_DEPLOY_WEBHOOK_URL }}
                   EXTRA_HEADERS: '{ "CF-Access-Client-Id": "${{ secrets.CF_CLIENT_ID }}", "CF-Access-Client-Secret": "${{ secrets.CF_CLIENT_SECRET }}" }'
     
