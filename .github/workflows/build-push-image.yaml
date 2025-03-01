@@ -53,3 +53,10 @@ jobs:
                 cache-from: |
                     type=registry,ref=ghcr.io/fredkiss3/fredkiss-dev:latest
                 cache-to: type=inline
+            - name: Deploy to Zaneops
+              uses: zane-ops/auto-deploy-action@v4
+              with:
+                  SERVICE_IMAGE: ghcr.io/zane-ops/docs:${{ github.sha }}
+                  DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
+                  COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+                  EXTRA_HEADERS: '{ "CF-Access-Client-Id": "${{ secrets.CF_CLIENT_ID }}", "CF-Access-Client-Secret": "${{ secrets.CF_CLIENT_SECRET }}" }'
