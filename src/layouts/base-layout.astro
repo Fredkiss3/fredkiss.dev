@@ -1,7 +1,7 @@
 ---
 import Icon from "~/components/icon.astro";
 import TailwindIndicator from "~/components/tailwind-indicator.astro";
-import { ViewTransitions } from "astro:transitions";
+import "~/global.css";
 
 interface Props {
   title?: string;
@@ -44,29 +44,6 @@ const description =
       name="twitter:image"
       content="https://fredkiss.dev/opengraph-image.png"
     />
-
-    <style is:global>
-      @supports (font-variation-settings: normal) {
-        :root {
-          font-optical-sizing: auto;
-        }
-      }
-      @font-face {
-        font-family: "Geist";
-        font-style: normal;
-        font-weight: 100 900;
-        font-display: swap;
-        src: url("/fonts/GeistVF.woff2") format("woff2");
-      }
-      :root {
-        font-family: "Geist";
-      }
-
-      a {
-        @apply underline hover:decoration-wavy decoration-[0.1em] decoration-zinc-700/90 dark:decoration-white/80;
-      }
-    </style>
-    <ViewTransitions />
   </head>
   <body class="bg-amber-50 dark:bg-zinc-800 dark:text-white text-zinc-950 px-5">
     <a

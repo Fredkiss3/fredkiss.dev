@@ -24,17 +24,17 @@ const projects = (await getCollection("projects")).sort(
       <h1 class="text-xl font-medium">Fred Kissie</h1>
 
       <dl class="flex flex-col gap-2">
-        <div class="flex items-center gap-2">
+        <div class="flex items-start gap-2">
           <dt>
             <span class="sr-only">Location</span>
-            <Icon type="map-pin" class="size-4" />
+            <Icon type="map-pin" class="size-4 relative top-1" />
           </dt>
           <dd>Rennes, France</dd>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-start gap-2">
           <dt>
             <span class="sr-only">Occupation</span>
-            <Icon type="suitcase" class="size-4" />
+            <Icon type="suitcase" class="size-4 relative top-1" />
           </dt>
           <dd>Full-stack developer & Devops</dd>
         </div>
@@ -48,7 +48,7 @@ const projects = (await getCollection("projects")).sort(
       height={500}
       loading="eager"
       class:list={[
-        "hidden md:inline",
+        "inline",
         "rounded-md object-center object-cover border-zinc-700 dark:border-white border-2",
         "hover:rotate-0 -rotate-6 transition duration-150",
         "size-32",
