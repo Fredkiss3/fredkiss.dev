@@ -1,3 +1,4 @@
+import { createClient } from "redis";
 import { z } from "zod";
 
 export function formattedDate(dateInput: string | Date): string {
@@ -26,6 +27,8 @@ const githubGraphQLAPIResponseSchema = z.union([
   })
 ]);
 
+const env = import.meta.env.PROD ? process.env : import.meta.env;
+
 /**
  * @param graphqlQuery
  * @param variables
@@ -45,7 +48,7 @@ export async function fetchFromGithubAPI<T extends Record<string, any>>(
     }),
     headers: {
       "content-type": "application/json",
-      Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
       // this header is required per the documentation : https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28#user-agent-required
       "User-Agent": "Fredkiss3"
     }
@@ -88,4 +91,34 @@ export async function fetchFromGithubAPI<T extends Record<string, any>>(
         throw new Error(`GraphQL error : check the terminal for errors.`);
       }
     });
+}
+
+export async function cache<T extends (...args: any[]) => Promise<any>>(
+  key: string,
+  ttl: number,
+  fn: T
+): Promise<Awaited<ReturnType<T>>> {
+  if (!import.meta.env.PROD) {
+    return await fn();
+  }
+
+  const redisClient = createClient({
+    url: env.REDIS_URL
+  }).on("error", (err) => {
+    console.error("Redis Client Error:", err);
+  });
+  await redisClient.connect();
+  const value = await redisClient.get(key);
+
+  if (value) {
+    console.log(`${key}: Cache HIT`);
+    return JSON.parse(value);
+  }
+
+  console.log(`${key}: Cache MISS`);
+  const result = await fn();
+  await redisClient.set(key, JSON.stringify(result));
+  await redisClient.expire(key, ttl);
+
+  return result;
 }

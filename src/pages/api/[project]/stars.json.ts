@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
-import { fetchFromGithubAPI } from "~/lib/utils";
+import { fetchFromGithubAPI, cache } from "~/lib/utils";
 
 export const prerender = false;
 
@@ -17,6 +17,8 @@ query ($repoName: String!, $repoOwner: String!) {
   }
 }
 `;
+
+const THIRTY_MINUTES_IN_SECONDS = 60 * 30;
 
 export const GET: APIRoute = async function get({ params }) {
   const projects = await getCollection("projects");
@@ -37,12 +39,14 @@ export const GET: APIRoute = async function get({ params }) {
     .split("/")
     .filter((part) => part.length > 0);
 
-  const data = await fetchFromGithubAPI<RepositoryStatsResponse>(
-    repostatsQuery,
-    {
-      repoName,
-      repoOwner
-    }
+  const data = await cache(
+    `github-stars:${project.slug}`,
+    THIRTY_MINUTES_IN_SECONDS,
+    () =>
+      fetchFromGithubAPI<RepositoryStatsResponse>(repostatsQuery, {
+        repoName,
+        repoOwner
+      })
   );
 
   const cacheHeader = import.meta.env.PROD
