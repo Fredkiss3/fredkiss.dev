@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "~/layouts/base-layout.astro";
 import { Image, Picture } from "astro:assets";
-import portraitImage from "~/images/headshot.png";
-import Icon from "~/components/icon.astro";
 import { getCollection } from "astro:content";
+import Icon from "~/components/icon.astro";
+import portraitImage from "~/images/headshot.png";
+import BaseLayout from "~/layouts/base-layout.astro";
 import { formattedDate } from "~/lib/utils";
 
 const totalYearsXP = new Date().getFullYear() - 2021;

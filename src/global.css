@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @supports (font-variation-settings: normal) {
-    :root {
-      font-optical-sizing: auto;
-    }
+  :root {
+    font-optical-sizing: auto;
+  }
 }
 
 @font-face {
-    font-family: "Geist";
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url("/fonts/GeistVF.woff2") format("woff2");
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/GeistVF.woff2") format("woff2");
 }
 :root {
-    font-family: "Geist";
+  font-family: "Geist";
 }
 
 a {
-    @apply underline hover:decoration-wavy decoration-[0.1em] decoration-zinc-700/90 dark:decoration-white/80;
+  @apply underline hover:decoration-wavy decoration-[0.1em] decoration-zinc-700/90 dark:decoration-white/80;
 }

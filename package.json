@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "biome check . --write"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
@@ -20,6 +21,7 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.5.5",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1"
