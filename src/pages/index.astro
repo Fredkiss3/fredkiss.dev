@@ -1,5 +1,5 @@
 ---
-import { Image, Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Icon from "~/components/icon.astro";
 import portraitImage from "~/images/headshot.png";
@@ -201,6 +201,16 @@ const projects = (await getCollection("projects")).sort(
                       ) : (
                         <>{project.name}</>
                       )}
+                      <span class="inline-flex items-center gap-1 text-amber-600 dark:text-yellow-400 font-normal">
+                        <span
+                          data-fetch-stars
+                          data-slug={entry.slug}
+                          data-stars="-"
+                          class="before:content-[attr(data-stars)]"
+                        />
+                        <Icon type="star" class="size-4" />
+                      </span>
+                      <span class="sr-only">stars</span>
                     </h3>
 
                     <h4 class="lowercase text-lg">{roleFormatted}</h4>
@@ -272,18 +282,31 @@ const projects = (await getCollection("projects")).sort(
     </ul>
   </section>
   <script>
-    document.addEventListener("astro:page-load", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
       const emailBtn = document.querySelector(
         "button#email"
       ) as HTMLButtonElement;
 
-      console.log({ emailBtn });
       if (emailBtn) {
         emailBtn.addEventListener("click", () => {
           window.location.href =
             "mailto:hello@fredkiss.dev?subject=Contact+Website";
         });
       }
+
+      const stars = document.querySelectorAll("[data-fetch-stars]");
+
+      await Promise.all(
+        [...stars].map(async element => {
+          const slug = (element as HTMLElement).dataset.slug;
+          const response = await fetch(`/api/${slug}/stars.json`).then(
+            r => r.json() as Promise<{ stargazerCount: number }>
+          );
+
+          (element as HTMLElement).dataset.stars =
+            response.stargazerCount.toString();
+        })
+      );
     });
   </script>
 </BaseLayout>
