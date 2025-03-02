@@ -46,8 +46,8 @@ export const GET: APIRoute = async function get({ params }) {
   );
 
   const cacheHeader = import.meta.env.PROD
-    ? "s-max-age=1800, stale-while-revalidate=1800, stale-if-error=43200"
-    : "stale-while-revalidate=1800, stale-if-error=43200";
+    ? "public, s-max-age=1800, stale-while-revalidate=1800, stale-if-error=43200"
+    : "private, no-cache";
 
   return Response.json(
     {
