@@ -1,6 +1,6 @@
 :80 {
 	# Set the root directory for static files
-	root * /var/www/html
+	root * /var/www/html/client
 	file_server
 	
 	@assets {
