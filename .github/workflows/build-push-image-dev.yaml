@@ -15,21 +15,6 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-              with:
-                node-version: 20
-            - name: Cache pnpm dependencies
-              uses: actions/cache@v3
-              with:
-                path: ~/.pnpm-store
-                key: ${{ runner.OS }}-pnpm-cache-${{ hashFiles('pnpm-lock.yaml') }}
-                restore-keys: |
-                    ${{ runner.OS }}-pnpm-cache-
-            - name: Build with node
-              run: |
-                npm install -g pnpm@8
-                pnpm install --frozen-lockfile
-                pnpm run build
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v2
             - name: Log in to the Container registry
