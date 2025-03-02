@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "~/layouts/base-layout.astro";
-import { Image, Picture } from "astro:assets";
-import portraitImage from "~/images/headshot.png";
-import Icon from "~/components/icon.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import Icon from "~/components/icon.astro";
+import portraitImage from "~/images/headshot.png";
+import BaseLayout from "~/layouts/base-layout.astro";
 import { formattedDate } from "~/lib/utils";
 
 const totalYearsXP = new Date().getFullYear() - 2021;
@@ -24,17 +24,17 @@ const projects = (await getCollection("projects")).sort(
       <h1 class="text-xl font-medium">Fred Kissie</h1>
 
       <dl class="flex flex-col gap-2">
-        <div class="flex items-center gap-2">
+        <div class="flex items-start gap-2">
           <dt>
             <span class="sr-only">Location</span>
-            <Icon type="map-pin" class="size-4" />
+            <Icon type="map-pin" class="size-4 relative top-1" />
           </dt>
           <dd>Rennes, France</dd>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-start gap-2">
           <dt>
             <span class="sr-only">Occupation</span>
-            <Icon type="suitcase" class="size-4" />
+            <Icon type="suitcase" class="size-4 relative top-1" />
           </dt>
           <dd>Full-stack developer & Devops</dd>
         </div>
@@ -48,7 +48,7 @@ const projects = (await getCollection("projects")).sort(
       height={500}
       loading="eager"
       class:list={[
-        "hidden md:inline",
+        "inline",
         "rounded-md object-center object-cover border-zinc-700 dark:border-white border-2",
         "hover:rotate-0 -rotate-6 transition duration-150",
         "size-32",
@@ -201,6 +201,16 @@ const projects = (await getCollection("projects")).sort(
                       ) : (
                         <>{project.name}</>
                       )}
+                      <span class="inline-flex items-center gap-1 text-amber-600 dark:text-yellow-400 font-normal">
+                        <span
+                          data-fetch-stars
+                          data-slug={entry.slug}
+                          data-stars="-"
+                          class="before:content-[attr(data-stars)]"
+                        />
+                        <Icon type="star" class="size-4" />
+                      </span>
+                      <span class="sr-only">stars</span>
                     </h3>
 
                     <h4 class="lowercase text-lg">{roleFormatted}</h4>
@@ -272,18 +282,31 @@ const projects = (await getCollection("projects")).sort(
     </ul>
   </section>
   <script>
-    document.addEventListener("astro:page-load", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
       const emailBtn = document.querySelector(
         "button#email"
       ) as HTMLButtonElement;
 
-      console.log({ emailBtn });
       if (emailBtn) {
         emailBtn.addEventListener("click", () => {
           window.location.href =
             "mailto:hello@fredkiss.dev?subject=Contact+Website";
         });
       }
+
+      const stars = document.querySelectorAll("[data-fetch-stars]");
+
+      await Promise.all(
+        [...stars].map(async element => {
+          const slug = (element as HTMLElement).dataset.slug;
+          const response = await fetch(`/api/${slug}/stars.json`).then(
+            r => r.json() as Promise<{ stargazerCount: number }>
+          );
+
+          (element as HTMLElement).dataset.stars =
+            response.stargazerCount.toString();
+        })
+      );
     });
   </script>
 </BaseLayout>
