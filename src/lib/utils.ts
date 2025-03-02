@@ -37,16 +37,6 @@ export async function fetchFromGithubAPI<T extends Record<string, any>>(
   graphqlQuery: string,
   variables: Record<string, any> = {}
 ) {
-  if (import.meta.env.PROD) {
-    console.dir(
-      {
-        meta: import.meta.env,
-        process: process.env
-      },
-      { depth: null }
-    );
-  }
-
   return fetch(`https://api.github.com/graphql`, {
     method: "POST",
     body: JSON.stringify({
