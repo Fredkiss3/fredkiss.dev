@@ -40,7 +40,8 @@ export async function fetchFromGithubAPI<T extends Record<string, any>>(
   if (import.meta.env.PROD) {
     console.dir(
       {
-        env: import.meta.env
+        meta: import.meta.env,
+        process: process.env
       },
       { depth: null }
     );
@@ -54,7 +55,7 @@ export async function fetchFromGithubAPI<T extends Record<string, any>>(
     }),
     headers: {
       "content-type": "application/json",
-      Authorization: `Bearer ${import.meta.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
       // this header is required per the documentation : https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28#user-agent-required
       "User-Agent": "Fredkiss3"
     }

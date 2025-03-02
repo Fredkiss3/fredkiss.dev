@@ -18,7 +18,7 @@ query ($repoName: String!, $repoOwner: String!) {
 }
 `;
 
-export const GET: APIRoute = async function get({ props, params }) {
+export const GET: APIRoute = async function get({ params }) {
   const projects = await getCollection("projects");
 
   const project = projects.find((p) => p.slug === params.project);
