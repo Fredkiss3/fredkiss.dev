@@ -6,7 +6,7 @@ on:
 jobs:
     build-push-docs:
         name: Build and Push Website
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04-arm
         permissions:
             packages: write
             contents: read
@@ -30,8 +30,8 @@ jobs:
                 npm install -g pnpm@8
                 pnpm install --frozen-lockfile
                 pnpm run build
-            - name: Set up QEMU
-              uses: docker/setup-qemu-action@v2
+            # - name: Set up QEMU
+            #   uses: docker/setup-qemu-action@v2
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v2
             - name: Log in to the Container registry
@@ -46,7 +46,7 @@ jobs:
                 context: .
                 file: Dockerfile
                 push: true
-                platforms: linux/amd64,linux/arm64
+                # platforms: linux/amd64,linux/arm64
                 tags: ghcr.io/fredkiss3/fredkiss-dev:pr-${{ github.event.pull_request.number }},ghcr.io/fredkiss3/fredkiss-dev:${{ github.sha }}
                 cache-from: |
                     type=registry,ref=ghcr.io/fredkiss3/fredkiss-dev:pr-${{ github.event.pull_request.number }}
