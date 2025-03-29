@@ -3,7 +3,7 @@ WORKDIR /app
 
 # install dependencies
 RUN npm install -g pnpm@8
-COPY package.json ./pnpm-lock.yaml .
+COPY package.json ./pnpm-lock.yaml ./
 
 FROM base AS prod-deps
 RUN pnpm install --frozen-lockfile --prod
