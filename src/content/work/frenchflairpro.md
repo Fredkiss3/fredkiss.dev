@@ -7,4 +7,4 @@ endDate: "2025-06-26"
 ---
 
 I was engaged as a **freelance** professional by **FrenchFlair**, a digital consultancy agency that works on 
-software solutions for promoting diversity and inclusion.
+software solutions aimed at promoting diversity and inclusion.

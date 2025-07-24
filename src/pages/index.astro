@@ -147,6 +147,8 @@ const projects = (await getCollection("projects")).sort(
             ? `to ${formattedDate(xp.endDate)}`
             : "- present";
 
+          const stack = xp.stack ?? [];
+
           const formattedDateRange =
             xp.startDate.getMonth() === xp.endDate?.getMonth()
               ? startDate

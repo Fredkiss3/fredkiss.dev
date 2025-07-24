@@ -7,7 +7,8 @@ const workExperienceCollection = defineCollection({
     jobTitle: z.string().min(1),
     link: z.string().url(),
     startDate: z.coerce.date(),
-    endDate: z.coerce.date().optional()
+    endDate: z.coerce.date().optional(),
+    stack: z.array(z.string()).optional()
   })
 });
 
