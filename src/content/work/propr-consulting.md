@@ -4,6 +4,10 @@ jobTitle: Frontend Developper
 link: https://proprconsulting.com
 startDate: "2022-08-01"
 endDate: "2022-08-08"
+stack: 
+    - name: Next.js
+    - name: TailwindCSS
+    - name: Vercel
 ---
 
 I was contacted by Propr Consulting for the integration of their new landing page.

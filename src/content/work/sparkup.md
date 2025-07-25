@@ -4,6 +4,19 @@ jobTitle: Backend and Devops
 link: https://sparkup.app
 startDate: "2024-10-01"
 endDate: "2025-01-31"
+type: freelance
+stack: 
+    - name: Python+Django
+    - name: AngularJS
+    - name: AWS
+    - name: Scaleway
+    - name: PostgresSQL
+    - name: Centrifugo
+      link: https://centrifugal.dev/
+    - name: Temporal.io
+      link: https://temporal.io/
+    - name: Pulumi
+      link: https://www.pulumi.com/
 ---
 
 I was engaged as a **freelance** professional by **Sparkup**, a cutting-edge streaming solution designed for large-scale events. Sparkup offers live streaming and digital interactive experiences for conferences, concerts, and corporate events, along with expert support for organizing digital events. Their portfolio includes internal events for high-profile clients such as **Decathlon**, **Nestlé**, and **L'Oreal**. A notable project was [The Great Dictation for the Climate](https://www.youtube.com/live/FnTP7LSKQRM?si=k2BrpdUS_9f7ZJAA&t=1029), which was broadcast to over 10,000 viewers. For this event, Sparkup managed video streaming, an emoji reaction wall, a webcam wall showcasing all connected participants, and integrated real-time comments.

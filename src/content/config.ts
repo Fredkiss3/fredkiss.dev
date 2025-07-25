@@ -5,10 +5,18 @@ const workExperienceCollection = defineCollection({
   schema: z.object({
     company: z.string().min(1),
     jobTitle: z.string().min(1),
+    type: z.enum(["full-time", "freelance"]).default("full-time"),
     link: z.string().url(),
     startDate: z.coerce.date(),
     endDate: z.coerce.date().optional(),
-    stack: z.array(z.string()).optional()
+    stack: z
+      .array(
+        z.object({
+          name: z.string(),
+          link: z.string().url().optional()
+        })
+      )
+      .default([])
   })
 });
 

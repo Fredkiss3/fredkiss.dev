@@ -4,6 +4,16 @@ jobTitle: Full-stack Developper
 link: https://search.procurato.de
 startDate: "2024-07-01"
 endDate: "2024-07-31"
+type: freelance
+stack: 
+    - name: Next.js
+    - name: TailwindCSS
+    - name: Vercel
+    - name: PostgresSQL
+    - name: Railway.app
+      link: https://railway.app
+    - name: Inngest
+      link: https://www.inngest.com/
 ---
 
 I was approached as **Freelance** by [Richard Poelderl](https://twitter.com/richardpoelderl) to work on Procurato, a Next.js app designed to provide a better UI for querying the German company database [handelsregister.de](https://www.handelsregister.de/) and retrieving information such as titles, capital, and registration documents. My responsibilities included:

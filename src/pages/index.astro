@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import Icon from "~/components/icon.astro";
 import portraitImage from "~/images/headshot.png";
 import BaseLayout from "~/layouts/base-layout.astro";
-import { formattedDate } from "~/lib/utils";
+import { formattedDate, capitalize } from "~/lib/utils";
 
 const totalYearsXP = new Date().getFullYear() - 2021;
 const totalYearsDev = new Date().getFullYear() - 2017;
@@ -147,8 +147,6 @@ const projects = (await getCollection("projects")).sort(
             ? `to ${formattedDate(xp.endDate)}`
             : "- present";
 
-          const stack = xp.stack ?? [];
-
           const formattedDateRange =
             xp.startDate.getMonth() === xp.endDate?.getMonth()
               ? startDate
@@ -158,19 +156,43 @@ const projects = (await getCollection("projects")).sort(
               <article class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
                   <h3 class="text-lg font-semibold">
+                    {xp.jobTitle} at
                     <a target="_blank" rel="noopener noreferrer" href={xp.link}>
-                      {xp.company.toLowerCase()}
+                      {xp.company}
                     </a>
                   </h3>
 
-                  <h4 class="lowercase text-lg">
-                    {xp.jobTitle} ({formattedDateRange})
+                  <h4 class="text-lg">
+                    <span>{capitalize(xp.type)}</span>{" "}
+                    <span class="lowercase">({formattedDateRange})</span>
                   </h4>
                 </div>
 
                 <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc">
                   <Content />
                 </div>
+
+                {xp.stack.length > 0 && (
+                  <div class="flex gap-2 items-start">
+                    <strong class="min-w-max">Tech Stack:</strong>{" "}
+                    <span class="flex flex-wrap gap-2">
+                      {xp.stack.map((tech, index) => {
+                        return tech.link ? (
+                          <a href={tech.link} class="flex gap-0 items-center">
+                            {tech.name}
+                            <Icon type="arrow-external" class="size-3" />
+                            {index < xp.stack.length - 1 && ", "}
+                          </a>
+                        ) : (
+                          <span>
+                            {tech.name}
+                            {index < xp.stack.length - 1 && ", "}
+                          </span>
+                        );
+                      })}
+                    </span>
+                  </div>
+                )}
               </article>
             </li>
           );
