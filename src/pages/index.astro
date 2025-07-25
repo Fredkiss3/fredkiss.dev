@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Icon from "~/components/icon.astro";
 import portraitImage from "~/images/headshot.png";
+import onBikeimage from "~/images/on-bike.jpeg";
 import BaseLayout from "~/layouts/base-layout.astro";
 import { formattedDate, capitalize } from "~/lib/utils";
 
@@ -41,28 +42,47 @@ const projects = (await getCollection("projects")).sort(
       </dl>
     </div>
 
-    <Image
-      src={portraitImage}
-      alt="Portrait of Fred KISSIE"
-      width={500}
-      height={500}
-      loading="eager"
-      class:list={[
-        "inline",
-        "rounded-md object-center object-cover border-zinc-700 dark:border-white border-2",
-        "hover:rotate-0 -rotate-6 transition duration-150",
-        "size-32",
-      ]}
-    />
+    <div class="group relative flex-none size-32 md:size-40">
+      <Image
+        src={portraitImage}
+        alt="Portrait of Fred KISSIE"
+        width={500}
+        height={500}
+        loading="eager"
+        class:list={[
+          "inline absolute inset-0",
+          "rounded-md object-center object-cover border-zinc-700 dark:border-white border-2",
+          "group-hover:rotate-0 -rotate-6 transition duration-150",
+          "md:group-hover:opacity-0",
+        ]}
+      />
+      <Image
+        src={onBikeimage}
+        alt="Fred KISSIE on bike"
+        width={300}
+        height={500}
+        loading="eager"
+        class:list={[
+          "inline absolute top-3 right-0",
+          "rounded-md object-top object-cover border-zinc-700 dark:border-white border-2",
+          "group-hover:rotate-6 -rotate-6 transition duration-150",
+          "aspect-16/9 h-32 md:h-40 min-w-max",
+          "opacity-0 md:group-hover:opacity-100",
+        ]}
+      />
+    </div>
   </section>
 
   <section id="description" class="flex flex-col gap-4">
     <p>
       I am a Software Engineer with over {totalYearsXP}+ years of professional
       experience and more than {totalYearsDev}+ years of coding under my belt.
-      When I'm not writing code, you’ll find me exploring the city on my bike or
-      cooking up some delicious meals. I also stream regularly on Twitch, where
-      I share progress on my latest side projects.
+      When I'm not writing code, you’ll find me exploring the city on my <strong
+        >bike</strong
+      > or
+      <strong>cooking</strong> up some delicious meals. I also stream regularly on
+      Twitch, where I share progress on my latest side projects as well do some cooking
+      LIVE.
     </p>
 
     <ul
