@@ -15,7 +15,7 @@ stack:
 ---
 
 I was engaged as a **freelance** professional by **FrenchFlair**, a digital consultancy agency that works on 
-software solutions aimed at promoting diversity and inclusion, with clients like [**ACTION**](https://company.action.com/), [**THOM group**](https://www.thomgroup.com/), [**Electro Depot**](https://www.electrodepot.fr/qui-sommes-nous), etc.
+software solutions aimed at promoting diversity and inclusion, with clients like **ACTION**, **THOM group**, **Electro Depot**, etc.
 
 **Key responsibilities included:** 
 - Working on the frontend of the main application [1PAD.fr](https://1pad.fr), a quiz game like duolinguo, aimed at educating
