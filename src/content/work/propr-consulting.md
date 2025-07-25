@@ -4,6 +4,7 @@ jobTitle: Frontend Developper
 link: https://proprconsulting.com
 startDate: "2022-08-01"
 endDate: "2022-08-08"
+type: freelance
 stack: 
     - name: Next.js
     - name: TailwindCSS
