@@ -10,6 +10,7 @@ stack:
     - name: AngularJS
     - name: AWS
     - name: Scaleway
+    - name: Grafana
     - name: PostgresSQL
     - name: Centrifugo
       link: https://centrifugal.dev/
