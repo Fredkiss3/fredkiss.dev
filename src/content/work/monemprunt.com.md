@@ -1,9 +1,22 @@
 ---
 company: "Monemprunt.com"
-jobTitle: Frontend Developper, Devops
+jobTitle: Frontend Developper & Devops
 link: https://monemprunt.com
 startDate: "2021-04-24"
 endDate: "2023-09-06"
+stack: 
+    - name: Gatsby
+    - name: TailwindCSS
+    - name: StorybookJS
+      link: https://storybook.js.org/
+    - name: TanStack Query
+      link: https://tanstack.com/query
+    - name: Strapi
+      link: https://strapi.io
+    - name: Astro
+      link: https://astro.build
+    - name: Google Cloud Platform
+      link: https://cloud.google.com/
 ---
 
 As a frontend developer at monemprunt.com, I worked on:
