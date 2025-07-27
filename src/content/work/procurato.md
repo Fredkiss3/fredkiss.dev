@@ -16,7 +16,7 @@ stack:
       link: https://www.inngest.com/
 ---
 
-I was approached as **Freelance** by [Richard Poelderl](https://twitter.com/richardpoelderl) to work on Procurato, a Next.js app designed to provide a better UI for querying the German company database [handelsregister.de](https://www.handelsregister.de/) and retrieving information such as titles, capital, and registration documents. My responsibilities included:
+I was approached as **Freelance** to work on Procurato, a Next.js app designed to provide a better UI for querying the German company database [handelsregister.de](https://www.handelsregister.de/) and retrieving information such as titles, capital, and registration documents. My responsibilities included:
 
 - Migrating the app's data-fetching process to [Inngest](https://www.inngest.com/), a background job service, to improve performance, as the app previously fetched documents directly on request, leading to slow response times.
 - Implementing new features to query and download historical documents, including the list of shareholders and documents related to various fundraising stages.
