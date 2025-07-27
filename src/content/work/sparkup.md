@@ -1,5 +1,5 @@
 ---
-company: "Sparkup.app"
+company: "Sparkup"
 jobTitle: Backend and Devops
 link: https://sparkup.app
 startDate: "2024-10-01"
