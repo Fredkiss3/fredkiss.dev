@@ -14,12 +14,18 @@ dependencies:
   '@astrojs/sitemap':
     specifier: ^3.4.1
     version: 3.4.1
+  '@formatjs/intl-localematcher':
+    specifier: ^0.6.1
+    version: 0.6.1
   '@tailwindcss/vite':
     specifier: ^4.0.9
     version: 4.0.9(vite@6.3.5)
   astro:
     specifier: ^5.12.3
     version: 5.12.3(@types/node@22.5.5)(typescript@5.6.2)
+  negotiator:
+    specifier: ^1.0.0
+    version: 1.0.0
   redis:
     specifier: ^4.7.0
     version: 4.7.0
@@ -40,6 +46,9 @@ devDependencies:
   '@biomejs/biome':
     specifier: ^1.9.4
     version: 1.9.4
+  '@types/negotiator':
+    specifier: ^0.6.4
+    version: 0.6.4
   '@types/node':
     specifier: ^22.5.5
     version: 22.5.5
@@ -590,6 +599,12 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@formatjs/intl-localematcher@0.6.1:
+    resolution: {integrity: sha512-ePEgLgVCqi2BBFnTMWPfIghu6FkbZnnBVhO2sSxvLfrdFw7wCHAHiDoM2h4NRgjbaY7+B7HgOLZGkK187pZTZg==}
+    dependencies:
+      tslib: 2.8.1
+    dev: false
 
   /@img/sharp-darwin-arm64@0.33.5:
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -1235,6 +1250,10 @@ packages:
   /@types/ms@0.7.34:
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
     dev: false
+
+  /@types/negotiator@0.6.4:
+    resolution: {integrity: sha512-elf6BsTq+AkyNsb2h5cGNst2Mc7dPliVoAPm1fXglC/BM3f2pFA40BaSSv3E5lyHteEawVKLP+8TwiY1DMNb3A==}
+    dev: true
 
   /@types/nlcst@2.0.3:
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
@@ -2831,6 +2850,11 @@ packages:
     resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: false
+
+  /negotiator@1.0.0:
+    resolution: {integrity: sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==}
+    engines: {node: '>= 0.6'}
     dev: false
 
   /neotraverse@0.6.18:

@@ -2,20 +2,28 @@
 import Icon from "~/components/icon.astro";
 import TailwindIndicator from "~/components/tailwind-indicator.astro";
 import "~/global.css";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
   title?: string;
+  locale?: string;
 }
 
-const { title } = Astro.props;
+const { title, locale = "en" } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const headTitle = title ? `${title} | Fred KISSIE` : "Fred KISSIE";
 const description =
   "Software Engineer, amateur chef, amateur cyclist and twitch streamer";
+
+let resumePath = getRelativeLocaleUrl(locale, "resume.pdf");
+
+if (resumePath.endsWith("/")) {
+  resumePath = resumePath.substring(0, resumePath.length - 1);
+}
 ---
 
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.png" />
@@ -28,7 +36,7 @@ const description =
     <meta property="og:description" content={description} />
     <meta property="og:url" content="https://fredkiss.dev/" />
     <meta property="og:site_name" content="Fred KISSIE" />
-    <meta property="og:locale" content="en" />
+    <meta property="og:locale" content={locale} />
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
@@ -76,7 +84,7 @@ const description =
             </a>
           </li>
           <li>
-            <a href="/resume.pdf" class="inline-flex gap-1 items-center">
+            <a href={resumePath} class="inline-flex gap-1 items-center">
               <span>See resume</span>
               <Icon type="arrow-external" class="size-4" />
             </a>
