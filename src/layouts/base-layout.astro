@@ -75,7 +75,7 @@ if (resumePath.endsWith("/")) {
         <ul class="flex items-center gap-4">
           <li>
             <a
-              href="/"
+              href={getRelativeLocaleUrl(locale, "/")}
               aria-current={currentPath === "/" ? "page" : "false"}
               class:list={[
                 currentPath === "/" &&

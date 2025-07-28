@@ -12,5 +12,5 @@ let languages = new Negotiator({
 }).languages();
 const matchedLanguage = match(languages, locales, defaultLocale);
 
-return Astro.redirect(matchedLanguage);
+return Astro.redirect(`/${matchedLanguage}/`);
 ---
