@@ -3,18 +3,20 @@ import Icon from "~/components/icon.astro";
 import TailwindIndicator from "~/components/tailwind-indicator.astro";
 import "~/global.css";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { getCollection } from "astro:content";
 
 interface Props {
   title?: string;
   locale?: string;
+  description: string;
 }
 
 const { title, locale = "en" } = Astro.props;
 
+const siteInfo = (await getCollection("site")).find(site => site.id == locale)!;
+
 const currentPath = Astro.url.pathname;
 const headTitle = title ? `${title} | Fred KISSIE` : "Fred KISSIE";
-const description =
-  "Software Engineer, amateur chef, amateur cyclist and twitch streamer";
 
 let resumePath = getRelativeLocaleUrl(locale, "resume.pdf");
 
@@ -30,10 +32,10 @@ if (resumePath.endsWith("/")) {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{headTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={siteInfo.data.description} />
 
     <meta property="og:title" content={headTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={siteInfo.data.description} />
     <meta property="og:url" content="https://fredkiss.dev/" />
     <meta property="og:site_name" content="Fred KISSIE" />
     <meta property="og:locale" content={locale} />
@@ -47,7 +49,7 @@ if (resumePath.endsWith("/")) {
     <meta property="twitter:url" content="https://fredkiss.dev" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={headTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={siteInfo.data.description} />
     <meta
       name="twitter:image"
       content="https://fredkiss.dev/opengraph-image.png"
@@ -80,12 +82,12 @@ if (resumePath.endsWith("/")) {
                 currentPath === "/" &&
                   "underline decoration-wavy decoration-[0.1em]",
               ]}>
-              Home
+              {siteInfo.data.linkTitles.home}
             </a>
           </li>
           <li>
             <a href={resumePath} class="inline-flex gap-1 items-center">
-              <span>See resume</span>
+              <span>{siteInfo.data.linkTitles.resume}</span>
               <Icon type="arrow-external" class="size-4" />
             </a>
           </li>

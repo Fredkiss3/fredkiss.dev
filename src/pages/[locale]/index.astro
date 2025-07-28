@@ -33,6 +33,9 @@ const { locale } = Astro.params;
 if (!locales.includes(locale)) {
   throw Astro.rewrite("/404");
 }
+
+const siteInfo = (await getCollection("site")).find(site => site.id == locale)!;
+const userInfo = siteInfo.data;
 ---
 
 <BaseLayout locale={locale}>
@@ -53,7 +56,7 @@ if (!locales.includes(locale)) {
             <span class="sr-only">Occupation</span>
             <Icon type="suitcase" class="size-4 relative top-1" />
           </dt>
-          <dd>Full-stack developer & Devops</dd>
+          <dd>{userInfo.jobTitle}</dd>
         </div>
       </dl>
     </div>
@@ -90,16 +93,7 @@ if (!locales.includes(locale)) {
   </section>
 
   <section id="description" class="flex flex-col gap-4">
-    <p>
-      I am a Software Engineer with over {totalYearsXP}+ years of professional
-      experience and more than {totalYearsDev}+ years of coding under my belt.
-      When I'm not writing code, you’ll find me exploring the city on my <strong
-        >bike</strong
-      > or
-      <strong>cooking</strong> up some delicious meals. I also stream regularly on
-      Twitch, where I share progress on my latest side projects as well do some cooking
-      LIVE.
-    </p>
+    <p>{userInfo.bio}</p>
 
     <ul
       class="flex items-center gap-4 text-zinc-600 dark:text-inherit flex-wrap">

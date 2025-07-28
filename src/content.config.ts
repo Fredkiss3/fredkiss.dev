@@ -1,4 +1,22 @@
+import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
+import { locales } from "~/i18n/config.mjs";
+
+const siteInfoCollection = defineCollection({
+  loader: glob({
+    pattern: locales.map((locale) => `${locale}.json`),
+    base: "./src/data/site-info"
+  }),
+  schema: z.object({
+    description: z.string().min(1),
+    jobTitle: z.string().min(1),
+    linkTitles: z.object({
+      home: z.string().min(1),
+      resume: z.string().min(1)
+    }),
+    bio: z.string().min(1)
+  })
+});
 
 const workExperienceCollection = defineCollection({
   type: "content",
@@ -42,5 +60,6 @@ const projectCollection = defineCollection({
 
 export const collections = {
   work: workExperienceCollection,
-  projects: projectCollection
+  projects: projectCollection,
+  site: siteInfoCollection
 };
