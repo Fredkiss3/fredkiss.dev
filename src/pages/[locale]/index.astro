@@ -200,24 +200,24 @@ const userInfo = siteInfo.data;
                 </div>
 
                 {xp.stack.length > 0 && (
-                  <div class="flex gap-2 items-start">
+                  <div class="flex gap-2 items-center flex-wrap">
                     <strong class="min-w-max">Tech Stack:</strong>{" "}
-                    <span class="flex flex-wrap gap-2">
-                      {xp.stack.map((tech, index) => {
-                        return tech.link ? (
-                          <a href={tech.link} class="flex gap-0 items-center">
-                            {tech.name}
-                            <Icon type="arrow-external" class="size-3" />
-                            {index < xp.stack.length - 1 && ", "}
-                          </a>
-                        ) : (
-                          <span>
-                            {tech.name}
-                            {index < xp.stack.length - 1 && ", "}
-                          </span>
-                        );
-                      })}
-                    </span>
+                    {xp.stack.map((tech, index) => {
+                      return tech.link ? (
+                        <a
+                          href={tech.link}
+                          class="inline-flex gap-0 items-center">
+                          {tech.name}
+                          <Icon type="arrow-external" class="size-3" />
+                          {index < xp.stack.length - 1 && ", "}
+                        </a>
+                      ) : (
+                        <span>
+                          {tech.name}
+                          {index < xp.stack.length - 1 && ", "}
+                        </span>
+                      );
+                    })}
                   </div>
                 )}
               </article>
