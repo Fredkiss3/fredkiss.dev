@@ -8,9 +8,6 @@ import BaseLayout from "~/layouts/base-layout.astro";
 import { formattedDate, capitalize } from "~/lib/utils";
 import { locales } from "~/i18n/config.mjs";
 
-const totalYearsXP = new Date().getFullYear() - 2021;
-const totalYearsDev = new Date().getFullYear() - 2017;
-
 const workExperiences = (await getCollection("work")).sort(
   (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
 );
