@@ -1,0 +1,17 @@
+---
+import { type locales } from "~/i18n/config.mjs";
+interface Props {
+  locale: (typeof locales)[number];
+}
+
+const { locale } = Astro.props;
+const { locale: currentLocale } = Astro.params;
+---
+
+{
+  locale === currentLocale && (
+    <>
+      <slot />
+    </>
+  )
+}

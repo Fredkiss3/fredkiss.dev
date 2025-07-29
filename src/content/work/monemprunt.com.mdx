@@ -20,13 +20,26 @@ stack:
     - name: Google Cloud Platform
       link: https://cloud.google.com/
 ---
+import LocalizedContent from '~/components/LocalizedContent.astro'
 
+<LocalizedContent locale='en'>
 As a frontend developer at monemprunt.com, I worked on:
 
-- Migrating monemprunt.com from Drupal to Gatsby/Strapi, deploying on Google Cloud.
-- Implementing a reusable design system and component library. [Demo](https://mec-design-system.netlify.app/)
-- Creating a monorepo for all frontend websites and apps.
-- Developing mortgage simulator widgets for partner websites, redirecting users to
-monemprunt.com. [Demo](https://www.monemprunt.com/simulation-emprunt-immobilier/calcul-mensualites-credit-immobilier/)
-- Integrating [pro.monemprunt.com](https://pro.monemprunt.com), showcased at the "RENT" real estate exhibition in Paris (Oct 2021).
+- Migrating monemprunt.com from Drupal to Gatsby/Strapi, deploying on Google Cloud.  
+- Implementing a reusable design system and component library. [Demo](https://mec-design-system.netlify.app/)  
+- Creating a monorepo for all frontend websites and apps.  
+- Developing mortgage simulator widgets for partner websites, redirecting users to monemprunt.com. [Demo](https://www.monemprunt.com/simulation-emprunt-immobilier/calcul-mensualites-credit-immobilier/)  
+- Integrating [pro.monemprunt.com](https://pro.monemprunt.com), showcased at the "RENT" real estate exhibition in Paris (Oct 2021).  
 - Configuring a root Google Cloud Platform load balancer to deploy all services with Google Cloud Run (for APIs) and Cloud Storage (for frontend), migrating old services to a fully cloud-based environment.
+</LocalizedContent>
+
+<LocalizedContent locale='fr'>
+En tant que développeur frontend chez monemprunt.com, j’ai travaillé sur :
+
+- La migration de monemprunt.com de Drupal vers Gatsby/Strapi, avec déploiement sur Google Cloud.  
+- La mise en place d’un design system réutilisable et d’une bibliothèque de composants. [Démo](https://mec-design-system.netlify.app/)  
+- La création d’un monorepo regroupant tous les sites et applications frontend.  
+- Le développement de simulateurs de prêt immobilier sous forme de widgets pour des sites partenaires, redirigeant vers monemprunt.com. [Démo](https://www.monemprunt.com/simulation-emprunt-immobilier/calcul-mensualites-credit-immobilier/)  
+- L’intégration de [pro.monemprunt.com](https://pro.monemprunt.com), présenté au salon de l’immobilier "RENT" à Paris (octobre 2021).  
+- La configuration d’un load balancer racine sur Google Cloud Platform pour déployer tous les services via Google Cloud Run (pour les APIs) et Cloud Storage (pour le frontend), avec migration des anciens services vers une infrastructure 100 % cloud.
+</LocalizedContent>
