@@ -38,16 +38,28 @@ const userInfo = siteInfo.data;
 
 const LABELS = {
   freelance: {
-    en: "Freelance",
-    fr: "Freelance",
+    en: "freelance",
+    fr: "freelance",
   },
   "full-time": {
-    en: "Full-time",
-    fr: "Temps plein",
+    en: "full-time",
+    fr: "temps plein",
   },
   AT: {
     en: "at",
     fr: "chez",
+  },
+  creator: {
+    en: "creator",
+    fr: "créateur",
+  },
+  maintainer: {
+    en: "maintainer",
+    fr: "maintainer",
+  },
+  contributor: {
+    en: "contributor",
+    fr: "contributeur",
   },
 } satisfies Record<string, Record<(typeof locales)[number], string>>;
 ---
@@ -248,13 +260,15 @@ const LABELS = {
   </section>
 
   <section id="projects" class="flex flex-col gap-3">
-    <h2 class="text-2xl font-semibold">projects</h2>
+    <h2 class="text-2xl font-semibold">Open Source</h2>
     <ul class="flex flex-col gap-20">
       {
         projects.map(async (entry, index) => {
           const project = entry.data;
           const { Content } = await render(entry);
-          const roleFormatted = project.roles.join(" and ");
+          const roleFormatted = project.roles
+            .map(role => LABELS[role][locale])
+            .join(" & ");
           return (
             <li>
               <article class="grid grid-cols-6 gap-6">
