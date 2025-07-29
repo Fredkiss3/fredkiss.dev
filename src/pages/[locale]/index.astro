@@ -6,7 +6,7 @@ import portraitImage from "~/images/headshot.png";
 import onBikeimage from "~/images/on-bike.jpeg";
 import BaseLayout from "~/layouts/base-layout.astro";
 import { formattedDate, capitalize } from "~/lib/utils";
-import { locales } from "~/i18n/config.mjs";
+import { locales, defaultLocale } from "~/i18n/config.mjs";
 import { render } from "astro:content";
 
 const workExperiences = (await getCollection("work")).sort(
@@ -27,13 +27,29 @@ export async function getStaticPaths() {
     },
   ];
 }
-const { locale } = Astro.params;
+const { locale } = Astro.params as { locale: (typeof locales)[number] };
+
 if (!locales.includes(locale)) {
   throw Astro.rewrite("/404");
 }
 
 const siteInfo = (await getCollection("site")).find(site => site.id == locale)!;
 const userInfo = siteInfo.data;
+
+const LABELS = {
+  freelance: {
+    en: "Freelance",
+    fr: "Freelance",
+  },
+  "full-time": {
+    en: "Full-time",
+    fr: "Temps plein",
+  },
+  AT: {
+    en: "at",
+    fr: "chez",
+  },
+} satisfies Record<string, Record<(typeof locales)[number], string>>;
 ---
 
 <BaseLayout locale={locale}>
@@ -185,14 +201,15 @@ const userInfo = siteInfo.data;
               <article class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
                   <h3 class="text-lg font-semibold">
-                    {xp.jobTitle} at
+                    {xp.jobTitle[locale] ?? xp.jobTitle[defaultLocale]}{" "}
+                    {LABELS["AT"][locale]}
                     <a target="_blank" rel="noopener noreferrer" href={xp.link}>
                       {xp.company}
                     </a>
                   </h3>
 
                   <h4 class="text-lg">
-                    <span>{capitalize(xp.type)}</span>{" "}
+                    <span>{capitalize(LABELS[xp.type][locale])}</span>{" "}
                     <span class="lowercase">({formattedDateRange})</span>
                   </h4>
                 </div>

@@ -13,7 +13,9 @@ const __dirname = import.meta.dirname;
 export default defineConfig({
   site: "https://fredkiss.dev",
   i18n: {
+    // @ts-expect-error
     locales,
+    // @ts-expect-error
     defaultLocale,
     routing: {
       prefixDefaultLocale: true,

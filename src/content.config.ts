@@ -22,7 +22,10 @@ const workExperienceCollection = defineCollection({
   loader: glob({ pattern: "work/*.{md,mdx}", base: "./src/content" }),
   schema: z.object({
     company: z.string().min(1),
-    jobTitle: z.string().min(1),
+    jobTitle: z.object({
+      en: z.string().min(1),
+      fr: z.string().min(1).optional()
+    }),
     type: z.enum(["full-time", "freelance"]).default("full-time"),
     link: z.string().url(),
     startDate: z.coerce.date(),
