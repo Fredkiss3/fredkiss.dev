@@ -3,14 +3,27 @@ import path from "node:path";
 import node from "@astrojs/node";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
+import { defaultLocale, locales } from "./src/i18n/config.mjs";
 
 import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
 const __dirname = import.meta.dirname;
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://fredkiss.dev",
-  integrations: [sitemap()],
+  i18n: {
+    // @ts-expect-error
+    locales,
+    // @ts-expect-error
+    defaultLocale,
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
+      fallbackType: "redirect"
+    }
+  },
+  integrations: [sitemap(), mdx()],
   vite: {
     plugins: [tailwindcss()],
     resolve: {

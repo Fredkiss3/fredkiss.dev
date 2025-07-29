@@ -122,3 +122,9 @@ export async function cache<T extends (...args: any[]) => Promise<any>>(
 
   return result;
 }
+
+export function capitalize(s: string) {
+  if (s.length == 0) return s;
+
+  return s[0].toUpperCase() + s.substring(1).toLowerCase();
+}

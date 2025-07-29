@@ -2,33 +2,42 @@
 import Icon from "~/components/icon.astro";
 import TailwindIndicator from "~/components/tailwind-indicator.astro";
 import "~/global.css";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getCollection } from "astro:content";
 
 interface Props {
   title?: string;
+  locale?: string;
 }
 
-const { title } = Astro.props;
+const { title, locale = "en" } = Astro.props;
+
+const siteInfo = (await getCollection("site")).find(site => site.id == locale)!;
 
 const currentPath = Astro.url.pathname;
 const headTitle = title ? `${title} | Fred KISSIE` : "Fred KISSIE";
-const description =
-  "Software Engineer, amateur chef, amateur cyclist and twitch streamer";
+
+let resumePath = getRelativeLocaleUrl(locale, "resume.pdf");
+
+if (resumePath.endsWith("/")) {
+  resumePath = resumePath.substring(0, resumePath.length - 1);
+}
 ---
 
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{headTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={siteInfo.data.description} />
 
     <meta property="og:title" content={headTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={siteInfo.data.description} />
     <meta property="og:url" content="https://fredkiss.dev/" />
     <meta property="og:site_name" content="Fred KISSIE" />
-    <meta property="og:locale" content="en" />
+    <meta property="og:locale" content={locale} />
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
@@ -39,7 +48,7 @@ const description =
     <meta property="twitter:url" content="https://fredkiss.dev" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={headTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={siteInfo.data.description} />
     <meta
       name="twitter:image"
       content="https://fredkiss.dev/opengraph-image.png"
@@ -66,18 +75,18 @@ const description =
         <ul class="flex items-center gap-4">
           <li>
             <a
-              href="/"
+              href={getRelativeLocaleUrl(locale, "/")}
               aria-current={currentPath === "/" ? "page" : "false"}
               class:list={[
                 currentPath === "/" &&
                   "underline decoration-wavy decoration-[0.1em]",
               ]}>
-              Home
+              {siteInfo.data.linkTitles.home}
             </a>
           </li>
           <li>
-            <a href="/resume.pdf" class="inline-flex gap-1 items-center">
-              <span>See resume</span>
+            <a href={resumePath} class="inline-flex gap-1 items-center">
+              <span>{siteInfo.data.linkTitles.resume}</span>
               <Icon type="arrow-external" class="size-4" />
             </a>
           </li>

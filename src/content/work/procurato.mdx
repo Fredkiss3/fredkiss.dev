@@ -1,0 +1,35 @@
+---
+company: "Procurato"
+jobTitle: 
+  en: Full-stack Developer
+  fr: Développeur Full-stack
+link: https://search.procurato.de
+startDate: "2024-07-01"
+endDate: "2024-07-31"
+type: freelance
+stack: 
+    - name: Next.js
+    - name: TailwindCSS
+    - name: Vercel
+    - name: PostgresSQL
+    - name: Railway.app
+      link: https://railway.app
+    - name: Inngest
+      link: https://www.inngest.com/
+---
+
+import LocalizedContent from '~/components/LocalizedContent.astro'
+
+<LocalizedContent locale='en'>
+I was approached as **Freelance** to work on Procurato, a Next.js app designed to provide a better UI for querying the German company database [handelsregister.de](https://www.handelsregister.de/) and retrieving information such as titles, capital, and registration documents. My responsibilities included:
+
+- Migrating the app's data-fetching process to [Inngest](https://www.inngest.com/), a background job service, to improve performance, as the app previously fetched documents directly on request, leading to slow response times.  
+- Implementing new features to query and download historical documents, including the list of shareholders and documents related to various fundraising stages.
+</LocalizedContent>
+
+<LocalizedContent locale='fr'>
+J’ai été sollicité en tant que **freelance** pour travailler sur Procurato, une application Next.js conçue pour offrir une meilleure interface à la base de données allemande [handelsregister.de](https://www.handelsregister.de/), en permettant d’accéder à des informations comme les statuts, le capital ou les documents d’enregistrement. Mes responsabilités incluaient :
+
+- La migration du processus de récupération des données vers [Inngest](https://www.inngest.com/), un service de jobs en arrière-plan, afin d’améliorer les performances (les documents étaient auparavant récupérés à la volée, ce qui ralentissait le temps de réponses aux requêtes).  
+- L’implémentation de nouvelles fonctionnalités pour interroger et télécharger des documents historiques, notamment la liste des actionnaires et les documents liés aux différentes levées de fonds.
+</LocalizedContent>
