@@ -19,7 +19,7 @@ const siteInfoCollection = defineCollection({
 });
 
 const workExperienceCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "work/*.{md,mdx}", base: "./src/content" }),
   schema: z.object({
     company: z.string().min(1),
     jobTitle: z.string().min(1),
@@ -39,7 +39,8 @@ const workExperienceCollection = defineCollection({
 });
 
 const projectCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "projects/*.{md,mdx}", base: "./src/content" }),
+
   schema: z.object({
     name: z.string().min(1),
     repository: z.string().url(),

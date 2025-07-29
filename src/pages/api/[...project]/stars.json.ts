@@ -23,7 +23,7 @@ const THIRTY_MINUTES_IN_SECONDS = 60 * 30;
 export const GET: APIRoute = async function get({ params }) {
   const projects = await getCollection("projects");
 
-  const project = projects.find((p) => p.slug === params.project);
+  const project = projects.find((p) => p.id === params.project);
 
   if (!project) {
     return Response.json(
@@ -40,7 +40,7 @@ export const GET: APIRoute = async function get({ params }) {
     .filter((part) => part.length > 0);
 
   const data = await cache(
-    `github-stars:${project.slug}`,
+    `github-stars:${project.id}`,
     THIRTY_MINUTES_IN_SECONDS,
     () =>
       fetchFromGithubAPI<RepositoryStatsResponse>(repostatsQuery, {

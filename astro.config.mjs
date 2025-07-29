@@ -6,6 +6,7 @@ import { defineConfig } from "astro/config";
 import { defaultLocale, locales } from "./src/i18n/config.mjs";
 
 import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
 const __dirname = import.meta.dirname;
 
 // https://astro.build/config
@@ -20,7 +21,7 @@ export default defineConfig({
       fallbackType: "redirect"
     }
   },
-  integrations: [sitemap()],
+  integrations: [sitemap(), mdx()],
   vite: {
     plugins: [tailwindcss()],
     resolve: {

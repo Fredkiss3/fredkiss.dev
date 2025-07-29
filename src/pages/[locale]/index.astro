@@ -7,6 +7,7 @@ import onBikeimage from "~/images/on-bike.jpeg";
 import BaseLayout from "~/layouts/base-layout.astro";
 import { formattedDate, capitalize } from "~/lib/utils";
 import { locales } from "~/i18n/config.mjs";
+import { render } from "astro:content";
 
 const workExperiences = (await getCollection("work")).sort(
   (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
@@ -168,7 +169,8 @@ const userInfo = siteInfo.data;
       {
         workExperiences.map(async entry => {
           const xp = entry.data;
-          const { Content } = await entry.render();
+          const { Content } = await render(entry);
+
           const startDate = formattedDate(xp.startDate);
           const endDate = xp.endDate
             ? `to ${formattedDate(xp.endDate)}`
@@ -234,7 +236,7 @@ const userInfo = siteInfo.data;
       {
         projects.map(async (entry, index) => {
           const project = entry.data;
-          const { Content } = await entry.render();
+          const { Content } = await render(entry);
           const roleFormatted = project.roles.join(" and ");
           return (
             <li>
@@ -255,7 +257,7 @@ const userInfo = siteInfo.data;
                       <span class="inline-flex items-center gap-1 text-amber-600 dark:text-yellow-400 font-normal">
                         <span
                           data-fetch-stars
-                          data-slug={entry.slug}
+                          data-slug={entry.id}
                           data-stars="-"
                           class="before:content-[attr(data-stars)]"
                         />
