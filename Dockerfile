@@ -14,7 +14,7 @@ RUN pnpm install --frozen-lockfile
 # build the app
 FROM build-deps AS build
 COPY . .
-RUN pnpm run build
+RUN FORCE_COLOR=true pnpm run build
 
 
 FROM base AS runtime
