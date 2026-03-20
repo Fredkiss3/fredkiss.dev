@@ -67,7 +67,7 @@ const LABELS = {
 <BaseLayout locale={locale}>
   <section id="banner" class="flex items-end gap-4 justify-between">
     <div class="flex flex-col gap-4">
-      <h1 class="text-xl font-medium">Fred Kissie</h1>
+      <h1 class="text-5xl md:text-6xl font-light font-serif">Fred Kissie</h1>
 
       <dl class="flex flex-col gap-2">
         <div class="flex items-start gap-2">
@@ -82,7 +82,7 @@ const LABELS = {
             <span class="sr-only">Occupation</span>
             <Icon type="suitcase" class="size-4 relative top-1" />
           </dt>
-          <dd>{userInfo.jobTitle}</dd>
+          <dd class="font-medium">{userInfo.jobTitle}</dd>
         </div>
       </dl>
     </div>
@@ -119,7 +119,7 @@ const LABELS = {
   </section>
 
   <section id="description" class="flex flex-col gap-4">
-    <p>{userInfo.bio}</p>
+    <p class="text-lg">{userInfo.bio}</p>
 
     <ul
       class="flex items-center gap-4 text-zinc-600 dark:text-inherit flex-wrap">
@@ -191,7 +191,10 @@ const LABELS = {
   </section>
 
   <section id="work" class="flex flex-col gap-3">
-    <h2 class="text-2xl font-semibold">work</h2>
+    <div class="flex items-center gap-4">
+      <h2 class="text-2xl font-semibold whitespace-nowrap">work</h2>
+      <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+    </div>
 
     <ul class="flex flex-col gap-8">
       {
@@ -199,56 +202,56 @@ const LABELS = {
           const xp = entry.data;
           const { Content } = await render(entry);
 
-          const startDate = formattedDate(xp.startDate);
-          const endDate = xp.endDate
-            ? `to ${formattedDate(xp.endDate)}`
-            : "- present";
-
-          const formattedDateRange =
-            xp.startDate.getMonth() === xp.endDate?.getMonth()
-              ? startDate
-              : `${startDate} ${endDate}`;
           return (
             <li>
-              <article class="flex flex-col gap-3 pl-4 border-l-2 border-amber-300 dark:border-amber-700">
-                <div class="flex flex-col gap-1">
-                  <h3 class="text-lg font-semibold">
-                    {xp.jobTitle[locale] ?? xp.jobTitle[defaultLocale]}{" "}
-                    {LABELS["AT"][locale]}
-                    <a target="_blank" rel="noopener noreferrer" href={xp.link}>
-                      {xp.company}
-                    </a>
-                  </h3>
-
-                  <h4 class="text-lg">
-                    <span>{capitalize(LABELS[xp.type][locale])}</span>{" "}
-                    <span class="lowercase">({formattedDateRange})</span>
-                  </h4>
+              <article class="grid grid-cols-1 md:grid-cols-[6rem_1fr] gap-x-6 gap-y-1 items-start">
+                <div class="text-sm text-zinc-500 dark:text-zinc-400 md:text-right leading-snug mb-1 md:mb-0 md:pt-1">
+                  <time class="block">{formattedDate(xp.startDate)}</time>
+                  {xp.endDate ? (
+                    <time class="block">{formattedDate(xp.endDate)}</time>
+                  ) : (
+                    <span class="block text-amber-600 dark:text-amber-400 font-medium">present</span>
+                  )}
                 </div>
 
-                <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc">
-                  <Content />
-                </div>
-
-                {xp.stack.length > 0 && (
-                  <div class="flex gap-1.5 items-center flex-wrap">
-                    <strong class="min-w-max text-sm">Tech Stack:</strong>{" "}
-                    {xp.stack.map(tech => {
-                      return tech.link ? (
-                        <a
-                          href={tech.link}
-                          class="inline-flex gap-0.5 items-center px-2 py-0.5 rounded text-xs font-medium border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 no-underline hover:no-underline hover:border-amber-400 dark:hover:border-amber-500 transition-colors">
-                          {tech.name}
-                          <Icon type="arrow-external" class="size-3" />
-                        </a>
-                      ) : (
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700">
-                          {tech.name}
-                        </span>
-                      );
-                    })}
+                <div class="flex flex-col gap-3 border-l-2 border-amber-300 dark:border-amber-700 pl-4">
+                  <div class="flex flex-col gap-1">
+                    <h3 class="text-xl font-semibold">
+                      {xp.jobTitle[locale] ?? xp.jobTitle[defaultLocale]}{" "}
+                      {LABELS["AT"][locale]}
+                      <a target="_blank" rel="noopener noreferrer" href={xp.link}>
+                        {xp.company}
+                      </a>
+                    </h3>
+                    <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                      {capitalize(LABELS[xp.type][locale])}
+                    </p>
                   </div>
-                )}
+
+                  <div class="text-zinc-700/90 dark:text-white/80 [&_ul]:ms-6 [&_ul>li]:list-disc">
+                    <Content />
+                  </div>
+
+                  {xp.stack.length > 0 && (
+                    <div class="flex gap-1.5 items-center flex-wrap">
+                      <strong class="min-w-max text-sm">Tech Stack:</strong>{" "}
+                      {xp.stack.map(tech => {
+                        return tech.link ? (
+                          <a
+                            href={tech.link}
+                            class="inline-flex gap-0.5 items-center px-2 py-0.5 rounded text-xs font-medium border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 no-underline hover:no-underline hover:border-amber-400 dark:hover:border-amber-500 transition-colors">
+                            {tech.name}
+                            <Icon type="arrow-external" class="size-3" />
+                          </a>
+                        ) : (
+                          <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700">
+                            {tech.name}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </article>
             </li>
           );
@@ -258,7 +261,10 @@ const LABELS = {
   </section>
 
   <section id="projects" class="flex flex-col gap-3">
-    <h2 class="text-2xl font-semibold">open source</h2>
+    <div class="flex items-center gap-4">
+      <h2 class="text-2xl font-semibold whitespace-nowrap">Open Source</h2>
+      <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+    </div>
     <ul class="flex flex-col gap-20">
       {
         projects.map(async (entry, index) => {
@@ -272,30 +278,33 @@ const LABELS = {
               <article class="grid md:grid-cols-6 gap-6">
                 <div class="flex flex-col col-span-full md:col-span-4 gap-4">
                   <div class="flex flex-col gap-1">
-                    <h3 class="text-lg font-semibold flex items-center gap-2">
-                      {project.link ? (
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={project.link}>
-                          {project.name}
-                        </a>
-                      ) : (
-                        <>{project.name}</>
-                      )}
-                      <span class="inline-flex items-center gap-1 text-amber-600 dark:text-yellow-400 font-normal">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <h3 class="text-xl font-semibold">
+                        {project.link ? (
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={project.link}>
+                            {project.name}
+                          </a>
+                        ) : (
+                          <>{project.name}</>
+                        )}
+                      </h3>
+                      <span class="inline-flex items-center gap-1 text-amber-600 dark:text-yellow-400 text-sm">
                         <span
                           data-fetch-stars
                           data-slug={entry.id}
                           data-stars="-"
                           class="before:content-[attr(data-stars)]"
                         />
-                        <Icon type="star" class="size-4" />
+                        ⭐<span class="sr-only">stars</span>
                       </span>
-                      <span class="sr-only">stars</span>
-                    </h3>
+                    </div>
 
-                    <h4 class="lowercase text-lg">{roleFormatted}</h4>
+                    <p class="text-sm lowercase text-zinc-500 dark:text-zinc-400">
+                      {roleFormatted}
+                    </p>
                   </div>
 
                   <div class="flex flex-col gap-2">
@@ -303,17 +312,16 @@ const LABELS = {
                       <Content />
                     </div>
 
-                    <footer class="">
-                      <small class="flex items-center gap-2">
-                        <Icon type="github" class="size-3" />
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={project.repository}>
-                          {project.repository}
-                        </a>
+                    <footer>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={project.repository}
+                        class="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+                        <Icon type="github" class="size-3.5" />
+                        {project.repository.replace("https://github.com/", "")}
                         <Icon type="arrow-external" class="size-3" />
-                      </small>
+                      </a>
                     </footer>
                   </div>
                 </div>
@@ -325,7 +333,7 @@ const LABELS = {
                       : "md:order-first md:rotate-6",
                     "flex col-span-full md:col-span-2",
                     "flex-col justify-center items-center",
-                    "md:size-full max-h-none",
+                    "md:size-full",
                     "hover:rotate-0 transition duration-150",
                   ]}>
                   {typeof project.image === "string" ? (
