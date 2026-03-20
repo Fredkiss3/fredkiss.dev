@@ -10,11 +10,11 @@ import { locales, defaultLocale } from "~/i18n/config.mjs";
 import { render } from "astro:content";
 
 const workExperiences = (await getCollection("work")).sort(
-  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
+  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime(),
 );
 
 const projects = (await getCollection("projects")).sort(
-  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
+  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime(),
 );
 
 export async function getStaticPaths() {
@@ -210,7 +210,7 @@ const LABELS = {
               : `${startDate} ${endDate}`;
           return (
             <li>
-              <article class="flex flex-col gap-3">
+              <article class="flex flex-col gap-3 pl-4 border-l-2 border-amber-300 dark:border-amber-700">
                 <div class="flex flex-col gap-1">
                   <h3 class="text-lg font-semibold">
                     {xp.jobTitle[locale] ?? xp.jobTitle[defaultLocale]}{" "}
@@ -231,21 +231,19 @@ const LABELS = {
                 </div>
 
                 {xp.stack.length > 0 && (
-                  <div class="flex gap-2 items-center flex-wrap">
-                    <strong class="min-w-max">Tech Stack:</strong>{" "}
-                    {xp.stack.map((tech, index) => {
+                  <div class="flex gap-1.5 items-center flex-wrap">
+                    <strong class="min-w-max text-sm">Tech Stack:</strong>{" "}
+                    {xp.stack.map(tech => {
                       return tech.link ? (
                         <a
                           href={tech.link}
-                          class="inline-flex gap-0 items-center">
+                          class="inline-flex gap-0.5 items-center px-2 py-0.5 rounded text-xs font-medium border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 no-underline hover:no-underline hover:border-amber-400 dark:hover:border-amber-500 transition-colors">
                           {tech.name}
                           <Icon type="arrow-external" class="size-3" />
-                          {index < xp.stack.length - 1 && ", "}
                         </a>
                       ) : (
-                        <span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700">
                           {tech.name}
-                          {index < xp.stack.length - 1 && ", "}
                         </span>
                       );
                     })}
@@ -260,7 +258,7 @@ const LABELS = {
   </section>
 
   <section id="projects" class="flex flex-col gap-3">
-    <h2 class="text-2xl font-semibold">Open Source</h2>
+    <h2 class="text-2xl font-semibold">open source</h2>
     <ul class="flex flex-col gap-20">
       {
         projects.map(async (entry, index) => {
@@ -271,7 +269,7 @@ const LABELS = {
             .join(" & ");
           return (
             <li>
-              <article class="grid grid-cols-6 gap-6">
+              <article class="grid md:grid-cols-6 gap-6">
                 <div class="flex flex-col col-span-full md:col-span-4 gap-4">
                   <div class="flex flex-col gap-1">
                     <h3 class="text-lg font-semibold flex items-center gap-2">
@@ -323,10 +321,11 @@ const LABELS = {
                 <div
                   class:list={[
                     index % 2 === 0
-                      ? "order-last -rotate-6"
-                      : "order-first rotate-6",
-                    "hidden md:flex",
-                    "col-span-2 flex-col justify-center items-center size-full",
+                      ? "md:order-last md:-rotate-6"
+                      : "md:order-first md:rotate-6",
+                    "flex col-span-full md:col-span-2",
+                    "flex-col justify-center items-center",
+                    "md:size-full max-h-none",
                     "hover:rotate-0 transition duration-150",
                   ]}>
                   {typeof project.image === "string" ? (
@@ -368,7 +367,7 @@ const LABELS = {
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
       const emailBtn = document.querySelector(
-        "button#email"
+        "button#email",
       ) as HTMLButtonElement;
 
       if (emailBtn) {
@@ -384,12 +383,12 @@ const LABELS = {
         [...stars].map(async element => {
           const slug = (element as HTMLElement).dataset.slug;
           const response = await fetch(`/api/${slug}/stars.json`).then(
-            r => r.json() as Promise<{ stargazerCount: number }>
+            r => r.json() as Promise<{ stargazerCount: number }>,
           );
 
           (element as HTMLElement).dataset.stars =
             response.stargazerCount.toString();
-        })
+        }),
       );
     });
   </script>
