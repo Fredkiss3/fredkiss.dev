@@ -352,10 +352,10 @@ const LABELS = {
                       width={500}
                       height={500}
                       loading="lazy"
-                      class="rounded-lg shadow-sm object-center object-contain w-full"
+                      class="rounded-lg drop-shadow-lg object-center object-contain w-full"
                     />
                   ) : (
-                    <picture class="object-center object-contain w-full rounded-lg shadow-sm">
+                    <picture class="object-center object-contain w-full rounded-lg">
                       <source
                         media="(prefers-color-scheme: dark)"
                         srcset={project.image.dark}
@@ -369,7 +369,7 @@ const LABELS = {
                         alt={`Screenshot of ${project.name}`}
                         width={500}
                         height={500}
-                        class="object-center object-contain size-full rounded-lg"
+                        class="object-center drop-shadow-sm object-contain size-full rounded-lg"
                       />
                     </picture>
                   )}
