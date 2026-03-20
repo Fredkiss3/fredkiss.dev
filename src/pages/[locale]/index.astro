@@ -65,18 +65,31 @@ const LABELS = {
 ---
 
 <BaseLayout locale={locale}>
-  <section id="banner" class="flex items-end gap-4 justify-between pb-8 border-b border-zinc-200 dark:border-zinc-700">
+  <section
+    id="banner"
+    class="flex items-end gap-4 justify-between pb-8 border-b border-zinc-200 dark:border-zinc-700">
     <div class="flex flex-col gap-4">
       <h1 class="text-5xl md:text-6xl font-light font-serif">Fred Kissie</h1>
 
-      <dl class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+      <dl
+        class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-600 dark:text-zinc-400">
         <div class="flex items-center gap-1.5">
-          <dt><span class="sr-only">Location</span><Icon type="map-pin" class="size-3.5" /></dt>
+          <dt>
+            <span class="sr-only">Location</span><Icon
+              type="map-pin"
+              class="size-3.5"
+            />
+          </dt>
           <dd>Rennes, France</dd>
         </div>
         <span aria-hidden="true">·</span>
         <div class="flex items-center gap-1.5">
-          <dt><span class="sr-only">Occupation</span><Icon type="suitcase" class="size-3.5" /></dt>
+          <dt>
+            <span class="sr-only">Occupation</span><Icon
+              type="suitcase"
+              class="size-3.5"
+            />
+          </dt>
           <dd class="font-medium">{userInfo.jobTitle}</dd>
         </div>
       </dl>
@@ -198,7 +211,9 @@ const LABELS = {
                   {xp.endDate ? (
                     <time class="block">{formattedDate(xp.endDate)}</time>
                   ) : (
-                    <span class="block text-amber-600 dark:text-amber-400 font-medium">present</span>
+                    <span class="block text-amber-600 dark:text-amber-400 font-medium">
+                      present
+                    </span>
                   )}
                 </div>
 
@@ -207,7 +222,10 @@ const LABELS = {
                     <h3 class="text-xl font-semibold">
                       {xp.jobTitle[locale] ?? xp.jobTitle[defaultLocale]}{" "}
                       {LABELS["AT"][locale]}
-                      <a target="_blank" rel="noopener noreferrer" href={xp.link}>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={xp.link}>
                         {xp.company}
                       </a>
                     </h3>
@@ -253,7 +271,7 @@ const LABELS = {
       <h2 class="text-2xl font-semibold whitespace-nowrap">Open Source</h2>
       <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div>
     </div>
-    <ul class="flex flex-col gap-20">
+    <ul class="flex flex-col">
       {
         projects.map(async (entry, index) => {
           const project = entry.data;
@@ -262,10 +280,13 @@ const LABELS = {
             .map(role => LABELS[role][locale])
             .join(" & ");
           return (
-            <li>
-              <article class="grid md:grid-cols-6 gap-6">
-                <div class="flex flex-col col-span-full md:col-span-4 gap-4">
+            <li class="py-12 border-t border-zinc-200 dark:border-zinc-700 first:pt-0 first:border-0">
+              <article class="grid md:grid-cols-2 gap-8">
+                <div class="flex flex-col col-span-full md:col-span-1 gap-4">
                   <div class="flex flex-col gap-1">
+                    <span class="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                     <div class="flex items-center gap-2 flex-wrap">
                       <h3 class="text-xl font-semibold">
                         {project.link ? (
@@ -317,9 +338,9 @@ const LABELS = {
                 <div
                   class:list={[
                     index % 2 === 0
-                      ? "md:order-last md:-rotate-6"
-                      : "md:order-first md:rotate-6",
-                    "flex col-span-full md:col-span-2",
+                      ? "md:order-last md:-rotate-2"
+                      : "md:order-first md:rotate-2",
+                    "flex col-span-full md:col-span-1",
                     "flex-col justify-center items-center",
                     "md:size-full",
                     "hover:rotate-0 transition duration-150",
@@ -331,10 +352,10 @@ const LABELS = {
                       width={500}
                       height={500}
                       loading="lazy"
-                      class="rounded-md object-center object-contain w-full"
+                      class="rounded-lg shadow-sm object-center object-contain w-full"
                     />
                   ) : (
-                    <picture class="object-center object-contain w-full rounded-md">
+                    <picture class="object-center object-contain w-full rounded-lg shadow-sm">
                       <source
                         media="(prefers-color-scheme: dark)"
                         srcset={project.image.dark}
@@ -348,7 +369,7 @@ const LABELS = {
                         alt={`Screenshot of ${project.name}`}
                         width={500}
                         height={500}
-                        class="object-center object-contain size-full rounded-md"
+                        class="object-center object-contain size-full rounded-lg"
                       />
                     </picture>
                   )}
