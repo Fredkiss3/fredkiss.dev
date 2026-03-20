@@ -39,28 +39,41 @@ export const GET: APIRoute = async function get({ params }) {
     .split("/")
     .filter((part) => part.length > 0);
 
-  const data = await cache(
-    `github-stars:${project.id}`,
-    THIRTY_MINUTES_IN_SECONDS,
-    () =>
-      fetchFromGithubAPI<RepositoryStatsResponse>(repostatsQuery, {
-        repoName,
-        repoOwner
-      })
-  );
+  try {
+    const data = await cache(
+      `github-stars:${project.id}`,
+      THIRTY_MINUTES_IN_SECONDS,
+      () =>
+        fetchFromGithubAPI<RepositoryStatsResponse>(repostatsQuery, {
+          repoName,
+          repoOwner
+        })
+    );
 
-  const cacheHeader = import.meta.env.PROD
-    ? "public, max-age=600, s-max-age=1800, stale-while-revalidate=1800, stale-if-error=43200"
-    : "private, no-cache";
+    const cacheHeader = import.meta.env.PROD
+      ? "public, max-age=600, s-max-age=1800, stale-while-revalidate=1800, stale-if-error=43200"
+      : "private, no-cache";
 
-  return Response.json(
-    {
-      stargazerCount: data.repository.stargazerCount
-    },
-    {
-      headers: {
-        "Cache-Control": cacheHeader
+    return Response.json(
+      {
+        stargazerCount: data.repository.stargazerCount
+      },
+      {
+        headers: {
+          "Cache-Control": cacheHeader
+        }
       }
-    }
-  );
+    );
+  } catch (error) {
+    return Response.json(
+      {
+        stargazerCount: 0
+      },
+      {
+        headers: {
+          "Cache-Control": "no-cache"
+        }
+      }
+    );
+  }
 };
