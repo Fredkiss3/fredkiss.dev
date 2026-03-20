@@ -65,23 +65,18 @@ const LABELS = {
 ---
 
 <BaseLayout locale={locale}>
-  <section id="banner" class="flex items-end gap-4 justify-between">
+  <section id="banner" class="flex items-end gap-4 justify-between pb-8 border-b border-zinc-200 dark:border-zinc-700">
     <div class="flex flex-col gap-4">
       <h1 class="text-5xl md:text-6xl font-light font-serif">Fred Kissie</h1>
 
-      <dl class="flex flex-col gap-2">
-        <div class="flex items-start gap-2">
-          <dt>
-            <span class="sr-only">Location</span>
-            <Icon type="map-pin" class="size-4 relative top-1" />
-          </dt>
+      <dl class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+        <div class="flex items-center gap-1.5">
+          <dt><span class="sr-only">Location</span><Icon type="map-pin" class="size-3.5" /></dt>
           <dd>Rennes, France</dd>
         </div>
-        <div class="flex items-start gap-2">
-          <dt>
-            <span class="sr-only">Occupation</span>
-            <Icon type="suitcase" class="size-4 relative top-1" />
-          </dt>
+        <span aria-hidden="true">·</span>
+        <div class="flex items-center gap-1.5">
+          <dt><span class="sr-only">Occupation</span><Icon type="suitcase" class="size-3.5" /></dt>
           <dd class="font-medium">{userInfo.jobTitle}</dd>
         </div>
       </dl>
@@ -121,70 +116,63 @@ const LABELS = {
   <section id="description" class="flex flex-col gap-4">
     <p class="text-lg">{userInfo.bio}</p>
 
-    <ul
-      class="flex items-center gap-4 text-zinc-600 dark:text-inherit flex-wrap">
+    <ul class="flex items-center gap-2 flex-wrap">
       <li>
         <a
-          class="inline-flex gap-1.5 items-center"
+          class="inline-flex gap-2 items-center px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-600 text-sm no-underline hover:no-underline hover:border-zinc-500 dark:hover:border-zinc-400 transition-colors"
           href="https://github.com/fredkiss3"
           target="_blank"
           rel="noopener noreferrer">
           <Icon type="github" class="size-4" />
           <span>github</span>
-          <Icon type="arrow-external" class="size-4" />
         </a>
       </li>
       <li>
         <button
-          class="inline-flex gap-1.5 items-center underline hover:decoration-wavy decoration-[0.1em]"
+          class="inline-flex gap-2 items-center px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-600 text-sm hover:border-zinc-500 dark:hover:border-zinc-400 transition-colors cursor-pointer"
           id="email">
           <Icon type="arobase" class="size-4" />
           <span>email</span>
-          <Icon type="arrow-external" class="size-4" />
         </button>
       </li>
       <li>
         <a
-          class="inline-flex gap-1.5 items-center"
+          class="inline-flex gap-2 items-center px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-600 text-sm no-underline hover:no-underline hover:border-zinc-500 dark:hover:border-zinc-400 transition-colors"
           href="https://www.linkedin.com/in/fredhel-kissie-3b6b32162/"
           target="_blank"
           rel="noopener noreferrer">
           <Icon type="linkedin" class="size-4" />
           <span>linkedin</span>
-          <Icon type="arrow-external" class="size-4" />
         </a>
       </li>
       <li>
         <a
-          class="inline-flex gap-1.5 items-center"
+          class="inline-flex gap-2 items-center px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-600 text-sm no-underline hover:no-underline hover:border-zinc-500 dark:hover:border-zinc-400 transition-colors"
           href="https://bsky.app/profile/fredkiss.dev"
           target="_blank"
           rel="noopener noreferrer">
-          <Icon type="bluesky" class="size-5" />
-          <span>Bluesky</span>
-          <Icon type="arrow-external" class="size-4" />
+          <Icon type="bluesky" class="size-4" />
+          <span>bluesky</span>
         </a>
       </li>
       <li>
         <a
-          class="inline-flex gap-1.5 items-center"
+          class="inline-flex gap-2 items-center px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-600 text-sm no-underline hover:no-underline hover:border-zinc-500 dark:hover:border-zinc-400 transition-colors"
           href="https://twitter.com/fredkisss"
           target="_blank"
           rel="noopener noreferrer">
           <Icon type="twitter" class="size-4" />
           <span>twitter</span>
-          <Icon type="arrow-external" class="size-4" />
         </a>
       </li>
       <li>
         <a
-          class="inline-flex gap-1.5 items-center"
+          class="inline-flex gap-2 items-center px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-600 text-sm no-underline hover:no-underline hover:border-zinc-500 dark:hover:border-zinc-400 transition-colors"
           href="https://twitch.tv/fredkisss"
           target="_blank"
           rel="noopener noreferrer">
           <Icon type="twitch" class="size-4" />
           <span>twitch</span>
-          <Icon type="arrow-external" class="size-4" />
         </a>
       </li>
     </ul>

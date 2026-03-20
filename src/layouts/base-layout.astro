@@ -71,26 +71,16 @@ if (resumePath.endsWith("/")) {
       Skip to main content
     </a>
     <header class="max-w-3xl mx-auto mt-8 mb-10 pb-4 border-b border-zinc-200 dark:border-zinc-700">
-      <nav>
-        <ul class="flex items-center gap-4">
-          <li>
-            <a
-              href={getRelativeLocaleUrl(locale, "/")}
-              aria-current={currentPath === "/" ? "page" : "false"}
-              class:list={[
-                currentPath === "/" &&
-                  "underline decoration-wavy decoration-[0.1em]",
-              ]}>
-              {siteInfo.data.linkTitles.home}
-            </a>
-          </li>
-          <li>
-            <a href={resumePath} class="inline-flex gap-1 items-center">
-              <span>{siteInfo.data.linkTitles.resume}</span>
-              <Icon type="arrow-external" class="size-4" />
-            </a>
-          </li>
-        </ul>
+      <nav class="flex items-center justify-between">
+        <a
+          href={getRelativeLocaleUrl(locale, "/")}
+          class="font-serif text-xl no-underline hover:no-underline">
+          Fred Kissie
+        </a>
+        <a href={resumePath} class="inline-flex gap-1 items-center text-sm">
+          <span>{siteInfo.data.linkTitles.resume}</span>
+          <Icon type="arrow-external" class="size-4" />
+        </a>
       </nav>
     </header>
     <main
